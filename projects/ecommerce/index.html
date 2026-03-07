@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LUXO — Boutique en ligne premium">
+  <title>LUXO — E-Commerce Premium</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+
+<!-- ===================== NOTIFICATION ===================== -->
+<div id="notification" role="alert">
+  <span id="notif-msg"></span>
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav id="navbar" role="navigation" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="navigate('home')">LUX<span>O</span></div>
+
+    <div class="nav-links" role="menubar">
+      <button class="nav-link active" data-page="home" data-i18n="nav_home">Accueil</button>
+      <button class="nav-link" data-page="shop" data-i18n="nav_shop">Boutique</button>
+      <button class="nav-link" data-page="orders" data-i18n="nav_orders">Commandes</button>
+      <button class="nav-link" data-page="wishlist" data-i18n="nav_wishlist">Favoris</button>
+      <button class="nav-link" data-page="account" data-i18n="nav_account">Compte</button>
+      <button class="nav-link" data-page="admin" data-i18n="nav_admin">Admin</button>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" class="search-input" data-i18n-placeholder="search_placeholder" placeholder="Rechercher des produits..." aria-label="Recherche">
+      </div>
+
+      <div class="lang-selector" role="group" aria-label="Langue">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+
+      <button class="icon-btn" id="theme-toggle" aria-label="Changer le thème" title="Mode sombre">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <button class="icon-btn" id="cart-icon-btn" onclick="navigate('cart')" aria-label="Panier">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge" aria-live="polite">0</span>
+      </button>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== MOBILE MENU ===================== -->
+<div id="mobile-menu" role="dialog" aria-label="Menu mobile">
+  <button class="nav-link" data-page="home" data-i18n="nav_home">Accueil</button>
+  <button class="nav-link" data-page="shop" data-i18n="nav_shop">Boutique</button>
+  <button class="nav-link" data-page="orders" data-i18n="nav_orders">Commandes</button>
+  <button class="nav-link" data-page="wishlist" data-i18n="nav_wishlist">Favoris</button>
+  <button class="nav-link" data-page="account" data-i18n="nav_account">Compte</button>
+  <button class="nav-link" data-page="admin" data-i18n="nav_admin">Admin</button>
+  <div class="mobile-lang">
+    <button class="lang-btn active" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="de">DE</button>
+    <button class="lang-btn" data-lang="es">ES</button>
+  </div>
+</div>
+<div id="menu-overlay"></div>
+
+<!-- ===================== PAGE: HOME ===================== -->
+<main id="page-home" class="page active" role="main">
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Bannière principale">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">✦ Collection 2024</div>
+        <h1 class="hero-title" data-i18n="hero_title">Découvrez l'<em>Excellence</em></h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">Des produits soigneusement sélectionnés pour un style de vie moderne</p>
+        <div class="hero-actions">
+          <button class="btn-primary" id="hero-cta" data-i18n="hero_cta">Explorer la collection</button>
+          <button class="btn-outline" id="hero-cta2" data-i18n="hero_cta2">Nouveautés</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>2,500+</strong> Produits</div>
+          <div class="hero-stat"><strong>50K+</strong> Clients</div>
+          <div class="hero-stat"><strong>4.9★</strong> Note</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-badge">NEW<br>2024</div>
+        <div class="hero-product-cards" id="hero-cards"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust badges -->
+  <div class="container">
+    <div class="trust-badges">
+      <div class="trust-item"><span class="trust-icon">🚚</span> Livraison gratuite dès 50€</div>
+      <div class="trust-item"><span class="trust-icon">🔄</span> Retours 30 jours</div>
+      <div class="trust-item"><span class="trust-icon">🔒</span> Paiement sécurisé</div>
+      <div class="trust-item"><span class="trust-icon">🏆</span> Qualité garantie</div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <section class="section container">
+    <div class="section-header">
+      <div>
+        <h2 data-i18n="nav_categories">Catégories</h2>
+        <p class="section-subtitle">Explorez notre sélection</p>
+      </div>
+    </div>
+    <div class="categories-grid" id="home-categories"></div>
+  </section>
+
+  <!-- Featured products -->
+  <section class="section section-bg-alt">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 data-i18n="products_featured">Produits Vedettes</h2>
+          <p class="section-subtitle">Notre sélection du moment</p>
+        </div>
+        <span class="section-link" onclick="navigate('shop')" data-i18n="products_all">Voir tout</span>
+      </div>
+      <div class="products-grid" id="featured-products"></div>
+    </div>
+  </section>
+
+  <!-- New arrivals -->
+  <section class="section container">
+    <div class="section-header">
+      <div>
+        <h2 data-i18n="products_new">Nouveaux Arrivages</h2>
+        <p class="section-subtitle">Les dernières nouveautés</p>
+      </div>
+      <span class="section-link" onclick="filterCategory='all'; filterSort='newest'; navigate('shop');" data-i18n="products_all">Voir tout</span>
+    </div>
+    <div class="products-grid" id="new-products"></div>
+  </section>
+
+  <!-- Sale -->
+  <section class="section section-bg-alt">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 data-i18n="products_sale">Promotions</h2>
+          <p class="section-subtitle">Offres limitées</p>
+        </div>
+        <span class="section-link" onclick="filterCategory='all'; filterSort='newest'; navigate('shop');" data-i18n="products_all">Voir tout</span>
+      </div>
+      <div class="products-grid" id="sale-products"></div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container">
+      <h2 data-i18n="newsletter_title">Restez informé</h2>
+      <p data-i18n="newsletter_sub">Abonnez-vous à notre newsletter</p>
+      <div class="newsletter-form">
+        <input type="email" data-i18n-placeholder="newsletter_placeholder" placeholder="Votre email" aria-label="Email newsletter">
+        <button class="btn-primary" data-i18n="newsletter_btn">S'abonner</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">LUX<span style="color:var(--accent)">O</span></span>
+          <p data-i18n="footer_tagline">L'excellence à votre portée</p>
+        </div>
+        <div class="footer-col">
+          <h4>Boutique</h4>
+          <div class="footer-links">
+            <a onclick="navigate('shop')">Tous les produits</a>
+            <a onclick="filterCategory='electronics'; navigate('shop')">Électronique</a>
+            <a onclick="filterCategory='fashion'; navigate('shop')">Mode</a>
+            <a onclick="filterCategory='home'; navigate('shop')">Maison</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Aide</h4>
+          <div class="footer-links">
+            <a>FAQ</a>
+            <a>Livraison</a>
+            <a>Retours</a>
+            <a onclick="navigate('orders')">Mes commandes</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Légal</h4>
+          <div class="footer-links">
+            <a>CGV</a>
+            <a>Confidentialité</a>
+            <a>Cookies</a>
+            <a>Mentions légales</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 LUXO. <span data-i18n="footer_rights">Tous droits réservés</span></span>
+        <div class="lang-selector">
+          <button class="lang-btn active" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="es">ES</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- ===================== PAGE: SHOP ===================== -->
+<div id="page-shop" class="page">
+  <div class="container">
+    <div class="shop-wrap">
+      <div class="shop-header">
+        <h1 class="page-title" data-i18n="products_title">Notre Catalogue</h1>
+        <div class="shop-filters">
+          <button class="cat-filter-btn active" data-cat="all" data-i18n="cat_all">Tout</button>
+          <button class="cat-filter-btn" data-cat="electronics" data-i18n="cat_electronics">Électronique</button>
+          <button class="cat-filter-btn" data-cat="fashion" data-i18n="cat_fashion">Mode</button>
+          <button class="cat-filter-btn" data-cat="home" data-i18n="cat_home">Maison</button>
+          <button class="cat-filter-btn" data-cat="beauty" data-i18n="cat_beauty">Beauté</button>
+          <button class="cat-filter-btn" data-cat="sports" data-i18n="cat_sports">Sport</button>
+          <button class="cat-filter-btn" data-cat="books" data-i18n="cat_books">Livres</button>
+          <div class="shop-sort">
+            <span class="sort-label" data-i18n="sort">Trier</span>
+            <select id="sort-select" aria-label="Trier par">
+              <option value="newest" data-i18n="sort_newest">Plus récents</option>
+              <option value="popular" data-i18n="sort_popular">Populaires</option>
+              <option value="price_asc" data-i18n="sort_price_asc">Prix croissant</option>
+              <option value="price_desc" data-i18n="sort_price_desc">Prix décroissant</option>
+              <option value="name" data-i18n="sort_name">Nom</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="products-grid" id="shop-products"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PAGE: PRODUCT DETAIL ===================== -->
+<div id="page-product" class="page"></div>
+
+<!-- ===================== PAGE: CART ===================== -->
+<div id="page-cart" class="page"></div>
+
+<!-- ===================== PAGE: CHECKOUT ===================== -->
+<div id="page-checkout" class="page"></div>
+
+<!-- ===================== PAGE: ORDERS ===================== -->
+<div id="page-orders" class="page"></div>
+
+<!-- ===================== PAGE: WISHLIST ===================== -->
+<div id="page-wishlist" class="page">
+  <div class="container"></div>
+</div>
+
+<!-- ===================== PAGE: ACCOUNT ===================== -->
+<div id="page-account" class="page"></div>
+
+<!-- ===================== PAGE: ADMIN ===================== -->
+<div id="page-admin" class="page" style="padding-top:var(--nav-h)"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Render hero cards & categories on home
+  function renderHeroCards() {
+    const heroCards = document.getElementById('hero-cards');
+    if (!heroCards) return;
+    const featured = products.filter(p => p.featured).slice(0, 4);
+    heroCards.innerHTML = featured.map(p => `
+      <div class="hero-card" onclick="navigate('product', ${p.id})">
+        <img src="${p.image}" alt="${getProductName(p)}" loading="lazy">
+        <h4>${getProductName(p)}</h4>
+        <span>${formatPrice(p.price)}</span>
+      </div>`).join('');
+  }
+
+  function renderHomeCategories() {
+    const cats = [
+      {key: 'all', icon: ''},
+      {key: 'electronics', icon: ''},
+      {key: 'fashion', icon: ''},
+      {key: 'home', icon: ''},
+      {key: 'beauty', icon: ''},
+      {key: 'sports', icon: ''},
+      {key: 'books', icon: ''},
+    ];
+    const container = document.getElementById('home-categories');
+    if (!container) return;
+    container.innerHTML = cats.map(c => `
+      <div class="cat-card" onclick="filterCategory='${c.key}'; navigate('shop');">
+        <div class="cat-icon">${c.icon}</div>
+        <div class="cat-name" data-i18n="cat_${c.key}">${t('cat_' + c.key)}</div>
+      </div>`).join('');
+  }
+
+  const originalRenderHomePage = renderHomePage;
+  function renderHomePage() {
+    renderHeroCards();
+    renderHomeCategories();
+    renderFeaturedProducts();
+    renderNewProducts();
+    renderSaleProducts();
+  }
+</script>
+</body>
+</html>

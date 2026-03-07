@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Épure – Restaurant Gastronomique Paris</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════
+   ÉPURE — Design System
+   Mood: Brasserie française moderne,
+         lumineuse, chaude, appétissante
+   Palette: blanc cassé, vert olive,
+            terracotta, sable, charbon
+═══════════════════════════════════ */
+:root{
+  --w:#ffffff;
+  --bg:#fdfcf9;
+  --bg2:#f8f5ef;
+  --bg3:#f2ede3;
+  --bg4:#ebe4d5;
+  --olive:#3d5a3e;
+  --olive2:#4e7150;
+  --olive-l:#edf3ed;
+  --olive-ll:#f4f8f4;
+  --terra:#c2622b;
+  --terra2:#d9743e;
+  --terra-l:#fdf0e8;
+  --terra-ll:#fff7f2;
+  --sand:#b09060;
+  --sand-l:#f8f2e8;
+  --char:#1c1c1c;
+  --char2:#2d2d2d;
+  --ink:#3a3028;
+  --ink2:#6b5f52;
+  --ink3:#9c8f83;
+  --ink4:#c5bcb3;
+  --bdr:#e8e0d4;
+  --bdr2:#d4c9ba;
+  --r:8px;
+  --r2:14px;
+  --r3:22px;
+  --r4:32px;
+  --sh:0 2px 12px rgba(28,28,28,.07);
+  --sh2:0 8px 32px rgba(28,28,28,.11);
+  --sh3:0 20px 60px rgba(28,28,28,.16);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --spring:cubic-bezier(.34,1.4,.64,1);
+  --t:.22s;
+  --fd:'Playfair Display',Georgia,serif;
+  --fb:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.65;overflow-x:hidden}
+h1,h2,h3{font-family:var(--fd);line-height:1.15}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:var(--fb)}
+input,select,textarea{font-family:var(--fb)}
+img{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem)}
+em{font-style:italic;color:var(--olive)}
+
+/* ─────────────────────────────────
+   SCROLL
+───────────────────────────────── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:4px}
+
+/* ─────────────────────────────────
+   TOAST
+───────────────────────────────── */
+#toasts{
+  position:fixed;top:84px;right:1.25rem;z-index:9000;
+  display:flex;flex-direction:column;gap:.5rem;
+  max-width:320px;width:calc(100vw - 2.5rem);pointer-events:none;
+}
+.toast{
+  pointer-events:all;display:flex;align-items:flex-start;gap:.65rem;
+  background:var(--w);border:1px solid var(--bdr);border-radius:var(--r2);
+  padding:.85rem 1rem;box-shadow:var(--sh2);
+  animation:tIn .28s var(--spring);
+}
+.toast.tok{border-left:3px solid var(--olive)}
+.toast.terr{border-left:3px solid #d63031}
+.toast.tinf{border-left:3px solid var(--terra)}
+.ti{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0;margin-top:1px}
+.tok .ti{background:var(--olive);color:#fff}
+.terr .ti{background:#d63031;color:#fff}
+.tinf .ti{background:var(--terra);color:#fff}
+.tb{flex:1}
+.tt{font-weight:600;font-size:.82rem;color:var(--ink)}
+.tm{font-size:.76rem;color:var(--ink2);margin-top:1px;line-height:1.4}
+.tx{color:var(--ink4);font-size:.72rem;cursor:pointer}
+.tout{animation:tOut .22s var(--ease) forwards}
+@keyframes tIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+@keyframes tOut{to{opacity:0;transform:translateX(16px)}}
+
+/* ─────────────────────────────────
+   OVERLAY + MODALS
+───────────────────────────────── */
+#overlay{
+  position:fixed;inset:0;z-index:800;
+  background:rgba(28,28,28,.5);backdrop-filter:blur(4px);
+  animation:fadeIn .18s ease;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.modal{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:801;background:var(--w);
+  border-radius:var(--r4);
+  width:min(480px,96vw);max-height:94vh;
+  overflow-y:auto;box-shadow:var(--sh3);
+  animation:mIn .3s var(--spring);
+  scrollbar-width:thin;scrollbar-color:var(--bdr) transparent;
+}
+.modal-lg{width:min(880px,97vw)}
+.modal-xl{width:min(1020px,98vw)}
+@keyframes mIn{
+  from{opacity:0;transform:translate(-50%,-47%) scale(.95)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1)}
+}
+/* Bottom sheet on mobile */
+@media(max-width:560px){
+  .modal,.modal-lg,.modal-xl{
+    top:auto;bottom:0;left:0;right:0;
+    transform:none;width:100%;max-width:100%;
+    border-radius:var(--r4) var(--r4) 0 0;
+    max-height:96vh;
+    animation:sheetIn .3s var(--spring);
+  }
+  @keyframes sheetIn{from{transform:translateY(20%);opacity:0}to{transform:translateY(0);opacity:1}}
+}
+.mh{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;
+  padding:1.5rem 1.75rem 0;
+}
+.mt{font-family:var(--fd);font-size:1.3rem;color:var(--ink);line-height:1.2}
+.mclose{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--bg2);color:var(--ink2);
+  font-size:.75rem;display:flex;align-items:center;justify-content:center;
+  transition:var(--t);flex-shrink:0;margin-top:3px;
+}
+.mclose:hover{background:var(--bg3);color:var(--ink)}
+.mb{padding:1.25rem 1.75rem 1.75rem}
+.hidden{display:none!important}
+
+/* ─────────────────────────────────
+   FORM ELEMENTS
+───────────────────────────────── */
+.fg{margin-bottom:1rem}
+.fg label{
+  display:block;font-size:.7rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;
+  color:var(--ink3);margin-bottom:.38rem;
+}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:.72rem 1rem;
+  background:var(--bg2);border:1.5px solid var(--bdr);
+  border-radius:var(--r);color:var(--ink);font-size:.9rem;
+  transition:var(--t);outline:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--olive);background:var(--w);
+  box-shadow:0 0 0 3px rgba(61,90,62,.1);
+}
+.fg textarea{resize:vertical;min-height:80px;line-height:1.6}
+.fg select option{background:var(--w)}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.pwrap{position:relative}
+.pwrap input{padding-right:2.5rem}
+.peye{position:absolute;right:.75rem;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:.82rem;transition:var(--t)}
+.peye:hover{color:var(--olive)}
+.str{display:flex;gap:3px;margin-top:5px}
+.sb{flex:1;height:3px;border-radius:2px;background:var(--bdr);transition:.3s}
+.sb.w{background:#e17055}.sb.m{background:#fdcb6e}.sb.s{background:var(--olive)}
+.cbl{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--ink2);cursor:pointer}
+.cbl input{accent-color:var(--olive);width:16px;height:16px}
+.or{text-align:center;position:relative;margin:1.1rem 0;font-size:.76rem;color:var(--ink3)}
+.or::before,.or::after{content:'';position:absolute;top:50%;width:43%;height:1px;background:var(--bdr)}
+.or::before{left:0}.or::after{right:0}
+.link-s{font-size:.8rem;color:var(--olive);text-decoration:underline;cursor:pointer}
+.row-b{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.mb1{margin-bottom:1rem}
+
+/* ─────────────────────────────────
+   BUTTONS
+───────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  padding:.7rem 1.75rem;border-radius:var(--r3);
+  font-size:.875rem;font-weight:600;letter-spacing:.01em;
+  transition:var(--t) var(--ease);cursor:pointer;white-space:nowrap;
+}
+.btn-olive{background:var(--olive);color:#fff;border:none}
+.btn-olive:hover{background:var(--olive2);transform:translateY(-1px);box-shadow:0 4px 18px rgba(61,90,62,.3)}
+.btn-olive:active{transform:none}
+.btn-terra{background:var(--terra);color:#fff;border:none}
+.btn-terra:hover{background:var(--terra2);transform:translateY(-1px);box-shadow:0 4px 18px rgba(194,98,43,.3)}
+.btn-out{background:transparent;color:var(--olive);border:1.5px solid var(--olive)}
+.btn-out:hover{background:var(--olive-l)}
+.btn-ghost{background:transparent;color:var(--ink2);border:1.5px solid var(--bdr2)}
+.btn-ghost:hover{border-color:var(--olive);color:var(--olive)}
+.btn-lg{padding:.9rem 2.5rem;font-size:.95rem;border-radius:var(--r4)}
+.btn-sm{padding:.42rem 1rem;font-size:.8rem;border-radius:var(--r2)}
+.btn-full{width:100%;justify-content:center}
+.btn-social{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  width:100%;padding:.7rem;border:1.5px solid var(--bdr);
+  border-radius:var(--r);background:var(--w);
+  font-size:.875rem;font-weight:500;color:var(--ink);transition:var(--t);
+}
+.btn-social:hover{border-color:var(--olive);background:var(--olive-ll)}
+.pill{padding:3px 10px;border-radius:99px;font-size:.68rem;font-weight:700}
+.p-ok{background:rgba(61,90,62,.1);color:var(--olive);border:1px solid rgba(61,90,62,.2)}
+.p-pend{background:rgba(253,203,110,.2);color:#b8860b;border:1px solid rgba(253,203,110,.4)}
+.p-can{background:rgba(214,48,49,.08);color:#d63031;border:1px solid rgba(214,48,49,.2)}
+
+/* ─────────────────────────────────
+   NAVBAR
+───────────────────────────────── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:700;
+  transition:background .3s,box-shadow .3s;
+}
+#nav.lit{
+  background:rgba(253,252,249,.96);backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 var(--bdr);
+}
+.ni{max-width:1160px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem);height:70px;display:flex;align-items:center;gap:1.25rem}
+.nlogo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nlogo-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--olive);display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);font-size:1rem;color:#fff;font-weight:700;font-style:italic;
+}
+.nlogo-text{font-family:var(--fd);font-size:1.2rem;color:var(--ink);letter-spacing:.01em}
+.nlogo-sub{font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink3);font-family:var(--fb);font-weight:500}
+.nlinks{display:flex;align-items:center;gap:.1rem;margin-left:auto}
+.nl{padding:.4rem .8rem;border-radius:var(--r);font-size:.84rem;font-weight:500;color:var(--ink2);transition:var(--t)}
+.nl:hover{color:var(--olive);background:var(--olive-ll)}
+.nr{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+
+/* lang */
+.lwrap{position:relative}
+.lcur{
+  padding:.35rem .6rem;border-radius:var(--r);font-size:.72rem;font-weight:700;
+  letter-spacing:.06em;color:var(--ink2);border:1.5px solid var(--bdr);
+  background:transparent;transition:var(--t);
+}
+.lcur:hover{border-color:var(--olive);color:var(--olive)}
+.ldd{
+  position:absolute;top:calc(100% + 7px);right:0;
+  background:var(--w);border:1px solid var(--bdr);border-radius:var(--r2);
+  min-width:150px;box-shadow:var(--sh2);overflow:hidden;
+  opacity:0;transform:translateY(-5px);pointer-events:none;transition:var(--t);z-index:10;
+}
+.ldd.open{opacity:1;transform:none;pointer-events:all}
+.ldd button{display:block;width:100%;padding:.55rem .9rem;font-size:.83rem;color:var(--ink2);text-align:left;transition:var(--t)}
+.ldd button:hover{background:var(--olive-ll);color:var(--olive)}
+
+/* user zone */
+.uz{position:relative}
+.avbtn{
+  position:relative;width:36px;height:36px;border-radius:50%;
+  background:var(--olive);color:#fff;font-size:.77rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:var(--t);
+}
+.avbtn:hover{background:var(--olive2);transform:scale(1.05)}
+.ndot{
+  position:absolute;top:-1px;right:-1px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--terra);border:2px solid var(--w);
+}
+.udrop{
+  position:absolute;top:calc(100% + 8px);right:0;
+  background:var(--w);border:1px solid var(--bdr);
+  border-radius:var(--r3);min-width:210px;
+  box-shadow:var(--sh3);overflow:hidden;
+  opacity:0;transform:translateY(-5px);pointer-events:none;transition:var(--t);z-index:10;
+}
+.udrop.open{opacity:1;transform:none;pointer-events:all}
+.udh{padding:.85rem 1rem;background:linear-gradient(135deg,var(--olive-ll),var(--sand-l));border-bottom:1px solid var(--bdr)}
+.udn{font-weight:600;font-size:.875rem;color:var(--ink)}
+.ude{font-size:.73rem;color:var(--ink2)}
+.udrop hr{border:none;border-top:1px solid var(--bdr)}
+.udrop button{display:block;width:100%;padding:.55rem .9rem;font-size:.84rem;color:var(--ink2);text-align:left;transition:var(--t)}
+.udrop button:hover{background:var(--olive-ll);color:var(--olive)}
+.udrop .rb{color:#d63031!important}
+.udrop .rb:hover{background:rgba(214,48,49,.06)!important}
+.npill{background:var(--terra);color:#fff;font-size:.65rem;padding:1px 5px;border-radius:99px;margin-left:4px;font-weight:700}
+.burger{display:none;flex-direction:column;gap:5px;padding:6px}
+.burger span{display:block;width:21px;height:1.5px;background:var(--ink2);border-radius:2px;transition:var(--t)}
+
+/* ─────────────────────────────────
+   AUTH MODAL
+───────────────────────────────── */
+.atabs{display:flex;gap:.25rem;background:var(--bg2);padding:3px;border-radius:var(--r2);margin-bottom:1.5rem}
+.atab{flex:1;padding:.52rem;border-radius:calc(var(--r2) - 1px);font-size:.84rem;font-weight:600;color:var(--ink2);transition:var(--t)}
+.atab.on{background:var(--w);color:var(--olive);box-shadow:var(--sh)}
+.aform{display:none}.aform.on{display:block}
+
+/* ─────────────────────────────────
+   HERO
+───────────────────────────────── */
+#hero{
+  position:relative;height:100vh;min-height:640px;
+  display:flex;flex-direction:column;
+  background:var(--char);overflow:hidden;
+}
+.hero-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 40%;
+  transition:transform 8s ease;
+}
+#hero:hover .hero-img{transform:scale(1.03)}
+.hero-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    160deg,
+    rgba(28,28,28,.72) 0%,
+    rgba(28,28,28,.4) 50%,
+    rgba(28,28,28,.15) 100%
+  );
+}
+/* right decorative fade */
+.hero-ov::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 40%,rgba(28,28,28,.3) 100%);
+}
+.hero-c{
+  position:relative;z-index:1;flex:1;
+  display:flex;align-items:center;
+  padding:clamp(5rem,10vh,7rem) 0 2rem;
+}
+.hero-c .wrap{width:100%}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.75);margin-bottom:1.25rem;
+  animation:fUp .55s ease both;
+}
+.hero-eyebrow span{width:24px;height:1px;background:rgba(255,255,255,.5)}
+.hero-h1{
+  font-size:clamp(3rem,8vw,5.8rem);font-weight:500;
+  color:#fff;max-width:680px;margin-bottom:1.25rem;
+  line-height:1.08;
+  animation:fUp .55s .08s ease both;
+}
+.hero-h1 em{color:#e8c97a;font-style:italic}
+.hero-sub{
+  font-size:clamp(.95rem,1.8vw,1.1rem);color:rgba(255,255,255,.68);
+  max-width:440px;margin-bottom:2.5rem;line-height:1.8;
+  animation:fUp .55s .16s ease both;
+}
+.hero-btns{
+  display:flex;gap:.9rem;flex-wrap:wrap;
+  animation:fUp .55s .24s ease both;
+}
+.hero-strip{
+  position:relative;z-index:1;
+  border-top:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.06);backdrop-filter:blur(12px);
+}
+.hero-strip-in{
+  max-width:1160px;margin:0 auto;
+  padding:0 clamp(1.25rem,5vw,2.5rem);
+  display:flex;overflow-x:auto;
+  scrollbar-width:none;
+}
+.hero-strip-in::-webkit-scrollbar{display:none}
+.hsi{
+  flex-shrink:0;padding:1rem 1.75rem;
+  border-right:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;gap:.75rem;
+}
+.hsi:last-child{border-right:none}
+.hsi-ico{font-size:1.1rem;opacity:.7}
+.hsi-v{font-size:.95rem;font-weight:600;color:#fff}
+.hsi-l{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:1px}
+@keyframes fUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ─────────────────────────────────
+   QUICK BOOKING BAR
+───────────────────────────────── */
+#qbar{
+  position:sticky;top:70px;z-index:600;
+  background:var(--w);border-bottom:1px solid var(--bdr);
+  box-shadow:0 2px 16px rgba(28,28,28,.05);
+}
+.qbin{
+  max-width:1160px;margin:0 auto;
+  padding:0 clamp(1.25rem,5vw,2.5rem);
+  height:62px;display:flex;align-items:center;gap:0;
+  overflow-x:auto;scrollbar-width:none;
+}
+.qbin::-webkit-scrollbar{display:none}
+.qfield{display:flex;flex-direction:column;justify-content:center;padding:0 1.1rem;min-width:105px;border-right:1px solid var(--bdr)}
+.qfield:first-child{padding-left:.25rem}
+.ql{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--ink3);margin-bottom:2px}
+.qfield input,.qfield select{background:none;border:none;color:var(--ink);font-size:.84rem;font-weight:600;outline:none;cursor:pointer;padding:0}
+.qfield input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;cursor:pointer;width:14px}
+.qfield select option{background:var(--w)}
+.qctr{display:flex;align-items:center;gap:.5rem}
+.qctr button{width:22px;height:22px;border-radius:50%;background:var(--bg3);color:var(--olive);font-size:.9rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:var(--t);border:none;cursor:pointer}
+.qctr button:hover{background:var(--olive);color:#fff}
+.qctr span{font-size:.84rem;font-weight:700;min-width:16px;text-align:center}
+.qbar-cta{margin-left:auto;flex-shrink:0;padding-left:1rem}
+
+/* ─────────────────────────────────
+   SECTION COMMONS
+───────────────────────────────── */
+.slabel{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;
+  color:var(--olive);display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;
+}
+.slabel::before{content:'';width:18px;height:1.5px;background:var(--olive);border-radius:2px}
+.sh2{font-size:clamp(1.7rem,4vw,2.7rem);font-weight:500;color:var(--ink);line-height:1.18}
+.sh2 em{color:var(--olive)}
+.shead{margin-bottom:clamp(2rem,4vw,3.5rem)}
+.shead.ctr{text-align:center}.shead.ctr .slabel{justify-content:center}
+
+/* ─────────────────────────────────
+   ABOUT
+───────────────────────────────── */
+#about{padding:clamp(4.5rem,9vw,8rem) 0;background:var(--w)}
+.ag{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(3rem,6vw,6rem);align-items:center}
+.aphotos{position:relative;height:520px}
+.ap1{position:absolute;inset:0 20% 15% 0;border-radius:var(--r4);overflow:hidden;box-shadow:var(--sh3)}
+.ap1 img{width:100%;height:100%;object-fit:cover}
+.ap2{position:absolute;bottom:0;right:0;width:52%;height:52%;border-radius:var(--r3);overflow:hidden;border:5px solid var(--w);box-shadow:var(--sh2)}
+.ap2 img{width:100%;height:100%;object-fit:cover}
+.ap-tag{
+  position:absolute;top:30%;right:calc(52% - 30px);
+  background:var(--w);border-radius:var(--r2);padding:.75rem 1.1rem;
+  box-shadow:var(--sh2);text-align:center;border:1px solid var(--bdr);
+  z-index:2;
+}
+.ap-tag strong{display:block;font-family:var(--fd);font-size:1.25rem;color:var(--terra);line-height:1}
+.ap-tag span{font-size:.69rem;color:var(--ink2);letter-spacing:.04em}
+.atext .sh2{margin-bottom:1.1rem}
+.atext p{color:var(--ink2);font-size:.925rem;line-height:1.85;margin-bottom:.9rem}
+.acreds{display:flex;gap:1rem;margin-top:1.75rem;flex-wrap:wrap}
+.acred{padding:.85rem 1.25rem;background:var(--bg2);border-radius:var(--r2);border:1px solid var(--bdr);text-align:center}
+.acred strong{display:block;font-family:var(--fd);font-size:1.4rem;color:var(--terra);line-height:1}
+.acred span{font-size:.7rem;color:var(--ink2);margin-top:3px;display:block}
+
+/* ─────────────────────────────────
+   MENU — hero dish image cards
+───────────────────────────────── */
+#menu{padding:clamp(4.5rem,9vw,8rem) 0;background:var(--bg)}
+.mtabs{display:flex;gap:.4rem;margin-bottom:2.25rem;flex-wrap:wrap}
+.mtab{padding:.48rem 1.3rem;border-radius:99px;font-size:.84rem;font-weight:600;color:var(--ink2);border:1.5px solid var(--bdr2);background:var(--w);transition:var(--t)}
+.mtab:hover{border-color:var(--olive);color:var(--olive)}
+.mtab.on{background:var(--olive);color:#fff;border-color:var(--olive)}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+
+.dcard{
+  background:var(--w);border-radius:var(--r3);overflow:hidden;
+  border:1px solid var(--bdr);transition:var(--t) var(--ease);cursor:pointer;
+}
+.dcard:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:var(--bdr2)}
+.dimg-wrap{position:relative;overflow:hidden;height:200px}
+.dimg{width:100%;height:100%;object-fit:cover;transition:.45s ease}
+.dcard:hover .dimg{transform:scale(1.07)}
+.dbadge{
+  position:absolute;top:.7rem;left:.7rem;
+  font-size:.64rem;font-weight:700;letter-spacing:.04em;
+  padding:3px 9px;border-radius:99px;
+}
+.dbadge-sig{background:rgba(28,28,28,.7);backdrop-filter:blur(4px);color:#fff}
+.dbadge-new{background:var(--olive);color:#fff}
+.dbadge-fav{background:var(--terra);color:#fff}
+.dbody{padding:1rem 1.1rem 1.15rem}
+.dname{font-family:var(--fd);font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:.3rem;line-height:1.3}
+.ddesc{font-size:.77rem;color:var(--ink2);line-height:1.55;margin-bottom:.8rem;min-height:2.4em}
+.dfoot{display:flex;align-items:center;justify-content:space-between}
+.dprice{font-family:var(--fd);font-size:1.1rem;font-weight:500;color:var(--terra)}
+.dalrg{display:flex;gap:3px}
+.dalrg span{width:20px;height:20px;border-radius:50%;background:var(--bg3);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:.56rem;font-weight:700;color:var(--ink2)}
+.menu-note{text-align:center;margin-top:2.25rem}
+.allergen-note{
+  margin-top:1.75rem;padding:.75rem 1.1rem;background:var(--sand-l);
+  border-radius:var(--r2);border:1px solid rgba(176,144,96,.2);
+  font-size:.77rem;color:var(--ink2);
+  display:flex;align-items:center;gap:.5rem;
+}
+
+/* ─────────────────────────────────
+   GALLERY — editorial mosaic
+───────────────────────────────── */
+#gallery{padding:clamp(4.5rem,9vw,8rem) 0;background:var(--w)}
+.gmosaic{margin-top:2rem;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:.9rem}
+.gi{border-radius:var(--r3);overflow:hidden;position:relative;cursor:pointer}
+.gi img{width:100%;height:100%;object-fit:cover;transition:.5s ease}
+.gi:hover img{transform:scale(1.06)}
+.gi::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(28,28,28,.45) 0%,transparent 55%);opacity:0;transition:.3s}
+.gi:hover::after{opacity:1}
+.gilabel{position:absolute;bottom:.8rem;left:.9rem;font-size:.72rem;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.07em;opacity:0;transform:translateY(5px);transition:.3s;z-index:1}
+.gi:hover .gilabel{opacity:1;transform:none}
+.gi-a{grid-column:1/6;grid-row:1/3;height:380px}
+.gi-b{grid-column:6/9;height:182px}
+.gi-c{grid-column:9/13;height:182px}
+.gi-d{grid-column:6/9;height:182px}
+.gi-e{grid-column:9/13;height:182px}
+
+/* ─────────────────────────────────
+   EVENTS
+───────────────────────────────── */
+#events{padding:clamp(4.5rem,9vw,8rem) 0;background:var(--bg)}
+.elist{display:flex;flex-direction:column;gap:.9rem}
+.ecard{
+  background:var(--w);border-radius:var(--r3);border:1px solid var(--bdr);
+  overflow:hidden;display:flex;align-items:stretch;
+  transition:var(--t);cursor:pointer;
+}
+.ecard:hover{box-shadow:var(--sh2);border-color:var(--bdr2);transform:translateX(3px)}
+.edate{
+  background:var(--olive);color:#fff;
+  padding:1.25rem 1.5rem;min-width:78px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.eday{font-family:var(--fd);font-size:1.9rem;font-weight:700;line-height:1}
+.emon{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-top:3px;opacity:.8}
+.ebody{padding:1.1rem 1.4rem;flex:1}
+.etitle{font-family:var(--fd);font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:.3rem}
+.edesc{font-size:.8rem;color:var(--ink2);line-height:1.6;margin-bottom:.6rem}
+.emeta{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.etag{font-size:.7rem;font-weight:700;background:var(--olive-ll);color:var(--olive);padding:3px 9px;border-radius:99px}
+.eseats{font-size:.73rem;color:var(--ink3)}
+.eaction{padding:1.25rem 1.5rem;display:flex;align-items:center;flex-shrink:0}
+
+/* ─────────────────────────────────
+   REVIEWS
+───────────────────────────────── */
+#reviews{padding:clamp(4.5rem,9vw,8rem) 0;background:var(--w)}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.rcard{background:var(--bg);border-radius:var(--r3);padding:1.5rem;border:1px solid var(--bdr);transition:var(--t);position:relative;overflow:hidden}
+.rcard::before{content:'\201C';position:absolute;top:.5rem;right:1.1rem;font-family:var(--fd);font-size:4.5rem;color:var(--olive-l);line-height:1;pointer-events:none;font-style:italic}
+.rcard:hover{border-color:var(--olive);box-shadow:var(--sh)}
+.rstars{color:#d4a017;font-size:.85rem;letter-spacing:2px;margin-bottom:.9rem}
+.rtext{font-family:var(--fd);font-style:italic;font-size:.93rem;color:var(--ink);line-height:1.72;margin-bottom:1.1rem;position:relative}
+.rauthor{display:flex;align-items:center;gap:.65rem}
+.rav{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--olive),var(--sand));color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rname{font-weight:600;font-size:.84rem;color:var(--ink)}
+.rmeta{font-size:.72rem;color:var(--ink2)}
+.rplat{font-size:.66rem;color:var(--terra);font-weight:700;margin-top:1px}
+
+/* ─────────────────────────────────
+   CTA BAND
+───────────────────────────────── */
+#ctaband{position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cta-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(61,90,62,.88) 0%,rgba(30,60,30,.75) 100%)}
+.cta-c{position:relative;z-index:1;padding:clamp(4rem,8vw,7rem) 0;text-align:center}
+.cta-c .slabel{justify-content:center;color:rgba(232,201,122,.8)}
+.cta-c .slabel::before{background:rgba(232,201,122,.5)}
+.cta-c h2{font-size:clamp(1.8rem,4.5vw,3.2rem);color:#fff;margin-bottom:.75rem}
+.cta-c h2 em{color:#e8c97a}
+.cta-c p{color:rgba(255,255,255,.65);margin-bottom:2rem;font-size:.95rem}
+.cta-c .btn-terra{background:#fff;color:var(--olive);padding:.9rem 2.5rem}
+.cta-c .btn-terra:hover{background:var(--olive-ll);box-shadow:0 6px 24px rgba(0,0,0,.3)}
+
+/* ─────────────────────────────────
+   FOOTER
+───────────────────────────────── */
+#footer{background:var(--char2);padding:4.5rem 0 0}
+.fg-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.2fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.fbrand p{font-size:.85rem;color:rgba(255,255,255,.4);max-width:230px;line-height:1.8;margin-top:.7rem}
+.fblogo{display:flex;align-items:center;gap:10px;margin-bottom:.3rem}
+.fblogo .nlogo-text{color:#fff}
+.fcol h4{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:1rem}
+.fcol a,.fcol span{display:block;font-size:.84rem;color:rgba(255,255,255,.5);margin-bottom:.5rem;transition:.2s}
+.fcol a:hover{color:rgba(255,255,255,.85)}
+.fbot{padding:1.25rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+.fbot p{font-size:.76rem;color:rgba(255,255,255,.22)}
+.flinks{display:flex;gap:1.1rem}
+.flinks a{font-size:.76rem;color:rgba(255,255,255,.22);transition:.2s}
+.flinks a:hover{color:rgba(255,255,255,.5)}
+.fsocial{display:flex;gap:.45rem;margin-top:.9rem}
+.fsocial a{width:32px;height:32px;border-radius:var(--r);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.35);transition:.2s}
+.fsocial a:hover{background:var(--olive);color:#fff;border-color:var(--olive)}
+
+/* ─────────────────────────────────
+   BOOKING MODAL
+───────────────────────────────── */
+.bkwrap{display:grid;grid-template-columns:1fr 275px}
+.bkmain{padding:1.5rem 1.75rem;border-right:1px solid var(--bdr);overflow-y:auto;max-height:75vh}
+.bkside{padding:1.5rem;overflow-y:auto;max-height:75vh;background:var(--bg)}
+.bkh{padding:1.25rem 1.75rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between}
+.bkhtitle{font-family:var(--fd);font-size:1.2rem;color:var(--ink)}
+.bksec{margin-bottom:1.75rem}
+.bkst{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--olive);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;
+}
+.bkst::after{content:'';flex:1;height:1px;background:var(--bdr)}
+
+/* Progress */
+.progress{display:flex;align-items:center;padding:1rem 1.75rem;gap:0}
+.ps{display:flex;align-items:center;flex:1}
+.pcirc{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--bg3);border:2px solid var(--bdr2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;color:var(--ink3);flex-shrink:0;transition:.3s;
+}
+.ps.on .pcirc{background:var(--olive);border-color:var(--olive);color:#fff}
+.ps.done .pcirc{background:var(--olive);border-color:var(--olive);color:#fff}
+.pline{flex:1;height:2px;background:var(--bdr2);transition:.3s;margin:0 4px}
+.ps.done .pline{background:var(--olive)}
+.plabel{font-size:.62rem;color:var(--ink3);white-space:nowrap;margin-top:3px}
+
+/* Calendar */
+.cal{background:var(--bg2);border-radius:var(--r2);padding:1rem;border:1px solid var(--bdr)}
+.calnav{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.canarr{width:26px;height:26px;border-radius:var(--r);background:var(--w);border:1px solid var(--bdr);color:var(--ink2);font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:var(--t)}
+.canarr:hover{background:var(--olive);color:#fff;border-color:var(--olive)}
+.calmonth{font-family:var(--fd);font-size:.9rem;font-weight:500;color:var(--ink)}
+.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cdh{text-align:center;font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink3);padding:.28rem 0}
+.cd{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.78rem;border-radius:var(--r);cursor:pointer;transition:var(--t);color:var(--ink2);font-weight:500;position:relative}
+.cd:hover:not(.cdis):not(.cemp){background:var(--olive-ll);color:var(--olive)}
+.cd.ctoday{color:var(--terra);font-weight:700}
+.cd.ctoday::after{content:'';position:absolute;bottom:2px;width:4px;height:4px;border-radius:50%;background:var(--terra)}
+.cd.csel{background:var(--olive);color:#fff;font-weight:700}
+.cd.csel.ctoday::after{background:#fff}
+.cd.cdis{color:var(--bdr2);cursor:not-allowed;font-weight:400}
+.cd.cemp{pointer-events:none}
+.cd.cclose{color:var(--bdr2);cursor:not-allowed;text-decoration:line-through;font-weight:400}
+
+/* Slots */
+.slots{margin-top:.75rem}
+.slot-group-label{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.4rem;margin-top:.75rem;display:flex;align-items:center;gap:.4rem}
+.slot-group-label::before{content:'';width:12px;height:1px;background:var(--bdr2)}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
+.slot{padding:.45rem;text-align:center;border-radius:var(--r);font-size:.77rem;font-weight:600;color:var(--ink2);border:1.5px solid var(--bdr);cursor:pointer;transition:var(--t);background:var(--w)}
+.slot:hover{border-color:var(--olive);color:var(--olive);background:var(--olive-ll)}
+.slot.son{background:var(--olive);color:#fff;border-color:var(--olive)}
+.slot.sbook{background:var(--bg3);color:var(--ink4);cursor:not-allowed;text-decoration:line-through;pointer-events:none;border-color:transparent}
+
+/* Table types */
+.ttypes{display:flex;flex-direction:column;gap:.55rem}
+.ttype{display:flex;align-items:center;gap:.8rem;padding:.85rem .9rem;border-radius:var(--r2);border:1.5px solid var(--bdr);cursor:pointer;transition:var(--t);background:var(--w)}
+.ttype:hover{border-color:var(--olive)}
+.ttype.ton{border-color:var(--olive);background:var(--olive-ll)}
+.ttype-radio{width:17px;height:17px;border-radius:50%;border:2px solid var(--bdr2);flex-shrink:0;transition:.2s;display:flex;align-items:center;justify-content:center}
+.ttype.ton .ttype-radio{border-color:var(--olive);background:var(--olive)}
+.ttype.ton .ttype-radio::after{content:'';width:5px;height:5px;border-radius:50%;background:#fff}
+.ttype-img{width:42px;height:42px;border-radius:var(--r);object-fit:cover;flex-shrink:0;background:var(--bg3)}
+.ttype-info{flex:1}
+.ttype-name{font-weight:600;font-size:.84rem;color:var(--ink)}
+.ttype-desc{font-size:.73rem;color:var(--ink2);margin-top:1px}
+.ttype-price{font-family:var(--fd);font-size:.9rem;color:var(--terra);white-space:nowrap}
+
+/* Guest rows */
+.grow{display:flex;align-items:center;justify-content:space-between;padding:.65rem .85rem;background:var(--bg2);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:.45rem}
+.gl{font-size:.84rem;color:var(--ink2)}
+.gctr{display:flex;align-items:center;gap:.55rem}
+.gctr button{width:24px;height:24px;border-radius:50%;background:var(--w);border:1.5px solid var(--bdr2);color:var(--olive);font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:var(--t);cursor:pointer}
+.gctr button:hover{background:var(--olive);color:#fff;border-color:var(--olive)}
+.gctr span{font-weight:700;font-size:.84rem;min-width:16px;text-align:center}
+
+/* Booking summary */
+.bksum{background:var(--w);border-radius:var(--r2);padding:1rem;border:1px solid var(--bdr);margin-bottom:.9rem}
+.bkrname{font-family:var(--fd);font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:.25rem}
+.bkrrating{display:flex;align-items:center;gap:.3rem;font-size:.74rem;color:var(--ink2);margin-bottom:.85rem}
+.bkstars{color:#d4a017;font-size:.7rem}
+.bkrow{display:flex;justify-content:space-between;font-size:.8rem;color:var(--ink2);padding:.3rem 0;border-bottom:1px solid var(--bg3)}
+.bkrow:last-of-type{border-bottom:none}
+.bktot{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem;color:var(--ink);padding-top:.6rem;margin-top:.2rem;border-top:1px solid var(--bdr)}
+.bktot span:last-child{color:var(--terra)}
+.cancel-note{background:var(--olive-ll);border-radius:var(--r2);padding:.75rem .9rem;border:1px solid rgba(61,90,62,.15)}
+.cancel-note .ct{font-size:.73rem;font-weight:700;color:var(--olive);margin-bottom:2px}
+.cancel-note .cs{font-size:.7rem;color:var(--ink2)}
+
+/* Bk nav */
+.bknav{display:flex;justify-content:space-between;gap:.75rem;padding:1.1rem 1.75rem;border-top:1px solid var(--bdr)}
+
+/* Tags quick select */
+.qtags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.qtag{padding:.38rem .85rem;border-radius:99px;font-size:.74rem;font-weight:500;background:var(--bg2);color:var(--ink2);border:1px solid var(--bdr);transition:var(--t);cursor:pointer}
+.qtag:hover{background:var(--olive-ll);border-color:var(--olive);color:var(--olive)}
+
+/* ─────────────────────────────────
+   PAYMENT MODAL
+───────────────────────────────── */
+.paywrap{display:grid;grid-template-columns:1fr 256px}
+.paymain{padding:1.5rem 1.75rem;border-right:1px solid var(--bdr)}
+.payside{padding:1.5rem;background:var(--bg)}
+.pmethods{display:flex;gap:.5rem;margin-bottom:1.4rem}
+.pmethod{flex:1;padding:.65rem .5rem;border:1.5px solid var(--bdr);border-radius:var(--r2);background:var(--w);cursor:pointer;text-align:center;font-size:.75rem;font-weight:600;color:var(--ink2);transition:var(--t);display:flex;flex-direction:column;align-items:center;gap:4px}
+.pmethod:hover{border-color:var(--olive)}
+.pmethod.pon{border-color:var(--olive);background:var(--olive-ll);color:var(--olive)}
+.pmico{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--olive)}
+.psecure{display:flex;align-items:center;gap:.5rem;padding:.6rem .85rem;background:var(--olive-ll);border:1px solid rgba(61,90,62,.2);border-radius:var(--r);font-size:.74rem;color:var(--olive);margin-top:.9rem}
+.psecure-ic{width:17px;height:17px;border-radius:50%;background:var(--olive);color:#fff;font-size:.58rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.orow{display:flex;justify-content:space-between;padding:.5rem 0;font-size:.82rem;color:var(--ink2);border-bottom:1px solid var(--bg3)}
+.otot{font-weight:700;color:var(--ink);font-size:.9rem;border-bottom:none;padding-top:.65rem}
+.otot span:last-child{color:var(--terra)}
+.orderbox{background:var(--w);border-radius:var(--r2);padding:1rem;border:1px solid var(--bdr);margin-bottom:.9rem}
+.pay-fnote{font-size:.68rem;color:var(--ink3);text-align:center;margin-top:.5rem;line-height:1.5}
+
+/* ─────────────────────────────────
+   SUCCESS
+───────────────────────────────── */
+.suc{text-align:center;padding:2rem 1.5rem 1.5rem}
+.suc-ring{width:64px;height:64px;border-radius:50%;background:var(--olive-ll);border:2px solid var(--olive);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;font-size:1.6rem;color:var(--olive);animation:pop .4s var(--spring)}
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+.suc h2{font-size:1.4rem;margin-bottom:.55rem;color:var(--ink)}
+.suc p{color:var(--ink2);font-size:.875rem;margin-bottom:1.4rem}
+.suc-ref{background:var(--bg2);border:1.5px dashed var(--bdr2);border-radius:var(--r2);padding:.9rem 1.1rem;margin-bottom:1.25rem}
+.suc-ref strong{display:block;font-family:var(--fd);font-size:1.15rem;color:var(--terra);margin-bottom:2px}
+.suc-ref span{font-size:.75rem;color:var(--ink2)}
+.suc-details{background:var(--bg2);border-radius:var(--r2);padding:.9rem 1.1rem;margin-bottom:1.4rem;text-align:left}
+.suc-row{display:flex;justify-content:space-between;font-size:.82rem;color:var(--ink2);padding:.28rem 0}
+.suc-btns{display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap}
+
+/* ─────────────────────────────────
+   ACCOUNT MODAL
+───────────────────────────────── */
+.aclayout{display:grid;grid-template-columns:185px 1fr;min-height:460px}
+.acnav{border-right:1px solid var(--bdr);padding:1.1rem}
+.acnbtn{display:flex;align-items:center;gap:7px;width:100%;padding:.55rem .7rem;border-radius:var(--r);font-size:.84rem;font-weight:500;color:var(--ink2);background:transparent;text-align:left;transition:var(--t);cursor:pointer;margin-bottom:.1rem}
+.acnbtn:hover{background:var(--olive-ll);color:var(--olive)}
+.acnbtn.on{background:var(--olive-ll);color:var(--olive);font-weight:600}
+.accontent{padding:1.4rem;overflow-y:auto;max-height:68vh}
+.acp{display:none}.acp.on{display:block}
+
+.resc{display:grid;grid-template-columns:50px 1fr auto;gap:.8rem;align-items:center;padding:.85rem .9rem;background:var(--bg);border-radius:var(--r2);border:1px solid var(--bdr);margin-bottom:.55rem;transition:var(--t)}
+.resc:hover{border-color:var(--bdr2)}
+.resc-img{width:42px;height:42px;border-radius:var(--r);object-fit:cover;background:var(--bg3)}
+.resc-name{font-weight:600;font-size:.84rem;color:var(--ink);margin-bottom:2px}
+.resc-det{font-size:.73rem;color:var(--ink2)}
+.resc-ref{font-size:.66rem;color:var(--ink3);margin-top:2px}
+.resc-acts{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.canl{font-size:.7rem;color:#d63031;text-decoration:underline;cursor:pointer;background:none;border:none}
+
+.nitem{display:flex;gap:.65rem;padding:.8rem;border-radius:var(--r2);border:1px solid var(--bdr);margin-bottom:.5rem;cursor:pointer;transition:var(--t)}
+.nitem:hover{background:var(--bg)}
+.nitem.unr{border-left:3px solid var(--terra)}
+.npip{width:8px;height:8px;border-radius:50%;background:var(--terra);margin-top:5px;flex-shrink:0}
+.nitem:not(.unr) .npip{background:var(--bdr2)}
+.ntit{font-weight:600;font-size:.83rem;color:var(--ink)}
+.nmsg{font-size:.78rem;color:var(--ink2);margin-top:1px}
+.ntime{font-size:.7rem;color:var(--ink3);margin-top:3px}
+
+.es{text-align:center;padding:3rem 1rem}
+.es-ic{font-family:var(--fd);font-size:3rem;font-style:italic;color:var(--bdr2);margin-bottom:.6rem}
+.es-t{font-size:.9rem;color:var(--ink2)}
+.es-s{font-size:.8rem;color:var(--ink3);margin-top:.3rem}
+
+/* ─────────────────────────────────
+   ADMIN
+───────────────────────────────── */
+.adstats{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-bottom:1.4rem}
+.adstat{padding:.9rem 1rem;background:var(--bg2);border-radius:var(--r2);border:1px solid var(--bdr)}
+.adstatv{font-family:var(--fd);font-size:1.5rem;color:var(--terra);line-height:1}
+.adstatl{font-size:.7rem;color:var(--ink2);margin-top:3px}
+.adtabs{display:flex;gap:.4rem;margin-bottom:1.1rem;flex-wrap:wrap}
+.adtab{padding:.42rem 1rem;border-radius:99px;font-size:.8rem;font-weight:600;color:var(--ink2);border:1.5px solid var(--bdr);background:var(--w);transition:var(--t)}
+.adtab.on{background:var(--olive);color:#fff;border-color:var(--olive)}
+.adtable{width:100%;border-collapse:collapse;font-size:.8rem}
+.adtable th{text-align:left;padding:.48rem .7rem;font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);border-bottom:2px solid var(--bdr)}
+.adtable td{padding:.58rem .7rem;border-bottom:1px solid var(--bg3);color:var(--ink2)}
+.adtable tr:hover td{background:var(--bg)}
+.togl input{display:none}
+.toglt{display:block;width:35px;height:19px;border-radius:10px;background:var(--bdr2);cursor:pointer;transition:.3s;position:relative}
+.toglt::after{content:'';position:absolute;width:15px;height:15px;border-radius:50%;background:#fff;top:2px;left:2px;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.togl input:checked~.toglt{background:var(--olive)}
+.togl input:checked~.toglt::after{transform:translateX(16px)}
+.avbody{overflow-x:auto}
+.avgrid{display:grid;gap:3px;font-size:.72rem}
+.avhead{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink3);text-align:center;padding:.2rem}
+.avtime{font-weight:600;color:var(--ink2);font-size:.72rem;display:flex;align-items:center;padding-right:.4rem}
+.avcell{padding:.35rem .2rem;border-radius:5px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;font-size:.63rem;font-weight:700;border:1px solid transparent;text-align:center}
+.avcell.free{background:var(--olive-ll);color:var(--olive);border-color:rgba(61,90,62,.2)}
+.avcell.booked-c{background:rgba(194,98,43,.1);color:var(--terra);border-color:rgba(194,98,43,.2)}
+.avcell.blocked{background:rgba(214,48,49,.08);color:#d63031;border-color:rgba(214,48,49,.2)}
+.avcell:hover{transform:scale(1.08)}
+
+/* ─────────────────────────────────
+   RESPONSIVE
+───────────────────────────────── */
+@media(max-width:1024px){
+  .mgrid{grid-template-columns:repeat(2,1fr)}
+  .rgrid{grid-template-columns:repeat(2,1fr)}
+  .fg-grid{grid-template-columns:1fr 1fr}
+  .bkwrap{grid-template-columns:1fr}
+  .bkside{border-top:1px solid var(--bdr);max-height:none}
+  .bkmain{max-height:none;border-right:none}
+  .paywrap{grid-template-columns:1fr}
+  .payside{border-top:1px solid var(--bdr)}
+  .aclayout{grid-template-columns:1fr}
+  .acnav{border-right:none;border-bottom:1px solid var(--bdr);display:flex;flex-wrap:wrap;gap:.2rem;padding:.75rem}
+  .gi-a{grid-column:1/8;height:260px}
+  .gi-b,.gi-c,.gi-d,.gi-e{height:140px}
+  .adstats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .nlinks{display:none}
+  .nlinks.open{display:flex;flex-direction:column;position:fixed;top:70px;left:0;right:0;background:rgba(253,252,249,.98);backdrop-filter:blur(16px);padding:.9rem 1rem;border-bottom:1px solid var(--bdr);z-index:699;gap:.05rem;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+  .nlinks.open .nl{padding:.7rem .9rem;font-size:.9rem}
+  .burger{display:flex}
+  .ag{grid-template-columns:1fr}
+  .aphotos{height:280px}
+  .gmosaic{grid-template-columns:repeat(6,1fr)}
+  .gi-a{grid-column:1/-1;height:200px}
+  .gi-b,.gi-c{grid-column:auto;height:130px}
+  .gi-d,.gi-e{grid-column:auto;height:130px}
+  .fg-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .rgrid{grid-template-columns:1fr}
+  .sgrid{grid-template-columns:repeat(3,1fr)}
+  .ecard{flex-wrap:wrap}
+  .edate{min-width:60px;padding:.9rem 1rem}
+  .eaction{padding:.9rem 1.25rem;width:100%;border-top:1px solid var(--bdr)}
+}
+@media(max-width:480px){
+  .mgrid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .fg-grid{grid-template-columns:1fr}
+  .fr2{grid-template-columns:1fr}
+  .mb{padding:1rem 1.25rem 1.25rem}
+  .bkh,.bknav{padding:1rem 1.25rem}
+  .bkmain,.bkside,.paymain,.payside,.accontent,.acnav{padding:1rem}
+  .qbin{padding:0 1rem}
+  .qfield{padding:0 .7rem;min-width:90px}
+  .adstats{grid-template-columns:repeat(2,1fr)}
+  .sgrid{grid-template-columns:repeat(3,1fr)}
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- TOASTS -->
+<div id="toasts"></div>
+<!-- OVERLAY -->
+<div id="overlay" class="hidden" onclick="closeAll()"></div>
+
+<!-- ════════════════════════════════
+     AUTH MODAL
+════════════════════════════════ -->
+<div id="m-auth" class="modal hidden">
+  <div class="mh">
+    <div class="atabs" style="flex:1;margin-right:.75rem">
+      <button class="atab on" onclick="atab(this,'login')">Connexion</button>
+      <button class="atab" onclick="atab(this,'register')">Inscription</button>
+    </div>
+    <button class="mclose" onclick="cl('m-auth')">✕</button>
+  </div>
+  <div class="mb">
+    <!-- LOGIN -->
+    <form class="aform on" id="fl" onsubmit="doLogin(event)">
+      <div class="fg"><label>Email</label><input type="email" id="le" placeholder="vous@email.com" required/></div>
+      <div class="fg"><label>Mot de passe</label>
+        <div class="pwrap"><input type="password" id="lp" placeholder="••••••••" required/><button type="button" class="peye" onclick="togpw('lp',this)">◉</button></div>
+      </div>
+      <div class="row-b">
+        <label class="cbl"><input type="checkbox"/> Se souvenir de moi</label>
+        <span class="link-s" onclick="">Mot de passe oublié ?</span>
+      </div>
+      <button type="submit" class="btn btn-olive btn-full" style="padding:.8rem">Se connecter</button>
+      <div class="or">ou</div>
+      <button type="button" class="btn-social" onclick="glogin()">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Continuer avec Google
+      </button>
+    </form>
+    <!-- REGISTER -->
+    <form class="aform" id="fr" onsubmit="doReg(event)">
+      <div class="fr2">
+        <div class="fg"><label>Prénom</label><input type="text" id="rfn" placeholder="Marie" required/></div>
+        <div class="fg"><label>Nom</label><input type="text" id="rln" placeholder="Dupont" required/></div>
+      </div>
+      <div class="fg"><label>Email</label><input type="email" id="rem" placeholder="vous@email.com" required/></div>
+      <div class="fg"><label>Téléphone</label><input type="tel" id="rph" placeholder="+33 6 00 00 00 00"/></div>
+      <div class="fg"><label>Mot de passe</label>
+        <div class="pwrap"><input type="password" id="rpw" placeholder="Min. 8 caractères" required oninput="chkpw(this)"/><button type="button" class="peye" onclick="togpw('rpw',this)">◉</button></div>
+        <div class="str" id="str"></div>
+      </div>
+      <div class="fg"><label>Confirmer le mot de passe</label><input type="password" id="rcf" placeholder="••••••••" required/></div>
+      <label class="cbl mb1"><input type="checkbox" required/> J'accepte les <span class="link-s" style="margin-left:3px">conditions d'utilisation</span></label>
+      <button type="submit" class="btn btn-olive btn-full" style="padding:.8rem">Créer mon compte</button>
+    </form>
+  </div>
+</div>
+
+<!-- BOOKING / PAYMENT / ACCOUNT / ADMIN MODALS -->
+<div id="m-book" class="modal modal-xl hidden"><div id="mb-inner"></div></div>
+<div id="m-pay"  class="modal modal-lg hidden"><div id="mp-inner"></div></div>
+<div id="m-acct" class="modal modal-xl hidden">
+  <div class="mh"><div class="mt" id="act-title">Mon espace</div><button class="mclose" onclick="cl('m-acct')">✕</button></div>
+  <div id="mac-inner"></div>
+</div>
+<div id="m-admin" class="modal modal-xl hidden">
+  <div class="mh"><div class="mt">Administration</div><button class="mclose" onclick="cl('m-admin')">✕</button></div>
+  <div id="mad-inner" style="padding:1.1rem 1.5rem 1.5rem"></div>
+</div>
+
+<!-- ════════════════════════════════
+     NAVBAR
+════════════════════════════════ -->
+<nav id="nav">
+  <div class="ni">
+    <a class="nlogo" href="#" onclick="scrollTo({top:0,behavior:'smooth'});return false">
+      <div class="nlogo-icon">É</div>
+      <div>
+        <div class="nlogo-text">Épure</div>
+        <div class="nlogo-sub">Gastronomie · Paris 6e</div>
+      </div>
+    </a>
+
+    <div class="nlinks" id="nlinks">
+      <a href="#about"   class="nl" onclick="closeNav()">Le Restaurant</a>
+      <a href="#menu"    class="nl" onclick="closeNav()">Menu</a>
+      <a href="#gallery" class="nl" onclick="closeNav()">Galerie</a>
+      <a href="#events"  class="nl" onclick="closeNav()">Événements</a>
+      <a href="#reviews" class="nl" onclick="closeNav()">Avis</a>
+    </div>
+
+    <div class="nr">
+      <div class="lwrap" id="lwrap">
+        <button class="lcur" id="lcur" onclick="togLang(event)">FR</button>
+        <div class="ldd hidden" id="ldd">
+          <button onclick="setLang('fr')">🇫🇷 Français</button>
+          <button onclick="setLang('en')">🇬🇧 English</button>
+          <button onclick="setLang('de')">🇩🇪 Deutsch</button>
+          <button onclick="setLang('es')">🇪🇸 Español</button>
+        </div>
+      </div>
+      <div id="zg" style="display:flex;align-items:center;gap:.5rem">
+        <button class="btn btn-ghost btn-sm" onclick="op('m-auth')">Connexion</button>
+        <button class="btn btn-olive btn-sm" onclick="startBook()">Réserver</button>
+      </div>
+      <div id="zu" class="uz hidden">
+        <button class="avbtn" id="avbtn" onclick="togUd()">
+          <span id="avinit">JD</span>
+          <div class="ndot hidden" id="ndot"></div>
+        </button>
+        <div class="udrop hidden" id="udrop">
+          <div class="udh"><div class="udn" id="udn">Jean Dupont</div><div class="ude" id="ude">jean@mail.com</div></div>
+          <button onclick="oAcc('res')">🗓 Mes réservations</button>
+          <button onclick="oAcc('notif')">🔔 Notifications <span class="npill hidden" id="nbadge">0</span></button>
+          <button onclick="oAcc('profile')">👤 Mon profil</button>
+          <hr/>
+          <button id="adminbtn" class="hidden" onclick="oAdmin()">⚙️ Administration</button>
+          <button class="rb" onclick="doLogout()">Déconnexion</button>
+        </div>
+      </div>
+      <button class="burger" id="burger" onclick="togNav()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+     HERO
+════════════════════════════════ -->
+<section id="hero">
+  <img class="hero-img"
+    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80&auto=format&fit=crop&crop=center"
+    alt="Restaurant gastronomique Épure"
+    fetchpriority="high"
+  />
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="wrap">
+      <div class="hero-eyebrow"><span></span>Cuisine française · Paris 6e</div>
+      <h1 class="hero-h1">La cuisine,<br>élevée à l'<em>essentiel</em></h1>
+      <p class="hero-sub">Une table où chaque saison raconte une histoire. Des produits d'exception, une technique irréprochable, une salle intime et lumineuse.</p>
+      <div class="hero-btns">
+        <button class="btn btn-terra btn-lg" onclick="startBook()">Réserver ma table</button>
+        <button class="btn btn-lg" style="background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Voir le menu</button>
+      </div>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="hero-strip-in">
+      <div class="hsi"><div class="hsi-ico">★</div><div><div class="hsi-v">4.9 / 5</div><div class="hsi-l">Note Michelin Guide</div></div></div>
+      <div class="hsi"><div class="hsi-ico">🏆</div><div><div class="hsi-v">2 étoiles</div><div class="hsi-l">Guide Michelin 2024</div></div></div>
+      <div class="hsi"><div class="hsi-ico">📅</div><div><div class="hsi-v">Mar – Dim</div><div class="hsi-l">12h–14h30 · 19h–23h</div></div></div>
+      <div class="hsi"><div class="hsi-ico">👥</div><div><div class="hsi-v">2 – 12</div><div class="hsi-l">Couverts par table</div></div></div>
+      <div class="hsi"><div class="hsi-ico">🍷</div><div><div class="hsi-v">280+ références</div><div class="hsi-l">Cave à vins sélectionnée</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK RESERVATION BAR -->
+<div id="qbar">
+  <div class="qbin">
+    <div class="qfield">
+      <div class="ql">Date</div>
+      <input type="date" id="qdate"/>
+    </div>
+    <div class="qfield">
+      <div class="ql">Service</div>
+      <select id="qtime">
+        <option value="">Choisir</option>
+        <optgroup label="Déjeuner"><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option></optgroup>
+        <optgroup label="Dîner"><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option></optgroup>
+      </select>
+    </div>
+    <div class="qfield">
+      <div class="ql">Couverts</div>
+      <div class="qctr">
+        <button onclick="qg(-1)">−</button>
+        <span id="qgn">2</span>
+        <button onclick="qg(1)">+</button>
+      </div>
+    </div>
+    <div class="qbar-cta">
+      <button class="btn btn-olive" style="height:40px;padding:0 1.4rem;font-size:.82rem" onclick="startFromBar()">Vérifier les disponibilités</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     ABOUT
+════════════════════════════════ -->
+<section id="about">
+  <div class="wrap">
+    <div class="ag">
+      <div class="aphotos">
+        <div class="ap1"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=900&q=80&auto=format&fit=crop" alt="Chef Éric Rousseau" loading="lazy"/></div>
+        <div class="ap2"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80&auto=format&fit=crop" alt="Salle du restaurant" loading="lazy"/></div>
+        <div class="ap-tag"><strong>Est. 2011</strong><span>Depuis 14 ans</span></div>
+      </div>
+      <div class="atext">
+        <div class="slabel">Notre histoire</div>
+        <h2 class="sh2">Une <em>cuisine d'auteur</em><br>au cœur de Saint-Germain</h2>
+        <p>Fondée en 2011 par le Chef Éric Rousseau, Épure propose une lecture personnelle de la grande cuisine française. Chaque plat naît d'un dialogue entre la mémoire, la technique et le produit dans son état le plus pur.</p>
+        <p>Notre salle de 38 couverts, baignée de lumière naturelle au cœur du 6e arrondissement, invite à ralentir et à savourer chaque instant. Le service, attentif sans être intrusif, veille à ce que rien ne vienne troubler l'essentiel.</p>
+        <div class="acreds">
+          <div class="acred"><strong>2★</strong><span>Michelin</span></div>
+          <div class="acred"><strong>#2</strong><span>Paris 2024</span></div>
+          <div class="acred"><strong>14+</strong><span>Années</span></div>
+          <div class="acred"><strong>98%</strong><span>Satisfaction</span></div>
+        </div>
+        <div style="margin-top:1.75rem">
+          <button class="btn btn-out" onclick="startBook()">Réserver une table</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     MENU WITH FOOD PHOTOS
+════════════════════════════════ -->
+<section id="menu">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slabel">Carte du moment</div>
+      <h2 class="sh2">Les créations du Chef</h2>
+    </div>
+    <div class="mtabs" id="mtabs">
+      <button class="mtab on" onclick="showM('entrees',this)">Entrées</button>
+      <button class="mtab" onclick="showM('plats',this)">Plats</button>
+      <button class="mtab" onclick="showM('desserts',this)">Desserts</button>
+      <button class="mtab" onclick="showM('vins',this)">Accords Vins</button>
+    </div>
+    <div class="mgrid" id="mgrid"></div>
+    <div class="allergen-note">
+      <span style="font-size:1rem">ℹ️</span>
+      <span>Les allergènes sont indiqués sur chaque plat : <strong>G</strong>=Gluten · <strong>L</strong>=Lait · <strong>O</strong>=Œufs · <strong>M</strong>=Mollusques · <strong>P</strong>=Poissons · <strong>S</strong>=Sulfites. Informez votre serveur de tout régime alimentaire particulier.</span>
+    </div>
+    <div class="menu-note" style="margin-top:1.75rem">
+      <button class="btn btn-out" onclick="startBook()">Réserver pour goûter ces créations</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     GALLERY
+════════════════════════════════ -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slabel">Ambiance</div>
+      <h2 class="sh2">Vivre l'expérience <em>Épure</em></h2>
+    </div>
+    <div class="gmosaic">
+      <div class="gi gi-a"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80&auto=format&fit=crop" alt="Salle principale" loading="lazy"/><div class="gilabel">Salle principale</div></div>
+      <div class="gi gi-b"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=75&auto=format&fit=crop" alt="Plat signature" loading="lazy"/><div class="gilabel">Nos créations</div></div>
+      <div class="gi gi-c"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&q=75&auto=format&fit=crop" alt="Cave à vins" loading="lazy"/><div class="gilabel">Cave à vins</div></div>
+      <div class="gi gi-d"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=75&auto=format&fit=crop" alt="Cuisine ouverte" loading="lazy"/><div class="gilabel">Cuisine ouverte</div></div>
+      <div class="gi gi-e"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=500&q=75&auto=format&fit=crop" alt="Salon privé" loading="lazy"/><div class="gilabel">Salon privé</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     EVENTS
+════════════════════════════════ -->
+<section id="events">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slabel">Agenda</div>
+      <h2 class="sh2">Événements à venir</h2>
+    </div>
+    <div class="elist" id="elist"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     REVIEWS
+════════════════════════════════ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="shead ctr">
+      <div class="slabel">Avis clients</div>
+      <h2 class="sh2">Ce qu'ils disent d'Épure</h2>
+    </div>
+    <div class="rgrid" id="rgrid"></div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="ctaband">
+  <img class="cta-bg" src="https://images.unsplash.com/photo-1550966871-3ed3cfd625d2?w=1600&q=80&auto=format&fit=crop" alt="" loading="lazy"/>
+  <div class="cta-ov"></div>
+  <div class="wrap"><div class="cta-c">
+    <div class="slabel">Réservation</div>
+    <h2>Prêt pour une expérience <em>inoubliable ?</em></h2>
+    <p>Tables disponibles dès ce soir. Confirmation instantanée.</p>
+    <button class="btn btn-terra btn-lg" onclick="startBook()">Réserver ma table maintenant</button>
+  </div></div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="fg-grid">
+      <div class="fbrand">
+        <div class="fblogo">
+          <div class="nlogo-icon">É</div>
+          <div class="nlogo-text">Épure</div>
+        </div>
+        <p>Restaurant gastronomique 2 étoiles Michelin au cœur de Saint-Germain-des-Prés, Paris 6e.</p>
+        <div class="fsocial">
+          <a href="#">In</a><a href="#">Ig</a><a href="#">Fb</a><a href="#">Tw</a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Navigation</h4>
+        <a href="#about">Le Restaurant</a>
+        <a href="#menu">Notre Menu</a>
+        <a href="#gallery">Galerie</a>
+        <a href="#events">Événements</a>
+        <a href="#reviews">Avis clients</a>
+      </div>
+      <div class="fcol">
+        <h4>Contact</h4>
+        <span>24 Rue de Seine</span>
+        <span>75006 Paris, France</span>
+        <a href="tel:+33143260000">+33 1 43 26 00 00</a>
+        <a href="mailto:contact@epure.paris">contact@epure.paris</a>
+      </div>
+      <div class="fcol">
+        <h4>Horaires</h4>
+        <span style="color:rgba(214,48,49,.6)">Lundi : Fermé</span>
+        <span>Mardi – Dimanche</span>
+        <span>Déjeuner : 12h – 14h30</span>
+        <span>Dîner : 19h – 23h</span>
+        <button class="btn btn-olive btn-sm" style="margin-top:1rem" onclick="startBook()">Réserver</button>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 Épure Restaurant. Tous droits réservés.</p>
+      <div class="flinks"><a href="#">Confidentialité</a><a href="#">CGU</a><a href="#">Mentions légales</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════
+     ALL JAVASCRIPT
+════════════════════════════════ -->
+<script>
+/* ─── DATA ─────────────────────── */
+const MENU_D={
+  entrees:[
+    {img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=640&q=75&auto=format&fit=crop',name:'Foie gras mi-cuit',desc:'Brioche toastée, chutney de figues, fleur de sel de Guérande',price:'38€',badge:'Signature',bc:'dbadge-sig',alr:['G','L']},
+    {img:'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=640&q=75&auto=format&fit=crop',name:'Huîtres Gillardeau n°2',desc:'Granité citron vert, espuma wasabi, algues marinées',price:'32€',badge:null,bc:'',alr:['M']},
+    {img:'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=640&q=75&auto=format&fit=crop',name:'Tartare de Saint-Jacques',desc:'Pomme verte, caviar Osciètre, coriandre fraîche',price:'42€',badge:'Nouveau',bc:'dbadge-new',alr:['M','L']},
+    {img:'https://images.unsplash.com/photo-1484723091739-30990ff50f12?w=640&q=75&auto=format&fit=crop',name:'Velouté de cèpes',desc:'Truffe noire râpée, crème montée au beurre noisette',price:'28€',badge:null,bc:'',alr:['L']},
+  ],
+  plats:[
+    {img:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=640&q=75&auto=format&fit=crop',name:'Bœuf Wagyu A5',desc:'Jus corsé, moelle rôtie, légumes glacés au miel du jardin',price:'98€',badge:'Signature',bc:'dbadge-sig',alr:['L']},
+    {img:'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=640&q=75&auto=format&fit=crop',name:'Homard Bleu Breton',desc:"Beurre blanc à l'estragon, pommes Charlotte confites",price:'85€',badge:null,bc:'',alr:['M','L']},
+    {img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=640&q=75&auto=format&fit=crop',name:"Canard à l'orange revisité",desc:'Sauce grand veneur, poire pochée au vin rouge',price:'56€',badge:'Coup ♥',bc:'dbadge-fav',alr:['G']},
+    {img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=640&q=75&auto=format&fit=crop',name:'Turbot sauvage',desc:'Fumé à froid, beurre noisette, câpres, citron confit',price:'72€',badge:null,bc:'',alr:['P','L']},
+  ],
+  desserts:[
+    {img:'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=640&q=75&auto=format&fit=crop',name:'Soufflé au Champagne',desc:'Coulis de framboises fraîches, sorbet litchi',price:'24€',badge:'Signature',bc:'dbadge-sig',alr:['G','L','O']},
+    {img:'https://images.unsplash.com/photo-1488477304112-4944851de03d?w=640&q=75&auto=format&fit=crop',name:'Mille-feuille praliné',desc:'Feuilletage caramélisé, crème légère vanille Bourbon',price:'22€',badge:null,bc:'',alr:['G','L','O']},
+    {img:'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=640&q=75&auto=format&fit=crop',name:'Crème brûlée à la lavande',desc:'Fraîcheur de citron confit, tuile dentelle',price:'18€',badge:null,bc:'',alr:['L','O']},
+    {img:'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=640&q=75&auto=format&fit=crop',name:'Tarte Tatin revisitée',desc:'Pommes confites, glace calvados, caramel beurre salé',price:'20€',badge:'Nouveau',bc:'dbadge-new',alr:['G','L','O']},
+  ],
+  vins:[
+    {img:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=640&q=75&auto=format&fit=crop',name:'Château Pétrus 2018',desc:'Pomerol — Cerise noire, truffe, graphite. Tanins soyeux.',price:'680€',badge:'Exception',bc:'dbadge-sig',alr:['S']},
+    {img:'https://images.unsplash.com/photo-1474722883778-792e7990302f?w=640&q=75&auto=format&fit=crop',name:'Puligny-Montrachet 2020',desc:'Leflaive — Minéralité fine, fraîcheur citronnée, longueur.',price:'145€',badge:null,bc:'',alr:['S']},
+    {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&q=75&auto=format&fit=crop',name:'Champagne Krug Clos',desc:'Blanc de blancs — Brioche, amande grillée, effervescence délicate.',price:'420€',badge:'Prestige',bc:'dbadge-fav',alr:['S']},
+    {img:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=640&q=75&auto=format&fit=crop',name:'Barolo DOCG 2016',desc:'Intense, épicé, tanins puissants, finale persistante.',price:'95€',badge:null,bc:'',alr:['S']},
+  ],
+};
+
+const EVTS=[
+  {d:'22',m:'Mar',title:'Soirée Truffe & Champagne',desc:"Dégustations de truffes du Périgord avec Champagnes millésimés sélectionnés par notre sommelier.",price:'195€/pers.',seats:'8 places restantes'},
+  {d:'05',m:'Avr',title:'Masterclass Chef Éric Rousseau',desc:"Apprenez les secrets de la haute cuisine française en petit groupe, avec le Chef en personne.",price:'350€/pers.',seats:'6 places'},
+  {d:'20',m:'Avr',title:'Dîner Primeurs Bordeaux 2024',desc:"Dégustation exceptionnelle des nouveaux millésimes en avant-première avec un grand négociant bordelais.",price:'240€/pers.',seats:'Complet'},
+  {d:'18',m:'Mai',title:'Saint-Valentin Gastronomique',desc:"Dîner 5 services en tête-à-tête, accord mets & vins, fleurs et cadeau surprise inclus.",price:'310€/couple',seats:'4 couples'},
+];
+
+const REVS=[
+  {st:5,txt:"Une soirée absolument mémorable. Le foie gras mi-cuit atteignait une finesse rare, et le service était d'une discrétion parfaite. Je reviendrai sans hésiter.",name:'Sophie L.',meta:'Paris · Anniversaire',plat:'Google ★★★★★'},
+  {st:5,txt:"Le Wagyu A5 est tout simplement transcendant. Chaque bouchée raconte une histoire. Épure mérite amplement ses deux étoiles Michelin.",name:'Marc & Christine D.',meta:'Lyon · Saint-Valentin',plat:'TripAdvisor'},
+  {st:5,txt:"Interface de réservation intuitive, accueil chaleureux, cuisine d'exception. Le soufflé Champagne en fin de repas nous a laissés sans voix.",name:'Isabelle M.',meta:'Bordeaux · Anniversaire',plat:'Google ★★★★★'},
+  {st:5,txt:"L'expérience digitale est à la hauteur de l'expérience en salle. Paiement sécurisé, confirmation instantanée. Tout est parfaitement pensé.",name:'Thomas K.',meta:'Berlin · Déplacement pro',plat:'Google'},
+  {st:5,txt:"La masterclass Chef Rousseau était inoubliable. Technique irréprochable et pédagogie exceptionnelle. Nous en parlons encore à la maison.",name:'Famille Bertrand',meta:'Nantes · Masterclass',plat:'Facebook'},
+  {st:5,txt:"La sélection de vins est impressionnante et le sommelier d'une passion communicative. Un accord mets-vins d'une justesse rare.",name:'Klaus & Anna W.',meta:'Munich · Voyage',plat:'TripAdvisor'},
+];
+
+const TTYPE=[
+  {id:'t2',n:'Table intime',d:'2 personnes · Alcôve privée',p:0,img:'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=120&q=70&auto=format&fit=crop'},
+  {id:'t4',n:'Table classique',d:'3–4 personnes · Salle principale',p:0,img:'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=120&q=70&auto=format&fit=crop'},
+  {id:'t6',n:'Grande table',d:'5–6 personnes · Salle panoramique',p:0,img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=120&q=70&auto=format&fit=crop'},
+  {id:'tp',n:'Salon privé',d:'8–12 personnes · Salle exclusive',p:150,img:'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=120&q=70&auto=format&fit=crop'},
+];
+
+/* ─── SESSION ──────────────────── */
+let CU=null,RES=[],NOTIFS=[],lang='fr';
+try{CU=JSON.parse(localStorage.getItem('ep_u'))}catch{}
+try{RES=JSON.parse(localStorage.getItem('ep_r'))||dR()}catch{RES=dR()}
+try{NOTIFS=JSON.parse(localStorage.getItem('ep_n'))||dN()}catch{NOTIFS=dN()}
+function dR(){return[{id:'R1',date:'2025-09-15',time:'20:00',guests:2,table:'Table intime',status:'confirmed',price:0,ref:'EP-25-A3F1',special:'Anniversaire'},{id:'R2',date:'2025-01-20',time:'13:00',guests:4,table:'Table classique',status:'confirmed',price:0,ref:'EP-25-B8C2',special:''}]}
+function dN(){return[{id:1,title:"Rappel : votre table ce soir",text:"Votre réservation pour 2 personnes à 20:00 est confirmée.",time:"Aujourd'hui",u:true},{id:2,title:"Nouveau menu printemps",text:"Découvrez notre nouvelle carte de saison disponible dès maintenant.",time:"Il y a 2 jours",u:true},{id:3,title:"Offre spéciale avril",text:"Réservez votre masterclass Chef Rousseau avant le 15 mars.",time:"Il y a 1 sem.",u:false}]}
+function save(){localStorage.setItem('ep_u',JSON.stringify(CU));localStorage.setItem('ep_r',JSON.stringify(RES));localStorage.setItem('ep_n',JSON.stringify(NOTIFS))}
+function gRef(){return'EP-'+new Date().getFullYear().toString().slice(-2)+'-'+Math.random().toString(36).slice(2,6).toUpperCase()}
+function addN(t,m){NOTIFS.unshift({id:Date.now(),title:t,text:m,time:"À l'instant",u:true});save();updB()}
+
+/* ─── INIT ─────────────────────── */
+document.addEventListener('DOMContentLoaded',()=>{
+  initDates();showM('entrees');renderEvts();renderRevs();updUI();
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('lit',scrollY>50));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+  document.addEventListener('click',e=>{
+    if(!document.getElementById('lwrap').contains(e.target))closeLang();
+    const ud=document.getElementById('udrop');const ab=document.getElementById('avbtn');
+    if(ud&&ab&&!ud.contains(e.target)&&!ab.contains(e.target)){ud.classList.add('hidden');ud.classList.remove('open')}
+  });
+});
+
+/* ─── NAV ──────────────────────── */
+function togNav(){document.getElementById('nlinks').classList.toggle('open')}
+function closeNav(){document.getElementById('nlinks').classList.remove('open')}
+
+/* ─── MODAL SYSTEM ─────────────── */
+function op(id){document.getElementById('overlay').classList.remove('hidden');document.getElementById(id).classList.remove('hidden');document.body.style.overflow='hidden'}
+function cl(id){document.getElementById(id).classList.add('hidden');if(!document.querySelector('.modal:not(.hidden)')){document.getElementById('overlay').classList.add('hidden');document.body.style.overflow=''}}
+function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.add('hidden'));document.getElementById('overlay').classList.add('hidden');document.body.style.overflow=''}
+
+/* ─── LANG ─────────────────────── */
+function togLang(e){e.stopPropagation();const d=document.getElementById('ldd');d.classList.toggle('hidden');d.classList.toggle('open')}
+function closeLang(){const d=document.getElementById('ldd');d?.classList.add('hidden');d?.classList.remove('open')}
+function setLang(l){lang=l;document.getElementById('lcur').textContent=l.toUpperCase();closeLang();toast('tinf','Langue','Langue mise à jour')}
+
+/* ─── AUTH ─────────────────────── */
+function updUI(){
+  const zg=document.getElementById('zg'),zu=document.getElementById('zu');
+  if(CU){zg.classList.add('hidden');zu.classList.remove('hidden');
+    document.getElementById('avinit').textContent=CU.init||'U';
+    document.getElementById('udn').textContent=CU.name||'';
+    document.getElementById('ude').textContent=CU.email||'';
+    const ab=document.getElementById('adminbtn');if(ab)ab.classList.toggle('hidden',!CU.admin);
+    updB();
+  }else{zg.classList.remove('hidden');zu.classList.add('hidden')}
+}
+function updB(){
+  const u=NOTIFS.filter(n=>n.u).length;
+  document.getElementById('ndot')?.classList.toggle('hidden',u===0);
+  const b=document.getElementById('nbadge');if(b){b.textContent=u;b.classList.toggle('hidden',u===0)}
+}
+function togUd(){const d=document.getElementById('udrop');d.classList.toggle('open');d.classList.toggle('hidden')}
+function atab(btn,t){document.querySelectorAll('.atab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.aform').forEach(f=>f.classList.remove('on'));document.getElementById(t==='login'?'fl':'fr').classList.add('on')}
+function togpw(id,btn){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='text'?'●':'◉'}
+function chkpw(inp){const p=inp.value;let s=0;if(p.length>=8)s++;if(/[A-Z]/.test(p))s++;if(/[0-9]/.test(p))s++;if(/[^A-Za-z0-9]/.test(p))s++;const cl=s<=1?'w':s<=2?'m':'s';document.getElementById('str').innerHTML=Array(4).fill(0).map((_,i)=>`<div class="sb${i<s?' '+cl:''}"></div>`).join('')}
+function doLogin(e){e.preventDefault();const em=document.getElementById('le').value;CU={email:em,name:em.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase()),init:em.slice(0,2).toUpperCase(),admin:em.includes('admin'),phone:''};const n=CU.name.split(' ');CU.fn=n[0]||'';CU.ln=n[1]||'';save();updUI();cl('m-auth');toast('tok','Bienvenue !','Connexion réussie.')}
+function doReg(e){e.preventDefault();const fn=document.getElementById('rfn').value,ln=document.getElementById('rln').value,em=document.getElementById('rem').value,pw=document.getElementById('rpw').value,cf=document.getElementById('rcf').value;if(pw!==cf){toast('terr','Erreur','Les mots de passe ne correspondent pas.');return}CU={email:em,name:`${fn} ${ln}`.trim(),fn,ln,init:`${fn[0]}${ln[0]||''}`.toUpperCase(),phone:document.getElementById('rph').value,admin:false};save();updUI();cl('m-auth');toast('tok','Bienvenue !','Compte créé avec succès.')}
+function glogin(){CU={email:'demo@gmail.com',name:'Demo User',fn:'Demo',ln:'User',init:'DU',admin:false};save();updUI();cl('m-auth');toast('tok','Connecté','Bienvenue via Google.')}
+function doLogout(){CU=null;localStorage.removeItem('ep_u');updUI();const d=document.getElementById('udrop');d.classList.add('hidden');d.classList.remove('open');toast('tinf','À bientôt','Déconnexion réussie.')}
+
+/* ─── QUICK BAR ────────────────── */
+let qgv=2;
+function qg(d){qgv=Math.max(1,Math.min(12,qgv+d));document.getElementById('qgn').textContent=qgv}
+function initDates(){const t=new Date();t.setDate(t.getDate()+1);const f=d=>d.toISOString().split('T')[0];const el=document.getElementById('qdate');if(el){el.value=f(t);el.min=f(new Date())}}
+function startFromBar(){startBook({date:document.getElementById('qdate').value,time:document.getElementById('qtime').value,guests:qgv})}
+
+/* ─── MENU RENDER ──────────────── */
+function showM(cat,btn){
+  if(btn){document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+  const g=document.getElementById('mgrid');if(!g)return;
+  g.innerHTML=MENU_D[cat].map(d=>`
+  <div class="dcard">
+    <div class="dimg-wrap">
+      <img class="dimg" src="${d.img}" alt="${d.name}" loading="lazy"/>
+      ${d.badge?`<span class="dbadge ${d.bc}">${d.badge}</span>`:''}
+    </div>
+    <div class="dbody">
+      <div class="dname">${d.name}</div>
+      <div class="ddesc">${d.desc}</div>
+      <div class="dfoot">
+        <div class="dprice">${d.price}</div>
+        <div class="dalrg">${d.alr.map(a=>`<span title="${a}">${a}</span>`).join('')}</div>
+      </div>
+    </div>
+  </div>`).join('')
+}
+
+/* ─── EVENTS ───────────────────── */
+function renderEvts(){
+  const el=document.getElementById('elist');if(!el)return;
+  el.innerHTML=EVTS.map(ev=>`
+  <div class="ecard">
+    <div class="edate"><div class="eday">${ev.d}</div><div class="emon">${ev.m}</div></div>
+    <div class="ebody">
+      <div class="etitle">${ev.title}</div>
+      <div class="edesc">${ev.desc}</div>
+      <div class="emeta"><span class="etag">${ev.price}</span><span class="eseats">${ev.seats}</span></div>
+    </div>
+    <div class="eaction">
+      <button class="btn btn-out btn-sm" onclick="startBook()" ${ev.seats==='Complet'?'disabled style="opacity:.4;cursor:not-allowed"':''}>${ev.seats==='Complet'?'Complet':'Réserver'}</button>
+    </div>
+  </div>`).join('')
+}
+
+/* ─── REVIEWS ──────────────────── */
+function renderRevs(){
+  const el=document.getElementById('rgrid');if(!el)return;
+  el.innerHTML=REVS.map(r=>`
+  <div class="rcard">
+    <div class="rstars">${'★'.repeat(r.st)}</div>
+    <div class="rtext">"${r.txt}"</div>
+    <div class="rauthor">
+      <div class="rav">${r.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+      <div><div class="rname">${r.name}</div><div class="rmeta">${r.meta}</div><div class="rplat">${r.plat}</div></div>
+    </div>
+  </div>`).join('')
+}
+
+/* ─── TOAST ────────────────────── */
+function toast(type,title,msg,dur=4000){
+  const s=document.getElementById('toasts');
+  const ic={tok:'✓',terr:'✕',tinf:'i'};
+  const el=document.createElement('div');el.className=`toast ${type}`;
+  el.innerHTML=`<div class="ti">${ic[type]||'i'}</div><div class="tb"><div class="tt">${title}</div><div class="tm">${msg}</div></div><button class="tx" onclick="rmT(this)">✕</button>`;
+  s.appendChild(el);setTimeout(()=>rmT(el.querySelector('.tx')),dur)
+}
+function rmT(btn){const el=btn.closest?btn.closest('.toast'):btn;if(!el)return;el.classList.add('tout');setTimeout(()=>el.remove(),220)}
+
+/* ─── BOOKING STATE ────────────── */
+let BK={};let cY=new Date().getFullYear(),cM=new Date().getMonth();
+
+function startBook(pre={}){
+  if(!CU){op('m-auth');return}
+  const tom=new Date();tom.setDate(tom.getDate()+1);
+  BK={date:pre.date||tom.toISOString().split('T')[0],time:pre.time||'',guests:pre.guests||2,ch:0,ttype:TTYPE[0],step:1,special:'',fn:CU.fn||'',ln:CU.ln||'',email:CU.email||'',phone:CU.phone||''};
+  cY=new Date(BK.date).getFullYear();cM=new Date(BK.date).getMonth();
+  renderS1();op('m-book');
+}
+
+/* ── STEP 1 ── */
+function renderS1(){
+  BK.step=1;
+  document.getElementById('mb-inner').innerHTML=`
+  <div class="bkh"><div class="bkhtitle">Réserver une table</div><button class="mclose" onclick="cl('m-book')">✕</button></div>
+  ${prog(1)}
+  <div class="bkwrap">
+    <div class="bkmain">
+      <div class="bksec"><div class="bkst">Choisissez votre date</div>
+        <div class="cal" id="bcal">${renderCal()}</div>
+      </div>
+      <div class="bksec"><div class="bkst">Choisissez un créneau</div>
+        <div class="slots" id="bslots">${renderSlots()}</div>
+      </div>
+      <div class="bksec"><div class="bkst">Type de table</div>
+        <div class="ttypes">${TTYPE.map(tt=>`
+          <div class="ttype${BK.ttype?.id===tt.id?' ton':''}" onclick="selTT('${tt.id}')">
+            <div class="ttype-radio"></div>
+            <img class="ttype-img" src="${tt.img}" alt="${tt.n}" loading="lazy"/>
+            <div class="ttype-info"><div class="ttype-name">${tt.n}</div><div class="ttype-desc">${tt.d}</div></div>
+            <div class="ttype-price">${tt.p>0?'+'+tt.p+'€':'Inclus'}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+      <div class="bksec"><div class="bkst">Nombre de convives</div>
+        <div class="grow"><span class="gl">Adultes</span><div class="gctr"><button onclick="gAdj('a',-1)">−</button><span id="bad">${BK.guests}</span><button onclick="gAdj('a',1)">+</button></div></div>
+        <div class="grow"><span class="gl">Enfants</span><div class="gctr"><button onclick="gAdj('c',-1)">−</button><span id="bch">${BK.ch}</span><button onclick="gAdj('c',1)">+</button></div></div>
+      </div>
+    </div>
+    <div class="bkside" id="bkside">${renderSum()}</div>
+  </div>
+  <div class="bknav"><button class="btn btn-ghost" onclick="cl('m-book')">Annuler</button><button class="btn btn-olive" onclick="goS2()">Mes informations →</button></div>`;
+}
+
+/* Calendar */
+function renderCal(){
+  const mo=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const dh=['L','M','M','J','V','S','D'];
+  const now=new Date();const fd=new Date(cY,cM,1).getDay();const adj=fd===0?6:fd-1;const dim=new Date(cY,cM+1,0).getDate();
+  let cells='';
+  for(let i=0;i<adj;i++)cells+='<div class="cd cemp"></div>';
+  for(let d=1;d<=dim;d++){
+    const dt=new Date(cY,cM,d);
+    const ds=`${cY}-${String(cM+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const past=dt<new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    const today=dt.toDateString()===now.toDateString();
+    const sel=BK.date===ds;const closed=dt.getDay()===1;
+    const cls=['cd',past||closed?'cdis':'',today?'ctoday':'',sel?'csel':'',closed?'cclose':''].filter(Boolean).join(' ');
+    cells+=`<div class="${cls}"${!past&&!closed?` onclick="calSel('${ds}')"`:''}>${d}</div>`;
+  }
+  return`<div class="calnav"><button class="canarr" onclick="cMov(-1)">‹</button><div class="calmonth">${mo[cM]} ${cY}</div><button class="canarr" onclick="cMov(1)">›</button></div><div class="calgrid">${dh.map(d=>`<div class="cdh">${d}</div>`).join('')}${cells}</div>`;
+}
+function cMov(d){cM+=d;if(cM<0){cM=11;cY--}if(cM>11){cM=0;cY++}const c=document.getElementById('bcal');if(c)c.innerHTML=renderCal()}
+function calSel(ds){BK.date=ds;const c=document.getElementById('bcal');if(c)c.innerHTML=renderCal();const s=document.getElementById('bslots');if(s)s.innerHTML=renderSlots();rSum()}
+
+/* Slots */
+function renderSlots(){
+  const bkd=['12:30','20:00'];
+  const L=['12:00','12:30','13:00','13:30','14:00'];
+  const D=['19:00','19:30','20:00','20:30','21:00','21:30'];
+  return`
+  <div class="slot-group-label">🌤 Déjeuner</div>
+  <div class="sgrid">${L.map(s=>`<div class="slot${bkd.includes(s)?' sbook':BK.time===s?' son':''}" onclick="${bkd.includes(s)?'':'sSel(\''+s+'\')'}">${s}</div>`).join('')}</div>
+  <div class="slot-group-label">🌙 Dîner</div>
+  <div class="sgrid">${D.map(s=>`<div class="slot${bkd.includes(s)?' sbook':BK.time===s?' son':''}" onclick="${bkd.includes(s)?'':'sSel(\''+s+'\')'}">${s}</div>`).join('')}</div>`;
+}
+function sSel(t){BK.time=t;const s=document.getElementById('bslots');if(s)s.innerHTML=renderSlots();rSum()}
+function selTT(id){BK.ttype=TTYPE.find(t=>t.id===id)||TTYPE[0];document.querySelectorAll('.ttype').forEach(el=>{el.classList.toggle('ton',el.getAttribute('onclick')===`selTT('${id}')`)});rSum()}
+function gAdj(t,d){if(t==='a'){BK.guests=Math.max(1,BK.guests+d);document.getElementById('bad').textContent=BK.guests}else{BK.ch=Math.max(0,BK.ch+d);document.getElementById('bch').textContent=BK.ch}rSum()}
+
+/* Summary */
+function renderSum(){
+  const ext=BK.ttype?.p||0;BK.total=ext;
+  return`<div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:.75rem">Récapitulatif</div>
+  <div class="bksum">
+    <div class="bkrname">Épure · Paris 6e</div>
+    <div class="bkrrating"><span class="bkstars">★★★★★</span>4.9 · Guide Michelin 2★</div>
+    ${BK.date?`<div class="bkrow"><span>Date</span><span style="font-weight:600;color:var(--ink)">${BK.date}</span></div>`:''}
+    ${BK.time?`<div class="bkrow"><span>Horaire</span><span style="font-weight:600;color:var(--ink)">${BK.time}</span></div>`:''}
+    ${BK.guests?`<div class="bkrow"><span>Convives</span><span style="font-weight:600;color:var(--ink)">${BK.guests+BK.ch} pers.</span></div>`:''}
+    ${BK.ttype?`<div class="bkrow"><span>${BK.ttype.n}</span><span>${ext>0?'+'+ext+'€':'Inclus'}</span></div>`:''}
+    <div class="bktot"><span>Total</span><span>${BK.total>0?BK.total+'€':'Gratuit'}</span></div>
+  </div>
+  <div class="cancel-note"><div class="ct">✓ Annulation gratuite</div><div class="cs">Jusqu'à 24h avant votre réservation, sans frais.</div></div>`;
+}
+function rSum(){const s=document.getElementById('bkside');if(s)s.innerHTML=renderSum()}
+
+/* ── STEP 2 ── */
+function goS2(){
+  if(!BK.date){toast('terr','','Veuillez sélectionner une date.');return}
+  if(!BK.time){toast('terr','','Veuillez sélectionner un horaire.');return}
+  BK.step=2;
+  document.getElementById('mb-inner').innerHTML=`
+  <div class="bkh"><div class="bkhtitle">Vos informations</div><button class="mclose" onclick="cl('m-book')">✕</button></div>
+  ${prog(2)}
+  <div class="bkwrap">
+    <div class="bkmain">
+      <div class="bksec"><div class="bkst">Informations du responsable de table</div>
+        <div class="fr2">
+          <div class="fg"><label>Prénom</label><input type="text" id="bfn" value="${BK.fn}" placeholder="Marie"/></div>
+          <div class="fg"><label>Nom</label><input type="text" id="bln" value="${BK.ln}" placeholder="Dupont"/></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" id="bem" value="${BK.email}" placeholder="marie@email.com"/></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" id="bph" value="${BK.phone}" placeholder="+33 6 00 00 00 00"/></div>
+      </div>
+      <div class="bksec"><div class="bkst">Demandes spéciales</div>
+        <div class="fg"><textarea id="bsp" placeholder="Allergies, régimes alimentaires, occasion spéciale (anniversaire, demande en mariage…), chaise haute bébé, table près de la fenêtre…" style="min-height:100px">${BK.special}</textarea></div>
+        <div class="qtags">
+          ${['🎂 Anniversaire','💍 Demande en mariage','🎁 Célébration','🚸 Chaise haute','🌿 Végétarien','🐟 Sans poisson','🌾 Sans gluten'].map(t=>`<button class="qtag" onclick="addTag('${t}')">${t}</button>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="bkside">${renderSum()}</div>
+  </div>
+  <div class="bknav"><button class="btn btn-ghost" onclick="renderS1()">← Retour</button><button class="btn btn-olive" onclick="goPay()">Passer au paiement →</button></div>`;
+}
+function addTag(t){const el=document.getElementById('bsp');if(el)el.value=(el.value?el.value+', ':'')+t}
+
+/* ── TO PAYMENT ── */
+function goPay(){
+  BK.fn=document.getElementById('bfn')?.value||BK.fn;
+  BK.ln=document.getElementById('bln')?.value||BK.ln;
+  BK.email=document.getElementById('bem')?.value||BK.email;
+  BK.phone=document.getElementById('bph')?.value||BK.phone;
+  BK.special=document.getElementById('bsp')?.value||'';
+  cl('m-book');renderPay();op('m-pay');
+}
+
+/* Progress */
+function prog(a){
+  const steps=['Dates & Table','Informations','Paiement'];
+  return`<div class="progress">${steps.map((s,i)=>{const n=i+1,c=n<a?'done':n===a?'on':'';return`<div class="ps ${c}"><div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="pcirc">${n<a?'✓':n}</div><div class="plabel">${s}</div></div>${i<steps.length-1?'<div class="pline"></div>':''}</div>`}).join('')}</div>`;
+}
+
+/* ─── PAYMENT ──────────────────── */
+let pM='card';
+function renderPay(){
+  const tot=BK.total,tax=Math.round(tot*.1),grand=tot+tax;BK.grand=grand;
+  document.getElementById('mp-inner').innerHTML=`
+  <div class="mh"><div class="mt">Paiement sécurisé</div><button class="mclose" onclick="cl('m-pay')">✕</button></div>
+  ${prog(3)}
+  <div class="paywrap">
+    <div class="paymain">
+      <div style="margin-bottom:1.2rem">
+        <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:.7rem">Mode de paiement</div>
+        <div class="pmethods">
+          <button class="pmethod pon" onclick="selPM('card',this)"><div class="pmico">CB</div><span>Carte</span></button>
+          <button class="pmethod" onclick="selPM('pp',this)"><div class="pmico" style="color:#003087">P</div><span>PayPal</span></button>
+          <button class="pmethod" onclick="selPM('ap',this)"><div class="pmico">⬛</div><span>Apple Pay</span></button>
+        </div>
+      </div>
+      <div id="pcard">
+        <div class="fg" style="position:relative">
+          <label>Numéro de carte</label>
+          <input type="text" id="cnum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fCard(this)" style="padding-right:5.5rem"/>
+          <div style="position:absolute;right:.75rem;bottom:.75rem;display:flex;gap:3px">
+            <span style="background:#1a1f71;color:#fff;font-size:.56rem;font-weight:700;padding:2px 5px;border-radius:3px">VISA</span>
+            <span style="background:#eb001b;color:#fff;font-size:.56rem;font-weight:700;padding:2px 5px;border-radius:3px">MC</span>
+          </div>
+        </div>
+        <div class="fg"><label>Nom sur la carte</label><input type="text" id="cname" value="${((BK.fn||'')+' '+(BK.ln||'')).toUpperCase().trim()}" placeholder="MARIE DUPONT"/></div>
+        <div class="fr2">
+          <div class="fg"><label>Date d'expiration</label><input type="text" id="cexp" placeholder="MM / AA" maxlength="7" oninput="fExp(this)"/></div>
+          <div class="fg"><label>CVV</label><input type="text" id="ccvv" placeholder="•••" maxlength="3" oninput="this.value=this.value.replace(/\D/g,'')"/></div>
+        </div>
+      </div>
+      <div id="ppp" class="hidden" style="text-align:center;padding:2.5rem;background:var(--bg2);border-radius:var(--r2)">
+        <div style="font-size:1.9rem;color:#003087;font-weight:800;margin-bottom:.5rem">PayPal</div>
+        <p style="font-size:.875rem;color:var(--ink2)">Vous serez redirigé vers PayPal pour finaliser le paiement.</p>
+      </div>
+      <div id="pap" class="hidden" style="text-align:center;padding:2.5rem;background:var(--bg2);border-radius:var(--r2)">
+        <div style="font-size:2rem;margin-bottom:.5rem">⬛</div>
+        <p style="font-size:.875rem;color:var(--ink2)">Utilisez Touch ID ou Face ID pour confirmer.</p>
+      </div>
+      <div class="psecure"><div class="psecure-ic">✓</div>Paiement 100% sécurisé · SSL 256 bits · Certifié PCI DSS</div>
+    </div>
+    <div class="payside">
+      <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:.7rem">Votre commande</div>
+      <div class="orderbox">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem;padding-bottom:.8rem;border-bottom:1px solid var(--bg3)">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=70&q=70&auto=format&fit=crop" style="width:46px;height:46px;border-radius:var(--r);object-fit:cover;flex-shrink:0" alt=""/>
+          <div><div style="font-weight:700;font-size:.875rem;color:var(--ink)">Épure · Paris 6e</div><div style="font-size:.72rem;color:var(--ink2)">2 étoiles Michelin</div></div>
+        </div>
+        <div class="orow"><span>📅 ${BK.date} à ${BK.time}</span></div>
+        <div class="orow"><span>👥 ${BK.guests+BK.ch} convive${BK.guests+BK.ch>1?'s':''} · ${BK.ttype?.n}</span></div>
+        ${BK.special?`<div class="orow"><span style="color:var(--olive);font-size:.77rem">📝 ${BK.special.substring(0,40)}${BK.special.length>40?'…':''}</span></div>`:''}
+        ${tot>0?`<div class="orow"><span>Réservation table</span><span>${tot}€</span></div>`:''}
+        ${tax>0?`<div class="orow"><span>Taxes & frais</span><span>${tax}€</span></div>`:''}
+        <div class="orow otot"><span>Total</span><span>${grand>0?grand+'€':'Gratuit'}</span></div>
+      </div>
+      <button class="btn btn-olive btn-full" style="padding:.9rem;font-size:.875rem" id="paybtn" onclick="doPay()">
+        Confirmer et payer${grand>0?' · '+grand+'€':''}
+      </button>
+      <p class="pay-fnote">En validant, vous acceptez nos CGV et la politique d'annulation (gratuite jusqu'à 24h avant).</p>
+      <button class="btn btn-ghost btn-full btn-sm" style="margin-top:.5rem" onclick="cl('m-pay');op('m-book');goS2()">← Modifier ma réservation</button>
+    </div>
+  </div>`;
+}
+function selPM(m,btn){pM=m;document.querySelectorAll('.pmethod').forEach(b=>b.classList.remove('pon'));btn.classList.add('pon');['card','pp','ap'].forEach(x=>{const e=document.getElementById('p'+x);if(e)e.classList.toggle('hidden',x!==m)})}
+function fCard(i){let v=i.value.replace(/\D/g,'').substring(0,16);i.value=v.replace(/(.{4})/g,'$1 ').trim()}
+function fExp(i){let v=i.value.replace(/\D/g,'').substring(0,4);if(v.length>=3)v=v.substring(0,2)+' / '+v.substring(2);i.value=v}
+function doPay(){
+  const btn=document.getElementById('paybtn');if(!btn)return;
+  btn.disabled=true;btn.innerHTML='<span style="display:inline-block;animation:spin .8s linear infinite">⟳</span> Traitement en cours…';
+  setTimeout(()=>{
+    const ref=gRef();
+    RES.unshift({id:'R'+Date.now(),date:BK.date,time:BK.time,guests:BK.guests+BK.ch,table:BK.ttype?.n||'',status:'confirmed',price:BK.grand,ref,special:BK.special});
+    addN('Réservation confirmée',`${BK.date} à ${BK.time} · Réf. ${ref}`);save();
+    document.getElementById('mp-inner').innerHTML=`
+    <div class="mh"><div class="mt">Confirmation</div><button class="mclose" onclick="cl('m-pay')">✕</button></div>
+    <div class="mb">
+    <div class="suc">
+      <div class="suc-ring">✓</div>
+      <h2>Réservation confirmée !</h2>
+      <p>Un email de confirmation a été envoyé à <strong>${BK.email}</strong>.<br>Nous avons hâte de vous accueillir à Épure.</p>
+      <div class="suc-ref"><strong>${ref}</strong><span>Votre référence de réservation</span></div>
+      <div class="suc-details">
+        <div class="suc-row"><span>📅 Date</span><span style="font-weight:600">${BK.date}</span></div>
+        <div class="suc-row"><span>🕐 Horaire</span><span style="font-weight:600">${BK.time}</span></div>
+        <div class="suc-row"><span>👥 Convives</span><span style="font-weight:600">${BK.guests+BK.ch} personne${BK.guests+BK.ch>1?'s':''}</span></div>
+        <div class="suc-row"><span>🪑 Table</span><span style="font-weight:600">${BK.ttype?.n}</span></div>
+        ${BK.special?`<div class="suc-row"><span>📝 Demandes</span><span style="color:var(--olive);font-size:.78rem">${BK.special}</span></div>`:''}
+        ${BK.grand>0?`<div class="suc-row"><span>💳 Payé</span><span style="font-weight:600;color:var(--terra)">${BK.grand}€</span></div>`:''}
+      </div>
+      <div class="suc-btns">
+        <button class="btn btn-olive" onclick="cl('m-pay');oAcc('res')">Voir mes réservations</button>
+        <button class="btn btn-ghost" onclick="cl('m-pay')">Retour à l'accueil</button>
+      </div>
+    </div></div>`;
+    toast('tok','Réservation confirmée !','Votre table est réservée. À très bientôt chez Épure !');
+  },2400);
+}
+
+/* ─── ACCOUNT ──────────────────── */
+let acP='res';
+function oAcc(p='res'){
+  if(!CU){op('m-auth');return}
+  acP=p;renderAcc();op('m-acct');
+  const d=document.getElementById('udrop');d?.classList.add('hidden');d?.classList.remove('open');
+}
+function renderAcc(){
+  const up=RES.filter(r=>new Date(r.date)>=new Date()),past=RES.filter(r=>new Date(r.date)<new Date());
+  const ub=NOTIFS.filter(n=>n.u).length;
+  document.getElementById('mac-inner').innerHTML=`
+  <div class="aclayout">
+    <div class="acnav">
+      ${[['res','🗓 Réservations'],['notif','🔔 Notifications'+(ub>0?` <span class="npill">${ub}</span>`:'')],['profile','👤 Profil'],['favs','❤ Favoris']].map(([k,l])=>`
+        <button class="acnbtn${acP===k?' on':''}" onclick="swAP('${k}')">${l}</button>`).join('')}
+    </div>
+    <div class="accontent">
+      <div id="ap-res" class="acp${acP==='res'?' on':''}">
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--olive);margin-bottom:.9rem">À venir</div>
+        ${up.length>0?up.map(r=>rCard(r)).join(''):`<div class="es"><div class="es-ic">T</div><div class="es-t">Aucune réservation à venir</div><div class="es-s">Réservez votre prochaine table !</div><button class="btn btn-olive btn-sm" style="margin-top:.9rem" onclick="cl('m-acct');startBook()">Réserver</button></div>`}
+        ${past.length>0?`<div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin:1.25rem 0 .9rem">Passées</div>${past.map(r=>rCard(r,true)).join('')}`:''}</div>
+      <div id="ap-notif" class="acp${acP==='notif'?' on':''}">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem">
+          <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--olive)">Notifications</div>
+          <button onclick="mAllR()" style="font-size:.76rem;color:var(--olive);font-weight:700;background:none;border:none;cursor:pointer">Tout marquer comme lu</button>
+        </div>
+        ${NOTIFS.map(n=>`<div class="nitem${n.u?' unr':''}" onclick="readN(${n.id},this)"><div class="npip"></div><div><div class="ntit">${n.title}</div><div class="nmsg">${n.text}</div><div class="ntime">${n.time}</div></div></div>`).join('')}
+      </div>
+      <div id="ap-profile" class="acp${acP==='profile'?' on':''}">
+        <div style="display:flex;align-items:center;gap:.9rem;padding:1rem;background:linear-gradient(135deg,var(--olive-ll),var(--sand-l));border-radius:var(--r2);margin-bottom:1.25rem;border:1px solid var(--bdr)">
+          <div style="width:50px;height:50px;border-radius:50%;background:var(--olive);color:#fff;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${CU?.init||'U'}</div>
+          <div><div style="font-weight:700;font-size:.9rem;color:var(--ink)">${CU?.name||''}</div><div style="font-size:.77rem;color:var(--ink2)">${CU?.email||''}</div></div>
+        </div>
+        <div class="fr2"><div class="fg"><label>Prénom</label><input id="pfn" value="${CU?.fn||''}"/></div><div class="fg"><label>Nom</label><input id="pln" value="${CU?.ln||''}"/></div></div>
+        <div class="fg"><label>Email</label><input type="email" id="pem" value="${CU?.email||''}"/></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" id="pph" value="${CU?.phone||''}"/></div>
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin:.75rem 0 .5rem">Notifications</div>
+        <label class="cbl mb1"><input type="checkbox" checked/> Confirmation de réservation par email</label>
+        <label class="cbl mb1"><input type="checkbox" checked/> Rappel SMS 24h avant</label>
+        <label class="cbl mb1"><input type="checkbox"/> Newsletter et événements</label>
+        <div style="display:flex;gap:.65rem;margin-top:1.1rem">
+          <button class="btn btn-olive" onclick="savePrf()">Enregistrer</button>
+          <button class="btn btn-ghost" style="color:#d63031;border-color:#d63031" onclick="doLogout();cl('m-acct')">Déconnexion</button>
+        </div>
+      </div>
+      <div id="ap-favs" class="acp${acP==='favs'?' on':''}">
+        <div class="es"><div class="es-ic" style="font-style:italic">♥</div><div class="es-t">Aucun favori</div><div class="es-s">Vos plats et tables préférés apparaîtront ici.</div></div>
+      </div>
+    </div>
+  </div>`;
+  if(acP==='notif')mAllR(false);
+}
+function rCard(r,past=false){
+  const pc={confirmed:'p-ok',pending:'p-pend',cancelled:'p-can'}[r.status]||'p-pend';
+  const pt={confirmed:'Confirmée',pending:'En attente',cancelled:'Annulée'}[r.status]||r.status;
+  return`<div class="resc" style="${past?'opacity:.55':''}">
+    <img class="resc-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=120&q=70&auto=format&fit=crop" alt=""/>
+    <div><div class="resc-name">Épure · ${r.time}</div><div class="resc-det">${r.date} · ${r.guests} conv. · ${r.table}</div>${r.special?`<div class="resc-det" style="color:var(--olive);font-size:.71rem">${r.special}</div>`:''}<div class="resc-ref">${r.ref}</div></div>
+    <div class="resc-acts"><span class="pill ${pc}">${pt}</span>${!past&&r.status!=='cancelled'?`<button class="canl" onclick="canR('${r.id}')">Annuler</button>`:''}</div>
+  </div>`;
+}
+function swAP(p){acP=p;document.querySelectorAll('.acp').forEach(el=>el.classList.remove('on'));document.querySelectorAll('.acnbtn').forEach(b=>b.classList.remove('on'));document.getElementById('ap-'+p)?.classList.add('on');document.querySelectorAll('.acnbtn').forEach(b=>{if(b.getAttribute('onclick')?.includes(`'${p}'`))b.classList.add('on')});if(p==='notif')mAllR(false)}
+function canR(id){const r=RES.find(x=>x.id===id);if(r){r.status='cancelled';save();renderAcc();toast('tinf','Réservée annulée',`${r.ref} a été annulée.`)}}
+function mAllR(sv=true){NOTIFS.forEach(n=>n.u=false);if(sv)save();document.querySelectorAll('.nitem').forEach(el=>el.classList.remove('unr'));updB()}
+function readN(id,el){const n=NOTIFS.find(x=>x.id===id);if(n){n.u=false;save()}el?.classList.remove('unr');updB()}
+function savePrf(){if(!CU)return;CU.fn=document.getElementById('pfn')?.value||CU.fn;CU.ln=document.getElementById('pln')?.value||CU.ln;CU.email=document.getElementById('pem')?.value||CU.email;CU.phone=document.getElementById('pph')?.value||CU.phone;CU.name=`${CU.fn} ${CU.ln}`.trim();CU.init=`${CU.fn[0]||''}${CU.ln[0]||''}`.toUpperCase();save();updUI();toast('tok','Profil mis à jour','Vos informations ont été sauvegardées.');renderAcc()}
+
+/* ─── ADMIN ────────────────────── */
+let adT='res';
+const TBLS=[{id:'T1',n:'Table 1',cap:2,z:'Alcôve',av:true},{id:'T2',n:'Table 2',cap:2,z:'Alcôve',av:true},{id:'T3',n:'Table 3',cap:4,z:'Salle principale',av:true},{id:'T4',n:'Table 4',cap:4,z:'Salle principale',av:false},{id:'T5',n:'Table 5',cap:4,z:'Salle principale',av:true},{id:'T6',n:'Table 6',cap:6,z:'Panoramique',av:true},{id:'T7',n:'Table 7',cap:6,z:'Panoramique',av:false},{id:'T8',n:'Salon VIP',cap:12,z:'Salon privé',av:true}];
+let tbls=JSON.parse(localStorage.getItem('ep_t'))||TBLS;
+function saveTbls(){localStorage.setItem('ep_t',JSON.stringify(tbls))}
+function oAdmin(){if(!CU?.admin){toast('terr','Accès refusé','Réservé aux administrateurs.');return}renderAdm(adT);op('m-admin');const d=document.getElementById('udrop');d?.classList.add('hidden');d?.classList.remove('open')}
+function renderAdm(t){
+  adT=t;
+  const td=new Date().toISOString().split('T')[0];
+  const tdr=RES.filter(r=>r.date===td);
+  const av=tbls.filter(t=>t.av).length;
+  const rev=RES.reduce((s,r)=>s+(r.price||0),0);
+  document.getElementById('mad-inner').innerHTML=`
+  <div class="adstats">
+    <div class="adstat"><div class="adstatv">${tdr.length}</div><div class="adstatl">Réservations aujourd'hui</div></div>
+    <div class="adstat"><div class="adstatv">${tdr.reduce((s,r)=>s+(r.guests||0),0)}</div><div class="adstatl">Couverts</div></div>
+    <div class="adstat"><div class="adstatv">${av}/8</div><div class="adstatl">Tables disponibles</div></div>
+    <div class="adstat"><div class="adstatv">${rev>0?rev+'€':'—'}</div><div class="adstatl">Revenus cumulés</div></div>
+  </div>
+  <div class="adtabs">
+    <button class="adtab${t==='res'?' on':''}" onclick="renderAdm('res')">Réservations</button>
+    <button class="adtab${t==='tbls'?' on':''}" onclick="renderAdm('tbls')">Tables</button>
+    <button class="adtab${t==='avail'?' on':''}" onclick="renderAdm('avail')">Disponibilités</button>
+  </div>
+  <div style="overflow-x:auto">${t==='res'?adRes():t==='tbls'?adTbls():adAvail()}</div>`;
+}
+function adRes(){
+  return`<table class="adtable"><thead><tr><th>Réf.</th><th>Date</th><th>Heure</th><th>Couverts</th><th>Table</th><th>Statut</th><th>Demandes</th><th>Actions</th></tr></thead><tbody>
+  ${[...RES].sort((a,b)=>new Date(b.date)-new Date(a.date)).map(r=>{const pc={confirmed:'p-ok',pending:'p-pend',cancelled:'p-can'}[r.status]||'p-pend';return`<tr><td style="font-size:.68rem;color:var(--ink3)">${r.ref}</td><td>${r.date}</td><td>${r.time||'—'}</td><td>${r.guests}</td><td>${r.table}</td><td><span class="pill ${pc}">${{confirmed:'Confirmée',pending:'En attente',cancelled:'Annulée'}[r.status]}</span></td><td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.73rem;color:var(--olive)">${r.special||'—'}</td><td style="white-space:nowrap">${r.status!=='cancelled'?`<button onclick="adCan('${r.id}')" style="font-size:.7rem;color:#d63031;background:none;border:none;cursor:pointer;text-decoration:underline">Annuler</button>`:''}${r.status==='pending'?`<button onclick="adConf('${r.id}')" style="font-size:.7rem;color:var(--olive);background:none;border:none;cursor:pointer;text-decoration:underline;margin-left:5px">Confirmer</button>`:''}</td></tr>`}).join('')}</tbody></table>`;
+}
+function adTbls(){
+  return`<table class="adtable"><thead><tr><th>Table</th><th>Capacité</th><th>Zone</th><th>Disponible</th><th>Statut</th></tr></thead><tbody>
+  ${tbls.map(t=>`<tr><td style="font-weight:700">${t.n}</td><td>${t.cap} pers.</td><td>${t.z}</td><td><label class="togl"><input type="checkbox" ${t.av?'checked':''} onchange="togT('${t.id}',this.checked)"/><div class="toglt"></div></label></td><td style="font-size:.78rem;color:${t.av?'var(--olive)':'#d63031'};font-weight:600">${t.av?'✓ Disponible':'✗ Indisponible'}</td></tr>`).join('')}</tbody></table>`;
+}
+function adAvail(){
+  const days=[];const now=new Date();for(let i=0;i<7;i++){const d=new Date(now);d.setDate(d.getDate()+i);days.push(d.toISOString().split('T')[0])}
+  const slots=['12:00','12:30','13:00','13:30','19:00','19:30','20:00','20:30','21:00'];
+  const blk=JSON.parse(localStorage.getItem('ep_blk')||'{}');
+  const cols=days.length+1;
+  return`<p style="font-size:.78rem;color:var(--ink2);margin-bottom:.9rem">Cliquez sur un créneau pour le bloquer / libérer.</p>
+  <div class="avbody"><div class="avgrid" style="grid-template-columns:55px repeat(${days.length},1fr);min-width:500px">
+    <div class="avhead"></div>${days.map(d=>`<div class="avhead">${d.slice(5)}</div>`).join('')}
+    ${slots.map(s=>`<div class="avtime">${s}</div>${days.map(d=>{const k=d+'_'+s;const isBlk=blk[k];const cnt=RES.filter(r=>r.date===d&&r.time===s&&r.status!=='cancelled').length;return`<div class="avcell${isBlk?' blocked':cnt>0?' booked-c':' free'}" onclick="togBlk('${d}','${s}')">${isBlk?'Bloqué':cnt>0?cnt+'rés':'Libre'}</div>`}).join('')}`).join('')}
+  </div></div>`;
+}
+function adCan(id){const r=RES.find(x=>x.id===id);if(r){r.status='cancelled';save();renderAdm(adT);toast('tinf','Annulée',r.ref)}}
+function adConf(id){const r=RES.find(x=>x.id===id);if(r){r.status='confirmed';save();renderAdm(adT);toast('tok','Confirmée',r.ref)}}
+function togT(id,av){const t=tbls.find(x=>x.id===id);if(t){t.av=av;saveTbls()}}
+function togBlk(d,s){const blk=JSON.parse(localStorage.getItem('ep_blk')||'{}');const k=d+'_'+s;if(blk[k])delete blk[k];else blk[k]=true;localStorage.setItem('ep_blk',JSON.stringify(blk));renderAdm('avail')}
+</script>
+</body>
+</html>

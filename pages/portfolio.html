@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Nos Projets – Portfolio | AKINTEC</title>
+
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Découvrez les projets réalisés par AKINTEC : applications web, data, cloud, conseil IT. Des réalisations concrètes pour des clients exigeants.">
+  <meta name="keywords" content="AKINTEC, portfolio, projets, réalisations, références clients, transformation digitale">
+
+  <meta property="og:title" content="Nos Projets – Portfolio | AKINTEC">
+  <meta property="og:description" content="Découvrez les réalisations concrètes d'AKINTEC pour ses clients.">
+  <meta property="og:image" content="https://akintec.fr/assets/images/logo/logo-ak.png">
+  <meta property="og:url" content="https://akintec.fr/pages/portfolio.html">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="shortcut icon" type="image/x-icon" href="https://akintec.fr/assets/images/logo/favicon-no-bg.png">
+
+  <style>
+    /* ===== PORTFOLIO-SPECIFIC STYLES ===== */
+
+    /* Filter buttons */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 56px;
+    }
+
+    .filter-btn {
+      background: white;
+      color: var(--slate-mid);
+      border: 1.5px solid var(--border);
+      padding: 10px 24px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--green-primary);
+      color: var(--green-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--green-primary);
+      color: white;
+      border-color: var(--green-primary);
+      box-shadow: 0 4px 14px rgba(29,163,40,0.3);
+    }
+
+    /* Project grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    /* Project card */
+    .project-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(29,163,40,0.2);
+    }
+
+    .project-card:hover .project-thumb img {
+      transform: scale(1.06);
+    }
+
+    /* Thumbnail */
+    .project-thumb {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      position: relative;
+      background: var(--gradient-hero);
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-thumb-placeholder svg {
+      width: 48px;
+      height: 48px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* Category badge on image */
+    .project-cat-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(29,163,40,0.92);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* Result chip */
+    .project-result-chip {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-result-chip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-result-chip svg {
+      width: 16px;
+      height: 16px;
+      color: var(--green-light);
+      flex-shrink: 0;
+    }
+
+    .project-result-chip span {
+      color: white;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    /* Card body */
+    .project-body {
+      padding: 24px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-client {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--slate-dark);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    /* Tech pills */
+    .project-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    /* Card footer */
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      gap: 12px;
+    }
+
+    .project-duration {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .project-duration svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* CTA link on card */
+    .project-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--green-primary);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .project-cta svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
+    }
+
+    .project-cta:hover { gap: 10px; }
+    .project-cta:hover svg { transform: translateX(3px); }
+
+    /* Disabled / coming-soon state */
+    .project-cta.disabled {
+      color: var(--text-muted);
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* Stats row */
+    .portfolio-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 72px;
+    }
+
+    .portfolio-stat {
+      background: white;
+      padding: 30px 24px;
+      text-align: center;
+    }
+
+    .portfolio-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--green-primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .portfolio-stat-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    /* Empty state */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+      grid-column: 1 / -1;
+    }
+
+    .empty-state svg {
+      width: 56px;
+      height: 56px;
+      color: var(--border);
+      margin: 0 auto 16px;
+    }
+
+    .empty-state p {
+      color: var(--text-muted);
+    }
+
+    /* Contact CTA banner */
+    .project-contact-banner {
+      margin-top: 72px;
+      border: 2px dashed rgba(29,163,40,0.25);
+      border-radius: var(--radius-xl);
+      padding: 56px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(29,163,40,0.03), rgba(29,163,40,0.06));
+    }
+
+    .project-contact-banner .icon-wrap {
+      width: 64px;
+      height: 64px;
+      background: rgba(29,163,40,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .project-contact-banner .icon-wrap svg {
+      width: 28px;
+      height: 28px;
+      color: var(--green-primary);
+    }
+
+    .project-contact-banner h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .project-contact-banner p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 28px;
+      font-size: 0.97rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .portfolio-stats { grid-template-columns: repeat(2, 1fr); }
+      .filter-bar { gap: 8px; }
+      .filter-btn { padding: 8px 16px; font-size: 0.82rem; }
+      .project-contact-banner { padding: 40px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader"><div class="preloader-inner"><div class="preloader-logo">AK<span>INTEC</span></div><div class="preloader-bar"><div class="preloader-progress"></div></div></div></div>
+<div class="cursor"></div><div class="cursor-follower"></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-topbar"><div class="container"><div class="topbar-left">
+    <a href="mailto:contact@akintec.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>contact@akintec.fr</a>
+    <a href="tel:+33753303635"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.92 13.5 19.79 19.79 0 0 1 1.87 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>+33 7 53 30 36 35</a>
+  </div><div class="topbar-right">
+    <div class="lang-switcher">
+      <div class="lang-current">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="lang-display">Français</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lang-dropdown">
+        <a href="#" data-lang="fr">Français</a>
+        <a href="#" data-lang="en">English</a>
+        <a href="#" data-lang="es">Español</a>
+        <a href="#" data-lang="de">Deutsch</a>
+        <a href="#" data-lang="it">Italiano</a>
+      </div>
+    </div>
+  </div></div></div>
+  <div class="header-main"><div class="container"><div class="header-inner">
+    <a href="../index.html" class="site-logo">
+      <img src="http://akintec.fr/assets/images//logo/logo-ak.png" alt="Akintec Logo Images">
+      <span class="logo-text" style="display:none">AK<span>INTEC</span></span>
+    </a>
+    <nav class="site-nav"><ul>
+      <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+      <li><a href="./about.html" data-i18n="nav.about">Qui sommes-nous ?</a></li>
+      <li class="has-dropdown">
+        <a href="#"><span data-i18n="nav.services">Nos Services</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="nav-dropdown">
+          <a href="./service-software.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span data-i18n="nav.services.software">Développement Logiciel</span></a>
+          <a href="./service-data.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></span><span data-i18n="nav.services.data">Data Engineering</span></a>
+          <a href="./service-cloud.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span><span data-i18n="nav.services.cloud">Cloud &amp; DevOps</span></a>
+          <a href="./service-consulting.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span data-i18n="nav.services.consulting">Conseil IT</span></a>
+          <a href="./service-recruitment.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span data-i18n="nav.services.recruitment">Recrutement</span></a>
+        </div>
+      </li>
+      <li><a href="./join.html" data-i18n="nav.join">Nous rejoindre</a></li>
+      <li><a href="./blog.html" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="./contact.html" data-i18n="nav.contact">Contact</a></li>
+      <li class="active"><a href="./portfolio.html" data-i18n="nav.portfolio">Nos Projets</a></li>
+    </ul></nav>
+    <div class="header-actions">
+      <a href="./contact.html" class="btn btn-primary btn-sm" data-i18n="nav.contact_btn">Nous contacter</a>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div></div></div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu-overlay"></div>
+<div class="mobile-menu">
+  <div class="mobile-menu-header">
+    <a href="../index.html" class="site-logo"><img src="../assets/images/logo/logo-ak.png" alt="AKINTEC" style="height:38px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="logo-text" style="display:none">AK<span>INTEC</span></span></a>
+    <button class="mobile-menu-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <nav class="mobile-nav"><ul>
+    <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+    <li><a href="./about.html" data-i18n="nav.about">Qui sommes-nous ?</a></li>
+    <li class="has-sub">
+      <a href="#"><span data-i18n="nav.services">Services</span><svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;transition:transform .3s"><polyline points="6 9 12 15 18 9"/></svg></a>
+      <div class="sub-nav">
+        <a href="./service-software.html" data-i18n="nav.services.software">Développement</a>
+        <a href="./service-data.html" data-i18n="nav.services.data">Data Engineering</a>
+        <a href="./service-cloud.html" data-i18n="nav.services.cloud">Cloud &amp; DevOps</a>
+        <a href="./service-consulting.html" data-i18n="nav.services.consulting">Conseil IT</a>
+        <a href="./service-recruitment.html" data-i18n="nav.services.recruitment">Recrutement</a>
+      </div>
+    </li>
+    <li><a href="./join.html" data-i18n="nav.join">Nous rejoindre</a></li>
+    <li><a href="./blog.html">Blog</a></li>
+    <li class="active"><a href="./portfolio.html" data-i18n="nav.portfolio">Nos Projets</a></li>
+    <li><a href="./contact.html" data-i18n="nav.contact">Contact</a></li>
+  </ul></nav>
+  <div class="mobile-menu-footer">
+    <a href="./contact.html" class="btn btn-primary" data-i18n="nav.contact_btn">Nous contacter</a>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+      <button data-lang="fr" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">FR</button>
+      <button data-lang="en" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">EN</button>
+      <button data-lang="es" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">ES</button>
+      <button data-lang="de" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">DE</button>
+      <button data-lang="it" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">IT</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE WRAPPER -->
+<div class="page-wrapper">
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="container">
+      <div class="page-hero-content">
+        <h1>Nos Projets</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li><a href="../index.html">Accueil</a></li>
+            <li class="breadcrumb-sep">›</li>
+            <li class="active">Nos Projets</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTRO + STATS ===== -->
+  <section class="section-gap" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="section-header animate-fade-up">
+        <div class="section-tag">Portfolio</div>
+        <h2>Des réalisations qui parlent d'elles-mêmes</h2>
+        <p>De l'idée à la mise en production — chaque projet est le fruit d'une collaboration étroite avec nos clients pour produire des résultats mesurables et durables.</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="portfolio-stats animate-fade-up">
+        <div class="portfolio-stat">
+          <div class="portfolio-stat-num" data-count="50" data-suffix="+">50+</div>
+          <div class="portfolio-stat-label">Projets livrés</div>
+        </div>
+        <div class="portfolio-stat">
+          <div class="portfolio-stat-num" data-count="30" data-suffix="+">30+</div>
+          <div class="portfolio-stat-label">Clients satisfaits</div>
+        </div>
+        <div class="portfolio-stat">
+          <div class="portfolio-stat-num" data-count="5" data-suffix="+">5+</div>
+          <div class="portfolio-stat-label">Secteurs couverts</div>
+        </div>
+        <div class="portfolio-stat">
+          <div class="portfolio-stat-num" data-count="98" data-suffix="%">98%</div>
+          <div class="portfolio-stat-label">Taux de satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="section-gap" id="projets">
+    <div class="container">
+
+      <!-- Filter bar -->
+      <div class="filter-bar animate-fade-up">
+        <button class="filter-btn active" data-filter="all">Tous les projets</button>
+        <button class="filter-btn" data-filter="dev">Développement</button>
+        <button class="filter-btn" data-filter="data">Data &amp; IA</button>
+        <button class="filter-btn" data-filter="cloud">Cloud &amp; DevOps</button>
+        <button class="filter-btn" data-filter="conseil">Conseil IT</button>
+      </div>
+
+      <!-- Projects grid -->
+      <div class="projects-grid" id="projects-grid">
+
+        <!-- ================================================== -->
+        <!-- ✏️  PROJET 1 — Modifiez titre, description, lien   -->
+        <!-- ================================================== -->
+        <div class="project-card animate-fade-up" data-category="dev">
+          <div class="project-thumb">
+            <!-- Remplacez src par le chemin de votre capture d'écran -->
+            <img src="../assets/images/projects/project-1.jpg"
+                 alt="Site KALYWAX"
+                 onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
+            <div class="project-thumb-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <span class="project-cat-badge">Développement Web</span>
+            <div class="project-result-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>+340 % de conversions en ligne</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-client">KALYWAX</p>
+            <h3 class="project-title">Plateforme e-commerce de mode africaine</h3>
+            <p class="project-desc">Boutique en ligne full-stack avec catalogue produits dynamique, paiement sécurisé (Stripe), espace client et back-office de gestion des commandes.</p>
+            <div class="project-techs">
+              <span class="service-tag-pill">HTML/CSS</span>
+              <span class="service-tag-pill">JavaScript</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                4 mois
+              </span>
+              <!-- ✏️ Remplacez # par l'URL réelle du projet -->
+              <a href="./../projects/ecommerce/index.html" target="_blank" rel="noopener" class="project-cta">
+                Voir le projet
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- ✏️  PROJET 2                                        -->
+        <!-- ================================================== -->
+        <div class="project-card animate-fade-up" data-category="dev">
+          <div class="project-thumb">
+            <img src="../assets/images/projects/project-2.jpg"
+                 alt="Site African Business Club"
+                 onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
+            <div class="project-thumb-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <span class="project-cat-badge">Site Web</span>
+            <div class="project-result-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>Visibilité digitale multipliée</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-client">African Business Club</p>
+            <h3 class="project-title">Plateforme de gestion d'entreprise</h3>
+            <p class="project-desc">Conception et développement d'une plateforme (ERP), gestion des clients, gestion d'equipe, calendrier, gestion des factures, gestion des employés, gestion des stocks ,analytics.</p>
+            <div class="project-techs">
+              <span class="service-tag-pill">React</span>
+              <span class="service-tag-pill">Node.js</span>
+              <span class="service-tag-pill">Stripe</span>
+              <span class="service-tag-pill">MongoDB</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6 semaines
+              </span>
+              <a href="./../projects/erp-platform/index.html" target="_blank" rel="noopener" class="project-cta">
+                Voir le projet
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- ✏️  PROJET 3                                        -->
+        <!-- ================================================== -->
+        <div class="project-card animate-fade-up" data-category="data">
+          <div class="project-thumb">
+            <img src="../assets/images/projects/project-3.jpg"
+                 alt="Dashboard analytique Jamaa Summit"
+                 onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
+            <div class="project-thumb-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+            </div>
+            <span class="project-cat-badge">Data &amp; Analytics</span>
+            <div class="project-result-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>Décisions x5 plus rapides</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-client">Jamaa Summit</p>
+            <h3 class="project-title">Application de reservation (Restaurant)</h3>
+            <p class="project-desc">creation de compte, calendrier de reservation, notification, paiement en ligne, gestion des disponibilités</p>
+            <div class="project-techs">
+              <span class="service-tag-pill">HTML/CSS</span>
+              <span class="service-tag-pill">JavaScript</span>
+              <span class="service-tag-pill">Wordpress</span>
+
+            </div>
+            <div class="project-footer">
+              <span class="project-duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                2 mois
+              </span>
+              <a href="./../projects/tablein/index.html" target="_blank" rel="noopener" class="project-cta">
+                Voir le projet
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- ✏️  PROJET 4  — Dupliquez ce bloc pour ajouter +   -->
+        <!-- ================================================== -->
+        <div class="project-card animate-fade-up" data-category="cloud">
+          <div class="project-thumb">
+            <img src="../assets/images/projects/project-4.jpg"
+                 alt="Migration cloud"
+                 onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
+            <div class="project-thumb-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            </div>
+            <span class="project-cat-badge">Cloud &amp; DevOps</span>
+            <div class="project-result-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>99,98 % de disponibilité</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-client">Client Confidentiel</p>
+            <h3 class="project-title">Migration cloud & CI/CD automatisé</h3>
+            <p class="project-desc">Migration d'une infrastructure on-premise vers AWS, pipelines CI/CD avec GitHub Actions, containerisation Docker/Kubernetes et monitoring Datadog.</p>
+            <div class="project-techs">
+              <span class="service-tag-pill">AWS</span>
+              <span class="service-tag-pill">Kubernetes</span>
+              <span class="service-tag-pill">Terraform</span>
+              <span class="service-tag-pill">Datadog</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                3 mois
+              </span>
+              <!-- Lien désactivé si NDA / confidentiel -->
+              <span class="project-cta disabled">
+                Confidentiel
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- ✏️  PROJET 5                                        -->
+        <!-- ================================================== -->
+        <div class="project-card animate-fade-up" data-category="conseil">
+          <div class="project-thumb">
+            <img src="../assets/images/projects/project-5.jpg"
+                 alt="Audit SI et roadmap"
+                 onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
+            <div class="project-thumb-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="project-cat-badge">Conseil IT</span>
+            <div class="project-result-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>−30 % de coûts IT</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-client">Client Industriel</p>
+            <h3 class="project-title">Audit SI & roadmap de transformation digitale</h3>
+            <p class="project-desc">Évaluation complète du système d'information, identification des axes d'optimisation et élaboration d'une roadmap digitale sur 3 ans avec priorisation des investissements.</p>
+            <div class="project-techs">
+              <span class="service-tag-pill">TOGAF</span>
+              <span class="service-tag-pill">ITIL</span>
+              <span class="service-tag-pill">Agile</span>
+              <span class="service-tag-pill">Power BI</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6 semaines
+              </span>
+              <span class="project-cta disabled">
+                Confidentiel
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- ✏️  PROJET 6                                        -->
+        <!-- ================================================== -->
+        <div class="project-card animate-fade-up" data-category="dev">
+          <div class="project-thumb">
+            <img src="../assets/images/projects/project-6.jpg"
+                 alt="Application SaaS RH"
+                 onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
+            <div class="project-thumb-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <span class="project-cat-badge">SaaS B2B</span>
+            <div class="project-result-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>120 entreprises clientes en 6 mois</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-client">Startup RH</p>
+            <h3 class="project-title">Application SaaS de gestion des talents</h3>
+            <p class="project-desc">Développement from scratch d'une plateforme SaaS B2B : onboarding, évaluation des performances, plans de formation et analytics RH avancés.</p>
+            <div class="project-techs">
+              <span class="service-tag-pill">Vue.js</span>
+              <span class="service-tag-pill">FastAPI</span>
+              <span class="service-tag-pill">PostgreSQL</span>
+              <span class="service-tag-pill">Azure</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6 mois
+              </span>
+              <span class="project-cta disabled">
+                Confidentiel
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty state (shown when filter returns 0 results) -->
+        <div class="empty-state" id="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <h4>Aucun projet dans cette catégorie pour l'instant.</h4>
+          <p>Revenez bientôt ou <a href="./contact.html" style="color:var(--green-primary);font-weight:600">contactez-nous</a> pour discuter de votre besoin.</p>
+        </div>
+
+      </div><!-- /projects-grid -->
+
+      <!-- Add-more banner -->
+      <div class="project-contact-banner animate-fade-up">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Votre projet sera notre prochaine référence</h3>
+        <p>Besoin d'un partenaire tech pour donner vie à votre idée ? Discutons ensemble de vos objectifs.</p>
+        <a href="./contact.html" class="btn btn-primary btn-lg">Démarrer un projet
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section section-gap-sm">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-content animate-fade-up">
+          <h2 data-i18n="cta.title">Besoin d'un partenaire tech fiable ?</h2>
+          <p data-i18n="cta.desc">Discutons de votre projet et trouvons ensemble la meilleure solution pour vos besoins.</p>
+        </div>
+        <div class="animate-fade-up">
+          <a href="./contact.html" class="btn btn-white btn-lg" data-i18n="cta.btn">Démarrer un projet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-wrapper -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../index.html"><img src="../assets/images/logo/logo-ak.png" alt="AKINTEC" style="height:52px;margin-bottom:20px;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="logo-text" style="display:none">AK<span>INTEC</span></span></a>
+      <p class="footer-tagline" data-i18n="footer.tagline">"Notre génération croit en un monde numérique plus responsable, au service des entreprises et de la planète."</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/" target="_blank" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://twitter.com" target="_blank" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+        <a href="https://instagram.com" target="_blank" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.linkedin.com/company/akintec-fr" target="_blank" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-widget">
+      <h5 data-i18n="footer.useful">Liens utiles</h5>
+      <ul class="footer-links">
+        <li><a href="./legal.html" data-i18n="footer.legal">Mentions légales</a></li>
+        <li><a href="./privacy.html" data-i18n="footer.privacy">Politique de confidentialité</a></li>
+        <li><a href="./partners.html" data-i18n="footer.partners">Partenaires</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-widget">
+      <h5 data-i18n="footer.company">Notre entreprise</h5>
+      <ul class="footer-links">
+        <li><a href="./about.html" data-i18n="footer.about">À propos</a></li>
+        <li><a href="./service-software.html" data-i18n="footer.services">Nos services</a></li>
+        <li><a href="./join.html" data-i18n="footer.recruitment">Recrutement</a></li>
+        <li><a href="./portfolio.html" style="color:var(--green-primary);font-weight:600" data-i18n="nav.portfolio">Nos Projets</a></li>
+      </ul>
+    </div>
+    <div class="footer-widget">
+      <h5 data-i18n="footer.contact">Nos contacts</h5>
+      <div class="footer-contact">
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.92 13.5 19.79 19.79 0 0 1 1.87 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg><a href="tel:+33753303635">+33 7 53 30 36 35</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><a href="mailto:contact@akintec.fr">contact@akintec.fr</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>2 avenue de la forêt, Viry-Châtillon 91170</span></div>
+      </div>
+    </div>
+  </div></div></div>
+  <div class="footer-bottom container">
+    <p>© 2025 <strong>AKINTEC</strong>. <span data-i18n="footer.copyright">Tous droits réservés.</span></p>
+    <ul class="footer-bottom-links">
+      <li><a href="./legal.html" data-i18n="footer.legal">Mentions légales</a></li>
+      <li><a href="./privacy.html" data-i18n="footer.privacy">Confidentialité</a></li>
+    </ul>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Retour en haut">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script src="../js/main.js"></script>
+<script>
+ 
+  (function () {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards   = document.querySelectorAll('.project-card');
+    const empty   = document.getElementById('empty-state');
+
+    function applyFilter(filter) {
+      let visible = 0;
+
+      cards.forEach(function (card) {
+        const cat = card.getAttribute('data-category');
+        const show = (filter === 'all' || cat === filter);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      empty.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buttons.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        applyFilter(btn.getAttribute('data-filter'));
+      });
+    });
+
+    /* ============================================================
+       COUNTER ANIMATION for stats
+       ============================================================ */
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1400;
+      const start = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.portfolio-stat-num[data-count]').forEach(function (el) {
+      observer.observe(el);
+    });
+
+    /* Placeholder gradient backgrounds when no image */
+    const GRADIENTS = [
+      'linear-gradient(135deg,#1a3a26,#0d4a20)',
+      'linear-gradient(135deg,#0d2b4a,#1a4a7a)',
+      'linear-gradient(135deg,#1a2a3a,#2d3f55)',
+      'linear-gradient(135deg,#2a1a3a,#4a2a6a)',
+      'linear-gradient(135deg,#3a1a1a,#6a2a2a)',
+      'linear-gradient(135deg,#1a2a1a,#2d4a2d)',
+    ];
+    document.querySelectorAll('.project-thumb.no-img').forEach(function (el, i) {
+      el.style.background = GRADIENTS[i % GRADIENTS.length];
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS ERP — Plateforme de Gestion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loader" class="loader-screen">
+  <div class="loader-inner">
+    <div class="loader-logo">NEXUS</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <div class="loader-text" data-i18n="loading">Chargement...</div>
+  </div>
+</div>
+
+<!-- AUTH OVERLAY -->
+<div id="authOverlay" class="auth-overlay hidden">
+  <div class="auth-container">
+    <div class="auth-left">
+      <div class="auth-brand">
+        <div class="brand-mark">N</div>
+        <span>NEXUS</span>
+      </div>
+      <h2 class="auth-headline" data-i18n="authHeadline">Gérez votre entreprise avec précision.</h2>
+      <p data-i18n="authSub">Plateforme ERP nouvelle génération pour les équipes modernes.</p>
+      <div class="auth-stats">
+        <div class="stat-item"><span class="stat-num">12k+</span><span data-i18n="statUsers">Utilisateurs</span></div>
+        <div class="stat-item"><span class="stat-num">98%</span><span data-i18n="statUptime">Disponibilité</span></div>
+        <div class="stat-item"><span class="stat-num">40+</span><span data-i18n="statCountries">Pays</span></div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab('login')" data-i18n="login">Connexion</button>
+        <button class="auth-tab" onclick="switchAuthTab('register')" data-i18n="register">Créer un compte</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label data-i18n="email">Adresse email</label>
+          <input type="email" id="loginEmail" placeholder="vous@entreprise.com" class="form-input">
+        </div>
+        <div class="form-group">
+          <label data-i18n="password">Mot de passe</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" class="form-input">
+          <span class="form-link" onclick="showForgotPassword()" data-i18n="forgotPassword">Mot de passe oublié ?</span>
+        </div>
+        <button class="btn-primary btn-full" onclick="handleLogin()" data-i18n="loginBtn">Se connecter</button>
+        <div class="auth-divider"><span data-i18n="or">ou</span></div>
+        <button class="btn-outline btn-full" onclick="handleDemoLogin()" data-i18n="demoLogin">Accès démo</button>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div id="registerForm" class="auth-form hidden">
+        <div class="form-row">
+          <div class="form-group">
+            <label data-i18n="firstName">Prénom</label>
+            <input type="text" placeholder="Jean" class="form-input">
+          </div>
+          <div class="form-group">
+            <label data-i18n="lastName">Nom</label>
+            <input type="text" placeholder="Dupont" class="form-input">
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="company">Entreprise</label>
+          <input type="text" placeholder="ACME Corp." class="form-input">
+        </div>
+        <div class="form-group">
+          <label data-i18n="email">Email</label>
+          <input type="email" placeholder="jean@acme.com" class="form-input">
+        </div>
+        <div class="form-group">
+          <label data-i18n="password">Mot de passe</label>
+          <input type="password" placeholder="••••••••" class="form-input">
+        </div>
+        <div class="form-group">
+          <label data-i18n="plan">Plan</label>
+          <select class="form-input form-select">
+            <option data-i18n="planStarter">Starter — Gratuit</option>
+            <option data-i18n="planPro">Pro — 29€/mois</option>
+            <option data-i18n="planEnterprise">Entreprise — Sur devis</option>
+          </select>
+        </div>
+        <button class="btn-primary btn-full" onclick="handleRegister()" data-i18n="createAccount">Créer mon compte</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATION CENTER -->
+<div id="notifPanel" class="notif-panel hidden">
+  <div class="notif-header">
+    <span data-i18n="notifications">Notifications</span>
+    <button onclick="markAllRead()" class="notif-clear" data-i18n="markAllRead">Tout marquer lu</button>
+  </div>
+  <div id="notifList" class="notif-list"></div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="app-wrapper hidden">
+  <!-- SIDEBAR BACKDROP (mobile) -->
+  <div id="sidebarBackdrop" class="sidebar-backdrop" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">N</div>
+      <span class="brand-name">NEXUS</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <span class="nav-label" data-i18n="overview">Aperçu</span>
+        <a href="#" class="nav-item active" onclick="navigateTo('dashboard', this)">
+          <div class="nav-icon">◈</div>
+          <span data-i18n="dashboard">Tableau de bord</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('analytics', this)">
+          <div class="nav-icon">◎</div>
+          <span data-i18n="analytics">Analytiques</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <span class="nav-label" data-i18n="management">Gestion</span>
+        <a href="#" class="nav-item" onclick="navigateTo('calendar', this)">
+          <div class="nav-icon">▦</div>
+          <span data-i18n="calendar">Calendrier</span>
+          <span class="nav-badge">3</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('availability', this)">
+          <div class="nav-icon">◷</div>
+          <span data-i18n="availability">Disponibilités</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('clients', this)">
+          <div class="nav-icon">◉</div>
+          <span data-i18n="clients">Clients</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('team', this)">
+          <div class="nav-icon">◫</div>
+          <span data-i18n="team">Équipe</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <span class="nav-label" data-i18n="finance">Finance</span>
+        <a href="#" class="nav-item" onclick="navigateTo('payments', this)">
+          <div class="nav-icon">◑</div>
+          <span data-i18n="payments">Paiements</span>
+          <span class="nav-badge urgent">2</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('invoices', this)">
+          <div class="nav-icon">▣</div>
+          <span data-i18n="invoices">Factures</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('reports', this)">
+          <div class="nav-icon">◰</div>
+          <span data-i18n="reports">Rapports</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <span class="nav-label" data-i18n="settings">Paramètres</span>
+        <a href="#" class="nav-item" onclick="navigateTo('settings', this)">
+          <div class="nav-icon">◎</div>
+          <span data-i18n="settingsNav">Paramètres</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="user-avatar" id="sidebarAvatar">JD</div>
+      <div class="user-info">
+        <div class="user-name" id="sidebarName">Jean Dupont</div>
+        <div class="user-role" data-i18n="admin">Administrateur</div>
+      </div>
+      <button class="logout-btn" onclick="handleLogout()" title="Déconnexion">⏻</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="menu-toggle" onclick="toggleSidebar()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-left">
+        <h1 class="page-title" id="pageTitle" data-i18n="dashboard">Tableau de bord</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="lang-selector">
+          <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" onclick="setLang('de')">DE</button>
+          <button class="lang-btn" onclick="setLang('es')">ES</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">◑</button>
+        <button class="notif-btn" onclick="toggleNotifPanel()">
+          <span class="notif-icon">◬</span>
+          <span class="notif-count" id="notifCount">4</span>
+        </button>
+        <div class="topbar-avatar" id="topbarAvatar">JD</div>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content" id="pageContent">
+      <!-- Rendered dynamically -->
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal-overlay hidden">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/payments.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog AKINTEC : articles tech, data, cloud, DevOps et conseil IT pour rester à la pointe.">
+  <title>Blog & Actualités | AKINTEC</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../assets/images/logo/logo-ak.png" type="image/png">
+  
+</head>
+<body>
+<div id="preloader"><div class="preloader-inner"><div class="preloader-logo">AK<span>INTEC</span></div><div class="preloader-bar"><div class="preloader-progress"></div></div></div></div>
+<div class="cursor"></div><div class="cursor-follower"></div>
+<header class="site-header">
+  <div class="header-topbar"><div class="container"><div class="topbar-left">
+    <a href="mailto:contact@akintec.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>contact@akintec.fr</a>
+    <a href="tel:+33753303635"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.92 13.5 19.79 19.79 0 0 1 1.87 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>+33 7 53 30 36 35</a>
+  </div><div class="topbar-right">
+    <div class="lang-switcher">
+      <div class="lang-current">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="lang-display">Français</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lang-dropdown">
+        <a href="#" data-lang="fr">Français</a>
+        <a href="#" data-lang="en">English</a>
+        <a href="#" data-lang="es">Español</a>
+        <a href="#" data-lang="de">Deutsch</a>
+        <a href="#" data-lang="it">Italiano</a>
+      </div>
+    </div>
+  </div></div></div>
+  <div class="header-main"><div class="container"><div class="header-inner">
+    <a href="../index.html" class="site-logo">
+      <img src="../assets/images/logo/logo-ak.png" alt="AKINTEC" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-text" style="display:none">AK<span>INTEC</span></span>
+    </a>
+    <nav class="site-nav"><ul>
+      <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+      <li><a href="../pages/about.html" data-i18n="nav.about">Qui sommes-nous ?</a></li>
+      <li class="has-dropdown">
+        <a href="#"><span data-i18n="nav.services">Nos Services</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="nav-dropdown">
+          <a href="../pages/service-software.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span data-i18n="nav.services.software">Développement Logiciel</span></a>
+          <a href="../pages/service-data.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></span><span data-i18n="nav.services.data">Data Engineering</span></a>
+          <a href="../pages/service-cloud.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span><span data-i18n="nav.services.cloud">Cloud &amp; DevOps</span></a>
+          <a href="../pages/service-consulting.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span data-i18n="nav.services.consulting">Conseil IT</span></a>
+          <a href="../pages/service-recruitment.html"><span class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span data-i18n="nav.services.recruitment">Recrutement</span></a>
+        </div>
+      </li>
+      <li><a href="../pages/join.html" data-i18n="nav.join">Nous rejoindre</a></li>
+      <li class='active'><a href="../pages/blog.html" data-i18n="Blog">Blog</a></li>
+      <li><a href="../pages/contact.html" data-i18n="nav.contact">Contact</a></li>
+      <li><a href="../pages/portfolio.html"  data-i18n="nav.portfolio">Nos projets </a></li>
+    </ul></nav>
+    <div class="header-actions">
+      <a href="../pages/contact.html" class="btn btn-primary btn-sm" data-i18n="nav.contact_btn">Nous contacter</a>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div></div></div>
+</header>
+<div class="mobile-menu-overlay"></div>
+<div class="mobile-menu">
+  <div class="mobile-menu-header">
+    <a href="../index.html" class="site-logo"><img src="../assets/images/logo/logo-ak.png" alt="AKINTEC" style="height:38px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="logo-text" style="display:none">AK<span>INTEC</span></span></a>
+    <button class="mobile-menu-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <nav class="mobile-nav"><ul>
+    <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+    <li><a href="../pages/about.html" data-i18n="nav.about">Qui sommes-nous ?</a></li>
+    <li class="has-sub">
+      <a href="#"><span data-i18n="nav.services">Services</span><svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;transition:transform .3s"><polyline points="6 9 12 15 18 9"/></svg></a>
+      <div class="sub-nav">
+        <a href="../pages/service-software.html" data-i18n="nav.services.software">Développement</a>
+        <a href="../pages/service-data.html" data-i18n="nav.services.data">Data Engineering</a>
+        <a href="../pages/service-cloud.html" data-i18n="nav.services.cloud">Cloud &amp; DevOps</a>
+        <a href="../pages/service-consulting.html" data-i18n="nav.services.consulting">Conseil IT</a>
+        <a href="../pages/service-recruitment.html" data-i18n="nav.services.recruitment">Recrutement</a>
+      </div>
+    </li>
+    <li><a href="../pages/join.html" data-i18n="nav.join">Nous rejoindre</a></li>
+    <li><a href="../pages/blog.html" data-i18n="Blog">Blog</a></li>
+    <li><a href="../pages/contact.html" data-i18n="nav.contact">Contact</a></li>
+    <li><a href="../pages/portfolio.html"  data-i18n="nav.portfolio">Nos projets </a></li>
+  </ul></nav>
+  <div class="mobile-menu-footer">
+    <a href="../pages/contact.html" class="btn btn-primary" data-i18n="nav.contact_btn">Nous contacter</a>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+      <button data-lang="fr" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">FR</button>
+      <button data-lang="en" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">EN</button>
+      <button data-lang="es" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">ES</button>
+      <button data-lang="de" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">DE</button>
+      <button data-lang="it" style="background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-family:inherit">IT</button>
+    </div>
+  </div>
+</div>
+  
+<div class="page-wrapper">
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="container">
+      <div class="page-hero-content">
+        <h1>Blog & Actualités</h1>
+        <nav><ol class="breadcrumb"><li><a href="../index.html">Accueil</a></li><li class="breadcrumb-sep">›</li><li class="active">Blog</li></ol></nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-gap">
+    <div class="container">
+
+      <!-- Featured post -->
+      <div class="animate-fade-up" style="margin-bottom:60px">      
+          <div style="padding:40px 40px 40px 0">
+            <span style="background:rgba(29,163,40,0.1);color:var(--green-dark);padding:4px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px">À la une</span>
+            <h2 style="font-size:1.6rem;margin:16px 0 12px;line-height:1.3">Les tendances tech qui vont transformer votre entreprise en 2025</h2>
+            <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.7;margin-bottom:20px">IA générative, edge computing, plateformes low-code... Découvrez les technologies qui redéfinissent la transformation digitale des entreprises cette année.</p>
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:32px;height:32px;border-radius:50%;background:rgba(29,163,40,0.15);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem;color:var(--green-primary)">AK</div>
+                <span style="font-size:0.85rem;font-weight:600;color:var(--slate-dark)">Équipe AKINTEC</span>
+              </div>
+              <span style="color:var(--text-muted);font-size:0.82rem">15 Jan 2025 · 8 min de lecture</span>
+            </div>
+            <a href="blog-detail.html" class="btn btn-primary">Lire l'article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+      </div>
+
+      <!-- Category filters -->
+      <div class="animate-fade-up" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px">
+        <button onclick="filterBlog(this,'all')" class="blog-filter active" style="background:var(--green-primary);color:white;border:none;padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Tous les articles</button>
+        <button onclick="filterBlog(this,'tech')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Tech & Innovation</button>
+        <button onclick="filterBlog(this,'data')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Data & IA</button>
+        <button onclick="filterBlog(this,'cloud')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Cloud & DevOps</button>
+        <button onclick="filterBlog(this,'conseil')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Conseil IT</button>
+      </div>
+
+      <!-- Blog grid -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px" id="blog-grid">
+
+        <!-- Article 1 -->
+        <article class="blog-card animate-fade-up" data-cat="tech" style="background:white;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition)">
+          <a href="blog-detail.html" style="display:block;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#1a3a26,#0d4a20)">
+            <img src="../assets/images/category/image/web2.png" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
+          </a>
+          <div style="padding:24px">
+            <span style="background:rgba(29,163,40,0.08);color:var(--green-dark);padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Tech & Innovation</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">React 19 : ce que les développeurs doivent savoir</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Les nouvelles fonctionnalités de React 19 simplifient le développement et améliorent les performances.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.8rem">8 Jan 2025 · 5 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="blog-card animate-fade-up" data-cat="data" style="background:white;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition)">
+          <a href="blog-detail.html" style="display:block;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#0d2b4a,#1a3a60)">
+            <img src="../assets/images/category/image/data5.jpg" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
+          </a>
+          <div style="padding:24px">
+            <span style="background:rgba(13,43,74,0.08);color:#0d2b4a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Data & IA</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">LLMs en entreprise : guide pratique pour démarrer</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Comment intégrer les grands modèles de langage dans votre workflow sans exploser le budget.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.8rem">3 Jan 2025 · 7 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="blog-card animate-fade-up" data-cat="cloud" style="background:white;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition)">
+          <a href="blog-detail.html" style="display:block;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#1a2a3a,#2d3f55)">
+            <img src="../assets/images/category/image/ops.png" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
+          </a>
+          <div style="padding:24px">
+            <span style="background:rgba(26,42,58,0.08);color:#1a2a3a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Cloud & DevOps</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">Kubernetes vs Docker Swarm : lequel choisir en 2025 ?</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Comparatif complet pour vous aider à faire le bon choix d'orchestration de conteneurs.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.8rem">28 Déc 2024 · 6 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 4 -->
+        <article class="blog-card animate-fade-up" data-cat="conseil" style="background:white;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition)">
+          <a href="blog-detail.html" style="display:block;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#2a1a3a,#4a2a6a)">
+            <img src="../assets/images/category/image/consult.jpg" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
+          </a>
+          <div style="padding:24px">
+            <span style="background:rgba(42,26,58,0.08);color:#2a1a3a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Conseil IT</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">5 erreurs à éviter lors de votre transformation digitale</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Les pièges classiques qui font échouer les projets de digitalisation et comment les éviter.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.8rem">20 Déc 2024 · 9 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 5 -->
+        <article class="blog-card animate-fade-up" data-cat="tech" style="background:white;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition)">
+          <a href="blog-detail.html" style="display:block;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#1a3a26,#2d6a40)">
+            <img src="../assets/images/category/image/web2.png" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
+          </a>
+          <div style="padding:24px">
+            <span style="background:rgba(29,163,40,0.08);color:var(--green-dark);padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Tech & Innovation</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">Web Components vs React : le guide 2025</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Quand utiliser les Web Components natifs et quand rester sur React pour vos projets front.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.8rem">12 Déc 2024 · 5 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 6 -->
+        <article class="blog-card animate-fade-up" data-cat="data" style="background:white;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition)">
+          <a href="blog-detail.html" style="display:block;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#0d2b4a,#2a4a7a)">
+            <img src="../assets/images/category/image/data5.jpg" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
+          </a>
+          <div style="padding:24px">
+            <span style="background:rgba(13,43,74,0.08);color:#0d2b4a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Data & IA</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">dbt + BigQuery : construire un data warehouse moderne</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Un tutoriel complet pour mettre en place un pipeline analytique robuste et maintenable.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.8rem">5 Déc 2024 · 10 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Pagination -->
+      <div style="display:flex;justify-content:center;gap:8px;margin-top:60px" class="animate-fade-up">
+        <button style="width:40px;height:40px;border:1px solid var(--border);background:white;border-radius:var(--radius-sm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-muted)" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button style="width:40px;height:40px;border:none;background:var(--green-primary);color:white;border-radius:var(--radius-sm);cursor:pointer;font-weight:700;font-family:inherit">1</button>
+        <button style="width:40px;height:40px;border:1px solid var(--border);background:white;border-radius:var(--radius-sm);cursor:pointer;font-family:inherit;color:var(--slate-dark)">2</button>
+        <button style="width:40px;height:40px;border:1px solid var(--border);background:white;border-radius:var(--radius-sm);cursor:pointer;font-family:inherit;color:var(--slate-dark)">3</button>
+        <button style="width:40px;height:40px;border:1px solid var(--border);background:white;border-radius:var(--radius-sm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--slate-dark)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-section section-gap-sm">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-content animate-fade-up">
+          <h2>Restez informé des dernières tendances tech</h2>
+          <p>Abonnez-vous à notre newsletter pour recevoir nos articles directement dans votre boîte mail.</p>
+        </div>
+        <div class="animate-fade-up" style="display:flex;gap:12px;flex-wrap:wrap">
+          <input type="email" placeholder="votre@email.fr" style="padding:12px 20px;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);border-radius:var(--radius-sm);color:white;font-family:inherit;font-size:0.92rem;outline:none;width:260px;backdrop-filter:blur(4px)" oninput="this.style.borderColor='rgba(255,255,255,0.6)'">
+          <button onclick="this.textContent='Abonné ✓';this.disabled=true;this.style.background='rgba(255,255,255,0.3)'" style="background:white;color:var(--green-primary);border:none;padding:12px 24px;border-radius:var(--radius-sm);font-weight:700;cursor:pointer;font-family:inherit;font-size:0.9rem;transition:all 0.3s">S'abonner</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .blog-card:hover img { transform: scale(1.05); }
+    @media(max-width:900px){ #blog-grid { grid-template-columns: 1fr 1fr !important; } }
+    @media(max-width:600px){ #blog-grid { grid-template-columns: 1fr !important; } }
+  </style>
+  <script>
+    function filterBlog(btn, cat) {
+      document.querySelectorAll('.blog-filter').forEach(b => {
+        b.style.background = 'white'; b.style.color = 'var(--slate-mid)'; b.style.borderColor = 'var(--border)';
+      });
+      btn.style.background = 'var(--green-primary)'; btn.style.color = 'white'; btn.style.borderColor = 'transparent';
+      document.querySelectorAll('.blog-card').forEach(card => {
+        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+      });
+    }
+  </script>
+
+</div>
+<footer class="site-footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../index.html"><img src="../assets/images/logo/logo-ak.png" alt="AKINTEC" style="height:52px;margin-bottom:20px;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="logo-text" style="display:none">AK<span>INTEC</span></span></a>
+      <p class="footer-tagline" data-i18n="footer.tagline">"Notre génération croit en un monde numérique plus responsable, au service des entreprises et de la planète."</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/" target="_blank" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://twitter.com" target="_blank" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+        <a href="https://instagram.com" target="_blank" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.linkedin.com/company/akintec-fr" target="_blank" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-widget">
+      <h5 data-i18n="footer.useful">Liens utiles</h5>
+      <ul class="footer-links">
+        <li><a href="../pages/legal.html" data-i18n="footer.legal">Mentions légales</a></li>
+        <li><a href="../pages/privacy.html" data-i18n="footer.privacy">Politique de confidentialité</a></li>
+        <li><a href="../pages/partners.html" data-i18n="footer.partners">Partenaires</a></li>
+        <li><a href="../pages/blog.html" data-i18n="Blog">Blog</a></li>
+        <li><a href="../pages/portfolio.html"  data-i18n="nav.portfolio">Nos projets </a></li>
+      </ul>
+    </div>
+    <div class="footer-widget">
+      <h5 data-i18n="footer.company">Notre entreprise</h5>
+      <ul class="footer-links">
+        <li><a href="../pages/about.html" data-i18n="footer.about">À propos</a></li>
+        <li><a href="../pages/service-software.html" data-i18n="footer.services">Nos services</a></li>
+        <li><a href="../pages/join.html" data-i18n="footer.recruitment">Recrutement</a></li>
+      </ul>
+    </div>
+    <div class="footer-widget">
+      <h5 data-i18n="footer.contact">Nos contacts</h5>
+      <div class="footer-contact">
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.92 13.5 19.79 19.79 0 0 1 1.87 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg><a href="tel:+33753303635">+33 7 53 30 36 35</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><a href="mailto:contact@akintec.fr">contact@akintec.fr</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>2 avenue de la forêt, Viry-Châtillon 91170</span></div>
+      </div>
+    </div>
+  </div></div></div>
+  <div class="footer-bottom container">
+    <p>© 2025 <strong>AKINTEC</strong>. <span data-i18n="footer.copyright">Tous droits réservés.</span></p>
+    <ul class="footer-bottom-links">
+      <li><a href="../pages/legal.html" data-i18n="footer.legal">Mentions légales</a></li>
+      <li><a href="../pages/privacy.html" data-i18n="footer.privacy">Confidentialité</a></li>
+    </ul>
+  </div>
+</footer>
+<button class="back-to-top" aria-label="Retour en haut"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+<script src="../js/main.js"></script>
+</body>
+</html>
