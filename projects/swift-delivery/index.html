@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#F7F5F1"/>
+<title>Swiftly — Plateforme de livraison</title>
+<link rel="stylesheet" href="css/main.css"/>
+<style>
+/* ── PORTAL SPECIFIC ── */
+html,body { height:100%; }
+body { background:var(--bg); }
+
+.portal-nav {
+  position:fixed; top:0; left:0; right:0; z-index:80;
+  height:64px; display:flex; align-items:center;
+  background:rgba(247,245,241,.92); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 clamp(16px,4vw,48px);
+  justify-content:space-between; gap:16px;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:100px clamp(16px,5vw,80px) 60px;
+  position:relative; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 20%, rgba(232,52,10,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 90% 80%, rgba(0,87,217,.05) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 60% 10%, rgba(0,146,63,.04) 0%, transparent 50%);
+}
+.hero-grid {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+}
+.hero-inner {
+  position:relative; z-index:2; text-align:center; max-width:780px; margin:0 auto;
+}
+.hero-pill {
+  display:inline-flex; align-items:center; gap:7px;
+  padding:6px 16px; background:var(--red-bg);
+  border:1px solid var(--red-border); border-radius:99px;
+  font-size:.75rem; font-weight:700; color:var(--red);
+  margin-bottom:24px; letter-spacing:.03em;
+}
+.hero-title {
+  font-family:var(--ff-display); font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:700; line-height:1.06; letter-spacing:-.03em;
+  margin-bottom:20px; color:var(--ink);
+}
+.hero-title em { font-style:italic; color:var(--red); }
+.hero-sub {
+  font-size:clamp(.95rem,2vw,1.15rem); color:var(--ink-2); line-height:1.65;
+  max-width:540px; margin:0 auto 36px;
+}
+.hero-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; }
+.hero-stats {
+  display:flex; gap:clamp(24px,4vw,48px); justify-content:center; flex-wrap:wrap;
+  padding:24px 32px; background:white; border:1px solid var(--border);
+  border-radius:var(--radius-xl); box-shadow:var(--shadow);
+  display:inline-flex;
+}
+.hero-stat { text-align:center; }
+.hero-stat-val { font-family:var(--ff-display); font-size:clamp(1.4rem,3vw,2rem); font-weight:700; color:var(--ink); }
+.hero-stat-lbl { font-size:.72rem; color:var(--ink-3); font-weight:600; letter-spacing:.04em; text-transform:uppercase; margin-top:2px; }
+.hero-stat-sep  { width:1px; background:var(--border); align-self:stretch; }
+
+/* ── APP CARDS ── */
+.apps-section {
+  padding:clamp(60px,8vw,100px) clamp(16px,5vw,80px);
+  max-width:1200px; margin:0 auto;
+}
+.apps-header { text-align:center; margin-bottom:clamp(32px,5vw,56px); }
+.apps-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(16px,2.5vw,24px);
+}
+.app-card {
+  background:white; border:1.5px solid var(--border); border-radius:var(--radius-xl);
+  overflow:hidden; cursor:pointer; transition:var(--tx-slow); position:relative;
+  box-shadow:var(--shadow-sm);
+  text-decoration:none; color:inherit; display:block;
+}
+.app-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); border-color:var(--border-dark); }
+.app-card-img {
+  height:clamp(180px,22vw,240px); overflow:hidden; position:relative;
+}
+.app-card-img img { width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.app-card:hover .app-card-img img { transform:scale(1.06); }
+.app-card-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.1) 50%,transparent 100%);
+}
+.app-card-badge {
+  position:absolute; top:14px; left:14px;
+  padding:5px 12px; border-radius:99px;
+  font-size:.7rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.3);
+}
+.app-card-body { padding:clamp(18px,3vw,26px); }
+.app-card-icon {
+  width:48px; height:48px; border-radius:var(--radius-lg);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:14px; border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.app-card-icon svg { width:22px; height:22px; stroke-width:2; }
+.app-card-name { font-family:var(--ff-display); font-size:1.35rem; font-weight:700; margin-bottom:6px; }
+.app-card-desc { font-size:.84rem; color:var(--ink-3); line-height:1.55; margin-bottom:18px; }
+.app-card-features { display:flex; flex-direction:column; gap:6px; margin-bottom:20px; }
+.app-card-feat { display:flex; align-items:center; gap:8px; font-size:.79rem; color:var(--ink-2); }
+.app-card-feat-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+.app-card-cta {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:11px 16px; border-radius:var(--radius-full);
+  font-weight:700; font-size:.84rem; transition:var(--tx);
+}
+
+/* ── FEATURES ── */
+.features-section {
+  background:white; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:clamp(60px,8vw,100px) clamp(16px,5vw,80px);
+}
+.features-inner { max-width:1100px; margin:0 auto; }
+.features-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:clamp(20px,3vw,32px); margin-top:clamp(32px,5vw,56px);
+}
+.feat-item { text-align:center; }
+.feat-icon {
+  width:56px; height:56px; border-radius:var(--radius-xl);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 14px; box-shadow:var(--shadow);
+}
+.feat-icon svg { width:24px; height:24px; stroke-width:2; }
+.feat-title { font-family:var(--ff-display); font-size:1.05rem; font-weight:600; margin-bottom:6px; }
+.feat-desc  { font-size:.8rem; color:var(--ink-3); line-height:1.6; }
+
+/* ── TECH STACK ── */
+.tech-section { padding:clamp(48px,6vw,80px) clamp(16px,5vw,80px); max-width:1000px; margin:0 auto; text-align:center; }
+.tech-chips { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:24px; }
+.tech-chip {
+  padding:7px 16px; background:white; border:1.5px solid var(--border);
+  border-radius:99px; font-size:.78rem; font-weight:600; color:var(--ink-2);
+  box-shadow:var(--shadow-sm); transition:var(--tx);
+}
+.tech-chip:hover { border-color:var(--red); color:var(--red); }
+
+/* ── FOOTER ── */
+.portal-footer {
+  background:var(--ink); color:white; padding:clamp(32px,5vw,56px) clamp(16px,5vw,80px);
+  text-align:center;
+}
+.footer-brand { font-family:var(--ff-display); font-size:1.6rem; font-weight:700; margin-bottom:8px; }
+.footer-sub   { font-size:.8rem; color:rgba(255,255,255,.4); }
+
+/* ── LIVE COUNTER ── */
+.live-counter {
+  display:inline-flex; align-items:center; gap:8px;
+  background:white; border:1px solid var(--border); border-radius:99px;
+  padding:6px 14px 6px 10px; font-size:.76rem; font-weight:600;
+  box-shadow:var(--shadow-sm); margin-top:16px;
+}
+
+/* ── LANG SEL ── */
+.lang-btns { display:flex; gap:2px; background:var(--bg-muted); border:1px solid var(--border); border-radius:99px; padding:3px; }
+.lang-btn {
+  padding:4px 10px; border-radius:99px; border:none; background:none;
+  font-size:.71rem; font-weight:700; cursor:pointer; transition:var(--tx);
+  color:var(--ink-3); letter-spacing:.03em;
+}
+.lang-btn.active { background:white; color:var(--ink); box-shadow:var(--shadow-sm); }
+.lang-btn:hover:not(.active) { color:var(--ink); }
+
+/* ── ANIMATIONS ── */
+@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes countUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.float { animation:floatY 5s ease-in-out infinite; }
+.fade-in { animation:pageIn .6s ease both; }
+.fade-in-delay-1 { animation:pageIn .6s .1s ease both; }
+.fade-in-delay-2 { animation:pageIn .6s .2s ease both; }
+.fade-in-delay-3 { animation:pageIn .6s .3s ease both; }
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav class="portal-nav">
+  <div class="brand"><span class="brand-dot"></span>Swiftly</div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lang-btns" id="portal-lang"></div>
+    <a href="client.html" class="btn btn-red btn-sm">Commencer →</a>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-pill fade-in">
+      <span class="status-dot" style="background:var(--green);animation:blink 1.5s infinite;display:inline-block"></span>
+      Plateforme opérationnelle · Paris & banlieue
+    </div>
+    <h1 class="hero-title fade-in-delay-1">
+      Livraison rapide,<br>
+      <em>fraîche et fiable.</em>
+    </h1>
+    <p class="hero-sub fade-in-delay-2" data-t="tagline">
+      Swiftly connecte clients, restaurants et livreurs en temps réel. Commandez en quelques secondes, suivez votre livraison à la minute.
+    </p>
+    <div class="hero-actions fade-in-delay-3">
+      <a href="client.html" class="btn btn-red btn-lg" style="gap:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:18px;height:18px;stroke-width:2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        App Client
+      </a>
+      <a href="driver.html" class="btn btn-white btn-lg" style="gap:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:18px;height:18px;stroke-width:2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 100-2 1 1 0 000 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>
+        App Livreur
+      </a>
+      <a href="admin.html" class="btn btn-white btn-lg" style="gap:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:18px;height:18px;stroke-width:2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Admin
+      </a>
+    </div>
+    <!-- Live stats -->
+    <div class="hero-stats float fade-in-delay-3">
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="ctr-orders">1 482</div>
+        <div class="hero-stat-lbl">Commandes</div>
+      </div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="ctr-drivers">34</div>
+        <div class="hero-stat-lbl">Livreurs actifs</div>
+      </div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">4.8★</div>
+        <div class="hero-stat-lbl">Note moyenne</div>
+      </div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">24 min</div>
+        <div class="hero-stat-lbl">Délai moyen</div>
+      </div>
+    </div>
+    <!-- Live ticker -->
+    <div class="live-counter">
+      <span class="live-blink" style="width:7px;height:7px;border-radius:50%;background:#EF4444;animation:blink 1s infinite;display:inline-block"></span>
+      <span id="live-ticker">Commande #8826 passée il y a 12 sec</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ APP CARDS ═══════ -->
+<section class="apps-section">
+  <div class="apps-header">
+    <div class="badge badge-muted mb-12" style="margin:0 auto 14px">3 applications incluses</div>
+    <h2 class="display-lg" style="margin-bottom:12px">Trois interfaces,<br><em style="font-style:italic;color:var(--red)">un seul écosystème.</em></h2>
+    <p style="color:var(--ink-3);max-width:480px;margin:0 auto;font-size:.9rem;line-height:1.6">Chaque acteur dispose de son propre espace, pensé pour ses besoins spécifiques.</p>
+  </div>
+
+  <div class="apps-grid">
+    <!-- CLIENT -->
+    <a href="client.html" class="app-card">
+      <div class="app-card-img">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&h=420&fit=crop&auto=format" alt="App client" loading="lazy"/>
+        <div class="app-card-overlay"></div>
+        <div class="app-card-badge" style="background:rgba(232,52,10,.85);color:white">Client</div>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-icon" style="background:var(--red-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="app-card-name">App Client</div>
+        <div class="app-card-desc">Commandez auprès de vos restaurants préférés, suivez vos livraisons en direct et gérez vos favoris.</div>
+        <div class="app-card-features">
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--red)"></div>Catalogue restaurants avec filtres</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--red)"></div>Suivi GPS temps réel</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--red)"></div>Paiement carte, mobile, espèces</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--red)"></div>Programme de fidélité intégré</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--red)"></div>Chat avec le livreur</div>
+        </div>
+        <div class="app-card-cta" style="background:var(--red);color:white">
+          <span>Ouvrir l'app client</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:16px;height:16px;stroke-width:2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- DRIVER -->
+    <a href="driver.html" class="app-card">
+      <div class="app-card-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=420&fit=crop&auto=format" alt="App livreur" loading="lazy"/>
+        <div class="app-card-overlay"></div>
+        <div class="app-card-badge" style="background:rgba(0,87,217,.85);color:white">Livreur</div>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-icon" style="background:var(--blue-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 100-2 1 1 0 000 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>
+        </div>
+        <div class="app-card-name">App Livreur</div>
+        <div class="app-card-desc">Acceptez des courses, naviguez jusqu'au client et suivez vos revenus en temps réel depuis votre tableau de bord.</div>
+        <div class="app-card-features">
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--blue)"></div>Acceptation/refus de courses</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--blue)"></div>Navigation GPS intégrée</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--blue)"></div>Suivi des revenus & statistiques</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--blue)"></div>Session active & timer</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--blue)"></div>Chat avec les clients</div>
+        </div>
+        <div class="app-card-cta" style="background:var(--blue);color:white">
+          <span>Ouvrir l'app livreur</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:16px;height:16px;stroke-width:2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- ADMIN -->
+    <a href="admin.html" class="app-card">
+      <div class="app-card-img">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=420&fit=crop&auto=format" alt="Admin dashboard" loading="lazy"/>
+        <div class="app-card-overlay"></div>
+        <div class="app-card-badge" style="background:rgba(0,0,0,.75);color:white">Admin</div>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-icon" style="background:var(--bg-muted)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <div class="app-card-name">Dashboard Admin</div>
+        <div class="app-card-desc">Pilotez toute la plateforme : commandes, livreurs, clients, revenus, promotions et paramètres système.</div>
+        <div class="app-card-features">
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--ink-2)"></div>KPIs & graphiques analytiques</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--ink-2)"></div>Gestion commandes & livreurs</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--ink-2)"></div>Carte live multi-livreurs</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--ink-2)"></div>Création & gestion des promos</div>
+          <div class="app-card-feat"><div class="app-card-feat-dot" style="background:var(--ink-2)"></div>Notifications & rapports auto</div>
+        </div>
+        <div class="app-card-cta" style="background:var(--ink);color:white">
+          <span>Ouvrir l'admin</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:16px;height:16px;stroke-width:2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════ FEATURES ═══════ -->
+<section class="features-section">
+  <div class="features-inner">
+    <div style="text-align:center">
+      <div class="badge badge-muted mb-12" style="margin:0 auto 14px">Fonctionnalités clés</div>
+      <h2 class="display-lg">Tout ce dont vous avez<br><em style="font-style:italic;color:var(--red)">besoin, d'emblée.</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feat-item">
+        <div class="feat-icon" style="background:var(--red-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" style="width:24px;height:24px;stroke-width:2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="feat-title">Temps réel</div>
+        <div class="feat-desc">Suivi GPS instantané du livreur avec mise à jour toutes les secondes sur une carte interactive.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon" style="background:var(--green-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" style="width:24px;height:24px;stroke-width:2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="feat-title">Multi-paiement</div>
+        <div class="feat-desc">Carte bancaire, Mobile Money, espèces ou Apple Pay. Chaque client choisit ce qui lui convient.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon" style="background:var(--blue-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" style="width:24px;height:24px;stroke-width:2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="feat-title">Chat intégré</div>
+        <div class="feat-desc">Communication directe entre clients et livreurs sans quitter l'application.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon" style="background:var(--amber-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" style="width:24px;height:24px;stroke-width:2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        </div>
+        <div class="feat-title">Promotions</div>
+        <div class="feat-desc">Créez des codes promo, offres flash et réductions ciblées depuis le panel admin.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon" style="background:#F3E8FF">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" style="width:24px;height:24px;stroke-width:2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div class="feat-title">Analytiques</div>
+        <div class="feat-desc">Graphiques détaillés, KPIs, performance livreurs et tendances mensuelles en un coup d'œil.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon" style="background:var(--bg-muted)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)" style="width:24px;height:24px;stroke-width:2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="feat-title">Multi-langue</div>
+        <div class="feat-desc">Interface disponible en français, anglais, allemand et espagnol, avec bascule instantanée.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TECH ═══════ -->
+<section class="tech-section">
+  <div class="badge badge-muted mb-12" style="margin:0 auto 14px">Stack technique</div>
+  <h2 class="display-md mb-8">Construit en HTML / CSS / JS pur</h2>
+  <p style="color:var(--ink-3);font-size:.88rem;max-width:480px;margin:0 auto">Zéro dépendance, zéro build tool. Fonctionne directement dans n'importe quel navigateur moderne.</p>
+  <div class="tech-chips">
+    <span class="tech-chip">HTML5 sémantique</span>
+    <span class="tech-chip">CSS Variables</span>
+    <span class="tech-chip">CSS Grid & Flexbox</span>
+    <span class="tech-chip">Backdrop filter</span>
+    <span class="tech-chip">CSS Animations</span>
+    <span class="tech-chip">Vanilla JavaScript</span>
+    <span class="tech-chip">Intl API</span>
+    <span class="tech-chip">Geolocation API</span>
+    <span class="tech-chip">SVG Maps</span>
+    <span class="tech-chip">LocalStorage</span>
+    <span class="tech-chip">Google Fonts</span>
+    <span class="tech-chip">Responsive Mobile-first</span>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="portal-footer">
+  <div class="footer-brand">Swiftly<span style="color:var(--red)">.</span></div>
+  <div class="footer-sub">Plateforme de livraison premium · HTML / CSS / JS pur · 2025</div>
+  <div style="display:flex;justify-content:center;gap:16px;margin-top:20px;flex-wrap:wrap">
+    <a href="client.html" style="color:rgba(255,255,255,.5);font-size:.8rem;transition:.2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">App Client</a>
+    <a href="driver.html" style="color:rgba(255,255,255,.5);font-size:.8rem;transition:.2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">App Livreur</a>
+    <a href="admin.html"  style="color:rgba(255,255,255,.5);font-size:.8rem;transition:.2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Administration</a>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+/* ── LANG ── */
+function buildPortalLang(){
+  const el=document.getElementById('portal-lang'); if(!el)return;
+  el.innerHTML=['fr','en','de','es'].map(l=>`<button class="lang-btn ${l===_lang?'active':''}" data-lang="${l}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join('');
+}
+
+/* ── LIVE TICKER ── */
+const TICKERS=[
+  ()=>'Commande #'+Math.floor(8800+Math.random()*100)+' passée il y a '+Math.floor(5+Math.random()*30)+' sec',
+  ()=>'Karim B. vient de livrer une commande ✓',
+  ()=>Math.floor(30+Math.random()*10)+' livreurs actifs en ce moment',
+  ()=>'Note moyenne : 4.'+(Math.floor(6+Math.random()*4))+' ★',
+  ()=>'Nouvelle inscription client · Paris '+Math.floor(1+Math.random()*20)+'e',
+];
+let tickerI=0;
+setInterval(()=>{
+  const el=document.getElementById('live-ticker'); if(!el)return;
+  el.style.opacity='0'; el.style.transform='translateY(4px)';
+  setTimeout(()=>{
+    tickerI=(tickerI+1)%TICKERS.length;
+    el.textContent=TICKERS[tickerI]();
+    el.style.transition='opacity .3s,transform .3s';
+    el.style.opacity='1'; el.style.transform='none';
+  },300);
+},4000);
+
+/* ── COUNTER ANIMATION ── */
+function animateCount(el,start,end,dur,suffix){
+  const range=end-start, startTime=performance.now();
+  const step=ts=>{
+    const prog=Math.min((ts-startTime)/dur,1);
+    const ease=1-Math.pow(1-prog,3);
+    const val=Math.floor(start+range*ease);
+    el.textContent=(val>=1000?(val/1000).toFixed(1)+'k':val)+(suffix||'');
+    if(prog<1)requestAnimationFrame(step);
+    else el.textContent=(end>=1000?(end/1000).toFixed(1)+'k':end)+(suffix||'');
+  };
+  requestAnimationFrame(step);
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  initLang();
+  buildPortalLang();
+  // Animate counters
+  setTimeout(()=>{
+    const co=document.getElementById('ctr-orders');
+    const cd=document.getElementById('ctr-drivers');
+    if(co) animateCount(co,1200,1482,1400);
+    if(cd) animateCount(cd,20,34,1000);
+  },400);
+  // Live ticker init
+  const t2=document.getElementById('live-ticker');
+  if(t2){t2.style.transition='opacity .3s,transform .3s';}
+  document.addEventListener('langchange',()=>buildPortalLang());
+});
+</script>
+</body>
+</html>
