@@ -386,7 +386,7 @@ const PAGES=['home','store','track','orders','profile','notifications','cart'];
 /* ── LANG SELECTOR ── */
 function buildLangSel(id){
   const el=document.getElementById(id); if(!el)return;
-  el.innerHTML=['fr','en','de','es'].map(l=>`<button class="lang-btn ${l===_lang?'active':''}" data-lang="${l}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join('');
+  el.innerHTML=['fr','en','es'].map(l=>`<button class="lang-btn ${l===_lang?'active':''}" data-lang="${l}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join('');
   el.style.cssText='display:flex;gap:2px;background:var(--bg-muted);border:1px solid var(--border);border-radius:var(--radius-full);padding:3px';
 }
 

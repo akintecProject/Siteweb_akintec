@@ -435,7 +435,7 @@ function closeSidebar()  { document.getElementById('adm-sidebar').classList.remo
 /* ── LANG ── */
 function buildLangSel(id){
   const el=document.getElementById(id); if(!el)return;
-  el.innerHTML=['fr','en','de','es'].map(l=>`<button class="lang-btn ${l===_lang?'active':''}" data-lang="${l}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join('');
+  el.innerHTML=['fr','en','es'].map(l=>`<button class="lang-btn ${l===_lang?'active':''}" data-lang="${l}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join('');
 }
 
 /* ── KPI ── */
