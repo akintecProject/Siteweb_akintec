@@ -103,7 +103,7 @@
     <div class="page-hero-bg"></div>
     <div class="container">
       <div class="page-hero-content">
-        <h1>Blog & Actualités</h1>
+        <h1 data-i18n="blog.title">Blog & Actualités</h1>
         <nav><ol class="breadcrumb"><li><a href="../index.html">Accueil</a></li><li class="breadcrumb-sep">›</li><li class="active">Blog</li></ol></nav>
       </div>
     </div>
@@ -115,27 +115,27 @@
       <!-- Featured post -->
       <div class="animate-fade-up" style="margin-bottom:60px">      
           <div style="padding:40px 40px 40px 0">
-            <span style="background:rgba(29,163,40,0.1);color:var(--green-dark);padding:4px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px">À la une</span>
-            <h2 style="font-size:1.6rem;margin:16px 0 12px;line-height:1.3">Les tendances tech qui vont transformer votre entreprise en 2025</h2>
-            <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.7;margin-bottom:20px">IA générative, edge computing, plateformes low-code... Découvrez les technologies qui redéfinissent la transformation digitale des entreprises cette année.</p>
+            <span style="background:rgba(29,163,40,0.1);color:var(--green-dark);padding:4px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px" data-i18n="blog.sub">À la une</span>
+            <h2 style="font-size:1.6rem;margin:16px 0 12px;line-height:1.3" data-i18n="blog.desc" >Les tendances tech qui vont transformer votre entreprise en 2026</h2>
+            <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.7;margin-bottom:20px" data-i18n="blog.descr2">IA générative, edge computing, plateformes low-code... Découvrez les technologies qui redéfinissent la transformation digitale des entreprises cette année.</p>
             <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
               <div style="display:flex;align-items:center;gap:8px">
                 <div style="width:32px;height:32px;border-radius:50%;background:rgba(29,163,40,0.15);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem;color:var(--green-primary)">AK</div>
-                <span style="font-size:0.85rem;font-weight:600;color:var(--slate-dark)">Équipe AKINTEC</span>
+                <span style="font-size:0.85rem;font-weight:600;color:var(--slate-dark)" data-i18n="about.author">l'Équipe AKINTEC</span>
               </div>
-              <span style="color:var(--text-muted);font-size:0.82rem">15 Jan 2025 · 8 min de lecture</span>
+              <span style="color:var(--text-muted);font-size:0.82rem" data-i18n="blog.date">15 Jan 2025 · 8 min de lecture</span>
             </div>
-            <a href="blog-detail.html" class="btn btn-primary">Lire l'article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="blog-detail.html" class="btn btn-primary" data-i18n="blog.read">Lire l'article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
       </div>
 
       <!-- Category filters -->
       <div class="animate-fade-up" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px">
-        <button onclick="filterBlog(this,'all')" class="blog-filter active" style="background:var(--green-primary);color:white;border:none;padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Tous les articles</button>
-        <button onclick="filterBlog(this,'tech')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Tech & Innovation</button>
-        <button onclick="filterBlog(this,'data')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Data & IA</button>
-        <button onclick="filterBlog(this,'cloud')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Cloud & DevOps</button>
-        <button onclick="filterBlog(this,'conseil')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s">Conseil IT</button>
+        <button onclick="filterBlog(this,'all')" class="blog-filter active" style="background:var(--green-primary);color:white;border:none;padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s" data-i18n="blog.all">Tous les articles</button>
+        <button onclick="filterBlog(this,'tech')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s" data-i18n="blog.tech">Tech & Innovation</button>
+        <button onclick="filterBlog(this,'data')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s" data-i18n="blog.data">Data & IA</button>
+        <button onclick="filterBlog(this,'cloud')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s" data-i18n="blog.cloud">Cloud & DevOps</button>
+        <button onclick="filterBlog(this,'conseil')" class="blog-filter" style="background:white;color:var(--slate-mid);border:1px solid var(--border);padding:8px 20px;border-radius:100px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;transition:all 0.3s" data-i18n="blog.conseil">Conseil IT</button>
       </div>
 
       <!-- Blog grid -->
@@ -147,12 +147,12 @@
             <img src="../assets/images/category/image/web2.png" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
           </a>
           <div style="padding:24px">
-            <span style="background:rgba(29,163,40,0.08);color:var(--green-dark);padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Tech & Innovation</span>
-            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">React 19 : ce que les développeurs doivent savoir</a></h3>
-            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Les nouvelles fonctionnalités de React 19 simplifient le développement et améliorent les performances.</p>
+            <span style="background:rgba(29,163,40,0.08);color:var(--green-dark);padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px" data-i18n="blog.tech">Tech & Innovation</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)" data-i18n="blog.article1">React 19 : ce que les développeurs doivent savoir</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px" data-i18n="blog.article1.desc">Les nouvelles fonctionnalités de React 19 simplifient le développement et améliorent les performances.</p>
             <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
-              <span style="color:var(--text-muted);font-size:0.8rem">8 Jan 2025 · 5 min</span>
-              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <span style="color:var(--text-muted);font-size:0.8rem"  data-i18n="blog.article1.date">8 Jan 2026 · 5 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px"  data-i18n="blog.read">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
         </article>
@@ -163,12 +163,12 @@
             <img src="../assets/images/category/image/data5.jpg" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
           </a>
           <div style="padding:24px">
-            <span style="background:rgba(13,43,74,0.08);color:#0d2b4a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Data & IA</span>
-            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">LLMs en entreprise : guide pratique pour démarrer</a></h3>
-            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Comment intégrer les grands modèles de langage dans votre workflow sans exploser le budget.</p>
+            <span style="background:rgba(13,43,74,0.08);color:#0d2b4a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px" data-i18n="blog.data">Data & IA</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)" data-i18n="blog.article2">LLMs en entreprise : guide pratique pour démarrer</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px" data-i18n="blog.article2.desc">Comment intégrer les grands modèles de langage dans votre workflow sans exploser le budget.</p>
             <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
-              <span style="color:var(--text-muted);font-size:0.8rem">3 Jan 2025 · 7 min</span>
-              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <span style="color:var(--text-muted);font-size:0.8rem" data-i18n="blog.article2.date">3 Jan 2026 · 7 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px" data-i18n="blog.read">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
         </article>
@@ -179,12 +179,12 @@
             <img src="../assets/images/category/image/ops.png" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
           </a>
           <div style="padding:24px">
-            <span style="background:rgba(26,42,58,0.08);color:#1a2a3a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Cloud & DevOps</span>
-            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">Kubernetes vs Docker Swarm : lequel choisir en 2025 ?</a></h3>
-            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Comparatif complet pour vous aider à faire le bon choix d'orchestration de conteneurs.</p>
+            <span style="background:rgba(26,42,58,0.08);color:#1a2a3a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px" data-i18n="blog.cloud">Cloud & DevOps</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)" data-i18n="blog.article3">Kubernetes vs Docker Swarm : lequel choisir en 2026 ?</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px" data-i18n="blog.article3.desc">Comparatif complet pour vous aider à faire le bon choix d'orchestration de conteneurs.</p>
             <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
-              <span style="color:var(--text-muted);font-size:0.8rem">28 Déc 2024 · 6 min</span>
-              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <span style="color:var(--text-muted);font-size:0.8rem" data-i18n="blog.article3.date">28 Déc 2025 · 6 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px" data-i18n="blog.read">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
         </article>
@@ -195,12 +195,12 @@
             <img src="../assets/images/category/image/consult.jpg" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
           </a>
           <div style="padding:24px">
-            <span style="background:rgba(42,26,58,0.08);color:#2a1a3a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Conseil IT</span>
-            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">5 erreurs à éviter lors de votre transformation digitale</a></h3>
-            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Les pièges classiques qui font échouer les projets de digitalisation et comment les éviter.</p>
+            <span style="background:rgba(42,26,58,0.08);color:#2a1a3a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px" data-i18n="blog.conseil">Conseil IT</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)" data-i18n="blog.article4">5 erreurs à éviter lors de votre transformation digitale</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px" data-i18n="blog.article4.desc">Les pièges classiques qui font échouer les projets de digitalisation et comment les éviter.</p>
             <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
-              <span style="color:var(--text-muted);font-size:0.8rem">20 Déc 2024 · 9 min</span>
-              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <span style="color:var(--text-muted);font-size:0.8rem" data-i18n="blog.article4.date">20 Déc 2025 · 9 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px" data-i18n="blog.read">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
         </article>
@@ -211,31 +211,16 @@
             <img src="../assets/images/category/image/web2.png" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
           </a>
           <div style="padding:24px">
-            <span style="background:rgba(29,163,40,0.08);color:var(--green-dark);padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Tech & Innovation</span>
-            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">Web Components vs React : le guide 2025</a></h3>
-            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Quand utiliser les Web Components natifs et quand rester sur React pour vos projets front.</p>
+            <span style="background:rgba(29,163,40,0.08);color:var(--green-dark);padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px" data-i18n="blog.tech">Tech & Innovation</span>
+            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)" data-i18n="blog.article5">Web Components vs React : le guide 2025</a></h3>
+            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px" data-i18n="blog.article5.desc">Quand utiliser les Web Components natifs et quand rester sur React pour vos projets front.</p>
             <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
-              <span style="color:var(--text-muted);font-size:0.8rem">12 Déc 2024 · 5 min</span>
-              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <span style="color:var(--text-muted);font-size:0.8rem" data-i18n="blog.article5.date">12 Déc 2024 · 5 min</span>
+              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px" data-i18n="blog.read">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
         </article>
 
-        <!-- Article 6 -->
-        <article class="blog-card animate-fade-up" data-cat="data" style="background:white;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition)">
-          <a href="blog-detail.html" style="display:block;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#0d2b4a,#2a4a7a)">
-            <img src="../assets/images/category/image/data5.jpg" alt="Article" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none'">
-          </a>
-          <div style="padding:24px">
-            <span style="background:rgba(13,43,74,0.08);color:#0d2b4a;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Data & IA</span>
-            <h3 style="font-size:1.05rem;margin:12px 0 8px;line-height:1.4"><a href="blog-detail.html" style="color:var(--slate-dark)">dbt + BigQuery : construire un data warehouse moderne</a></h3>
-            <p style="color:var(--text-muted);font-size:0.87rem;line-height:1.6;margin-bottom:16px">Un tutoriel complet pour mettre en place un pipeline analytique robuste et maintenable.</p>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)">
-              <span style="color:var(--text-muted);font-size:0.8rem">5 Déc 2024 · 10 min</span>
-              <a href="blog-detail.html" style="color:var(--green-primary);font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:4px">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            </div>
-          </div>
-        </article>
 
       </div>
 
@@ -245,8 +230,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <button style="width:40px;height:40px;border:none;background:var(--green-primary);color:white;border-radius:var(--radius-sm);cursor:pointer;font-weight:700;font-family:inherit">1</button>
-        <button style="width:40px;height:40px;border:1px solid var(--border);background:white;border-radius:var(--radius-sm);cursor:pointer;font-family:inherit;color:var(--slate-dark)">2</button>
-        <button style="width:40px;height:40px;border:1px solid var(--border);background:white;border-radius:var(--radius-sm);cursor:pointer;font-family:inherit;color:var(--slate-dark)">3</button>
         <button style="width:40px;height:40px;border:1px solid var(--border);background:white;border-radius:var(--radius-sm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--slate-dark)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
@@ -259,12 +242,12 @@
     <div class="container">
       <div class="cta-inner">
         <div class="cta-content animate-fade-up">
-          <h2>Restez informé des dernières tendances tech</h2>
-          <p>Abonnez-vous à notre newsletter pour recevoir nos articles directement dans votre boîte mail.</p>
+          <h2 data-i18n="blog.h2">Restez informé des dernières tendances tech</h2>
+          <p data-i18n="blog.p">Abonnez-vous à notre newsletter pour recevoir nos articles directement dans votre boîte mail.</p>
         </div>
         <div class="animate-fade-up" style="display:flex;gap:12px;flex-wrap:wrap">
           <input type="email" placeholder="votre@email.fr" style="padding:12px 20px;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);border-radius:var(--radius-sm);color:white;font-family:inherit;font-size:0.92rem;outline:none;width:260px;backdrop-filter:blur(4px)" oninput="this.style.borderColor='rgba(255,255,255,0.6)'">
-          <button onclick="this.textContent='Abonné ✓';this.disabled=true;this.style.background='rgba(255,255,255,0.3)'" style="background:white;color:var(--green-primary);border:none;padding:12px 24px;border-radius:var(--radius-sm);font-weight:700;cursor:pointer;font-family:inherit;font-size:0.9rem;transition:all 0.3s">S'abonner</button>
+          <button onclick="this.textContent='Abonné ✓';this.disabled=true;this.style.background='rgba(255,255,255,0.3)'" style="background:white;color:var(--green-primary);border:none;padding:12px 24px;border-radius:var(--radius-sm);font-weight:700;cursor:pointer;font-family:inherit;font-size:0.9rem;transition:all 0.3s" data-i18n="blog.follow">S'abonner</button>
         </div>
       </div>
     </div>

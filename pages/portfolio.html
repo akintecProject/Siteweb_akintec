@@ -467,12 +467,12 @@
     <div class="page-hero-bg"></div>
     <div class="container">
       <div class="page-hero-content">
-        <h1>Nos Projets</h1>
+        <h1 data-i18n="portfolio.title">Nos Projets</h1>
         <nav>
           <ol class="breadcrumb">
             <li><a href="../index.html">Accueil</a></li>
             <li class="breadcrumb-sep">›</li>
-            <li class="active">Nos Projets</li>
+            <li class="active" data-i18n="portfolio.title">Nos Projets</li>
           </ol>
         </nav>
       </div>
@@ -483,28 +483,28 @@
   <section class="section-gap" style="padding-bottom: 0;">
     <div class="container">
       <div class="section-header animate-fade-up">
-        <div class="section-tag">Portfolio</div>
-        <h2>Des réalisations qui parlent d'elles-mêmes</h2>
-        <p>De l'idée à la mise en production — chaque projet est le fruit d'une collaboration étroite avec nos clients pour produire des résultats mesurables et durables.</p>
+        <div class="section-tag" data-i18n="portofolio">Portfolio</div>
+        <h2 data-i18n="portfolio.info">Des réalisations qui parlent d'elles-mêmes</h2>
+        <p data-i18n="portfolio.infos">De l'idée à la mise en production — chaque projet est le fruit d'une collaboration étroite avec nos clients pour produire des résultats mesurables et durables.</p>
       </div>
 
       <!-- Stats -->
       <div class="portfolio-stats animate-fade-up">
         <div class="portfolio-stat">
-          <div class="portfolio-stat-num" data-count="50" data-suffix="+">50+</div>
-          <div class="portfolio-stat-label">Projets livrés</div>
+          <div class="portfolio-stat-num" data-count="20" data-suffix="+">20+</div>
+          <div class="portfolio-stat-label" data-i18n="portfolio.livré">Projets livrés</div>
         </div>
         <div class="portfolio-stat">
-          <div class="portfolio-stat-num" data-count="30" data-suffix="+">30+</div>
-          <div class="portfolio-stat-label">Clients satisfaits</div>
+          <div class="portfolio-stat-num" data-count="15" data-suffix="+">15+</div>
+          <div class="portfolio-stat-label" data-i18n="portfolio.satisf">Clients satisfaits</div>
         </div>
         <div class="portfolio-stat">
           <div class="portfolio-stat-num" data-count="5" data-suffix="+">5+</div>
-          <div class="portfolio-stat-label">Secteurs couverts</div>
+          <div class="portfolio-stat-label" data-i18n="portfolio.secteurs">Secteurs couverts</div>
         </div>
         <div class="portfolio-stat">
-          <div class="portfolio-stat-num" data-count="98" data-suffix="%">98%</div>
-          <div class="portfolio-stat-label">Taux de satisfaction</div>
+          <div class="portfolio-stat-num" data-count="85" data-suffix="%">85%</div>
+          <div class="portfolio-stat-label" data-i18n="portfolio.taux">Taux de satisfaction</div>
         </div>
       </div>
     </div>
@@ -516,11 +516,11 @@
 
       <!-- Filter bar -->
       <div class="filter-bar animate-fade-up">
-        <button class="filter-btn active" data-filter="all">Tous les projets</button>
-        <button class="filter-btn" data-filter="dev">Développement</button>
-        <button class="filter-btn" data-filter="data">Data &amp; IA</button>
+        <button class="filter-btn active" data-filter="all" data-i18n="portfolio.all">Tous les projets</button>
+        <button class="filter-btn" data-filter="dev" data-i18n="portfolio.dev">Développement</button>
+        <button class="filter-btn" data-filter="data" data-i18n="portfolio.data">Data &amp; IA</button>
         <button class="filter-btn" data-filter="cloud">Cloud &amp; DevOps</button>
-        <button class="filter-btn" data-filter="conseil">Conseil IT</button>
+        <button class="filter-btn" data-filter="conseil" data-i18n="portfolio.it">Conseil IT</button>
       </div>
 
       <!-- Projects grid -->
@@ -532,33 +532,33 @@
         <div class="project-card animate-fade-up" data-category="dev">
           <div class="project-thumb">
             <!-- Remplacez src par le chemin de votre capture d'écran -->
-            <img src="../assets/images/projects/project-1.jpg"
+            <img src="../assets/images/projects/ecome.png"
                  alt="Site KALYWAX"
                  onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
             <div class="project-thumb-placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </div>
-            <span class="project-cat-badge">Développement Web</span>
+            <span class="project-cat-badge" data-i18n="portfolio.project1">Développement Web</span>
             <div class="project-result-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-              <span>+340 % de conversions en ligne</span>
+              <span data-i18n="portfolio.project1.info">+340 % de conversions en ligne</span>
             </div>
           </div>
           <div class="project-body">
-            <p class="project-client">KALYWAX</p>
-            <h3 class="project-title">Plateforme e-commerce de mode africaine</h3>
-            <p class="project-desc">Boutique en ligne full-stack avec catalogue produits dynamique, paiement sécurisé (Stripe), espace client et back-office de gestion des commandes.</p>
+            <p class="project-client" >KALYWAX</p>
+            <h3 class="project-title" data-i18n="portfolio.project1.title">Plateforme e-commerce de mode africaine</h3>
+            <p class="project-desc" data-i18n="portfolio.project1.desc">Boutique en ligne full-stack avec catalogue produits dynamique, paiement sécurisé (Stripe), espace client et back-office de gestion des commandes.</p>
             <div class="project-techs">
               <span class="service-tag-pill">HTML/CSS</span>
               <span class="service-tag-pill">JavaScript</span>
             </div>
             <div class="project-footer">
-              <span class="project-duration">
+              <span class="project-duration" data-i18n="portfolio.project1.time">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 4 mois
               </span>
               <!-- ✏️ Remplacez # par l'URL réelle du projet -->
-              <a href="./../projects/ecommerce/index.html" target="_blank" rel="noopener" class="project-cta">
+              <a href="./../projects/ecommerce/index.html" target="_blank" rel="noopener" class="project-cta" data-i18n="portfolio.view">
                 Voir le projet
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
@@ -571,22 +571,22 @@
         <!-- ================================================== -->
         <div class="project-card animate-fade-up" data-category="dev">
           <div class="project-thumb">
-            <img src="../assets/images/projects/project-2.jpg"
+            <img src="../assets/images/projects/erp.png"
                  alt="Site African Business Club"
                  onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
             <div class="project-thumb-placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </div>
-            <span class="project-cat-badge">Site Web</span>
+            <span class="project-cat-badge" data-i18n="portfolio.project2">Site Web</span>
             <div class="project-result-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-              <span>Visibilité digitale multipliée</span>
+              <span data-i18n="portfolio.project2.info">Visibilité digitale multipliée</span>
             </div>
           </div>
           <div class="project-body">
-            <p class="project-client">African Business Club</p>
-            <h3 class="project-title">Plateforme de gestion d'entreprise</h3>
-            <p class="project-desc">Conception et développement d'une plateforme (ERP), gestion des clients, gestion d'equipe, calendrier, gestion des factures, gestion des employés, gestion des stocks ,analytics.</p>
+            <p class="project-client" >African Business Club</p>
+            <h3 class="project-title" data-i18n="portfolio.project2.title">Plateforme de gestion d'entreprise</h3>
+            <p class="project-desc" data-i18n="portfolio.project2.desc">Conception et développement d'une plateforme (ERP), gestion des clients, gestion d'equipe, calendrier, gestion des factures, gestion des employés, gestion des stocks ,analytics.</p>
             <div class="project-techs">
               <span class="service-tag-pill">React</span>
               <span class="service-tag-pill">Node.js</span>
@@ -594,11 +594,11 @@
               <span class="service-tag-pill">MongoDB</span>
             </div>
             <div class="project-footer">
-              <span class="project-duration">
+              <span class="project-duration" data-i18n="portfolio.project2.time">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 6 semaines
               </span>
-              <a href="./../projects/erp-platform/index.html" target="_blank" rel="noopener" class="project-cta">
+              <a href="./../projects/erp-platform/index.html" target="_blank" rel="noopener" class="project-cta" data-i18n="portfolio.view">
                 Voir le projet
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
@@ -609,24 +609,24 @@
         <!-- ================================================== -->
         <!-- ✏️  PROJET 3                                        -->
         <!-- ================================================== -->
-        <div class="project-card animate-fade-up" data-category="data">
+        <div class="project-card animate-fade-up" data-category="dev">
           <div class="project-thumb">
-            <img src="../assets/images/projects/project-3.jpg"
+            <img src="../assets/images/projects/tablein.png"
                  alt="Dashboard analytique Jamaa Summit"
                  onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
             <div class="project-thumb-placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
             </div>
-            <span class="project-cat-badge">Data &amp; Analytics</span>
+            <span class="project-cat-badge" data-i18n="portfolio.project3">Plateforme</span>
             <div class="project-result-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-              <span>Décisions x5 plus rapides</span>
+              <span data-i18n="portfolio.project3.info">Décisions x5 plus rapides</span>
             </div>
           </div>
           <div class="project-body">
-            <p class="project-client">Jamaa Summit</p>
-            <h3 class="project-title">Application de reservation (Restaurant)</h3>
-            <p class="project-desc">creation de compte, calendrier de reservation, notification, paiement en ligne, gestion des disponibilités</p>
+            <p class="project-client" >Jamaa Summit</p>
+            <h3 class="project-title" data-i18n="portfolio.project3.title">Application de reservation (Restaurant)</h3>
+            <p class="project-desc" data-i18n="portfolio.project3.desc">creation de compte, calendrier de reservation, notification, paiement en ligne, gestion des disponibilités</p>
             <div class="project-techs">
               <span class="service-tag-pill">HTML/CSS</span>
               <span class="service-tag-pill">JavaScript</span>
@@ -634,11 +634,11 @@
 
             </div>
             <div class="project-footer">
-              <span class="project-duration">
+              <span class="project-duration" data-i18n="portfolio.project3.time">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 2 mois
               </span>
-              <a href="./../projects/tablein/index.html" target="_blank" rel="noopener" class="project-cta">
+              <a href="./../projects/tablein/index.html" target="_blank" rel="noopener" class="project-cta" data-i18n="portfolio.view">
                 Voir le projet
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
@@ -653,22 +653,22 @@
         <!-- ================================================== -->
         <div class="project-card animate-fade-up" data-category="data">
           <div class="project-thumb">
-            <img src="../assets/images/projects/project-3.jpg"
+            <img src="../assets/images/projects/swift.png"
                  alt="Dashboard analytique Jamaa Summit"
                  onerror="this.style.display='none';this.parentElement.classList.add('no-img')">
             <div class="project-thumb-placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
             </div>
-            <span class="project-cat-badge"> Site Web</span>
+            <span class="project-cat-badge" data-i18n="portfolio.project4"> Site Web</span>
             <div class="project-result-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-              <span>Décisions x4 plus rapides</span>
+              <span data-i18n="portfolio.project4.info">Décisions x4 plus rapides</span>
             </div>
           </div>
           <div class="project-body">
-            <p class="project-client">Lamar Johns</p>
-            <h3 class="project-title">Application de livraison</h3>
-            <p class="project-desc">geolocalisation, suivi du livreur, paiement mobile, notifications, application client + livreur + admin</p>
+            <p class="project-client" >Lamar Johns</p>
+            <h3 class="project-title" data-i18n="portfolio.project4.title">Application de livraison</h3>
+            <p class="project-desc" data-i18n="portfolio.project4.desc">geolocalisation, suivi du livreur, paiement mobile, notifications, application client + livreur + admin</p>
             <div class="project-techs">
               <span class="service-tag-pill">HTML</span>
               <span class="service-tag-pill">React</span>
@@ -677,11 +677,11 @@
 
             </div>
             <div class="project-footer">
-              <span class="project-duration">
+              <span class="project-duration" data-i18n="portfolio.project4.time">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 3 mois
               </span>
-              <a href="./../projects/swift-delivery/index.html" target="_blank" rel="noopener" class="project-cta">
+              <a href="./../projects/swift-delivery/index.html" target="_blank" rel="noopener" class="project-cta" data-i18n="portfolio.view">
                 Voir le projet
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
@@ -700,16 +700,16 @@
             <div class="project-thumb-placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
             </div>
-            <span class="project-cat-badge">Cloud &amp; DevOps</span>
+            <span class="project-cat-badge" data-i18n="portfolio.project5">Cloud &amp; DevOps</span>
             <div class="project-result-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-              <span>99,98 % de disponibilité</span>
+              <span data-i18n="portfolio.project5.info">99,98 % de disponibilité</span>
             </div>
           </div>
           <div class="project-body">
-            <p class="project-client">Client Confidentiel</p>
-            <h3 class="project-title">Migration cloud & CI/CD automatisé</h3>
-            <p class="project-desc">Migration d'une infrastructure on-premise vers AWS, pipelines CI/CD avec GitHub Actions, containerisation Docker/Kubernetes et monitoring Datadog.</p>
+            <p class="project-client" >Client Confidentiel</p>
+            <h3 class="project-title" data-i18n="portfolio.project5.title">Migration cloud & CI/CD automatisé</h3>
+            <p class="project-desc" data-i18n="portfolio.project5.desc">Migration d'une infrastructure on-premise vers AWS, pipelines CI/CD avec GitHub Actions, containerisation Docker/Kubernetes et monitoring Datadog.</p>
             <div class="project-techs">
               <span class="service-tag-pill">AWS</span>
               <span class="service-tag-pill">Kubernetes</span>
@@ -717,12 +717,12 @@
               <span class="service-tag-pill">Datadog</span>
             </div>
             <div class="project-footer">
-              <span class="project-duration">
+              <span class="project-duration" data-i18n="portfolio.project5.time">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 3 mois
               </span>
               <!-- Lien désactivé si NDA / confidentiel -->
-              <span class="project-cta disabled">
+              <span class="project-cta disabled" data-i18n="portfolio.noview">
                 Confidentiel
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </span>
@@ -741,16 +741,16 @@
             <div class="project-thumb-placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </div>
-            <span class="project-cat-badge">Conseil IT</span>
+            <span class="project-cat-badge" data-i18n="portfolio.project6">Conseil IT</span>
             <div class="project-result-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-              <span>−30 % de coûts IT</span>
+              <span data-i18n="portfolio.project6.info">−30 % de coûts IT</span>
             </div>
           </div>
           <div class="project-body">
-            <p class="project-client">Client Industriel</p>
-            <h3 class="project-title">Audit SI & roadmap de transformation digitale</h3>
-            <p class="project-desc">Évaluation complète du système d'information, identification des axes d'optimisation et élaboration d'une roadmap digitale sur 3 ans avec priorisation des investissements.</p>
+            <p >Client Industriel</p>
+            <h3 class="project-title.title">Audit SI & roadmap de transformation digitale</h3>
+            <p class="project-desc" data-i18n="portfolio.project6.desc">Évaluation complète du système d'information, identification des axes d'optimisation et élaboration d'une roadmap digitale sur 3 ans avec priorisation des investissements.</p>
             <div class="project-techs">
               <span class="service-tag-pill">TOGAF</span>
               <span class="service-tag-pill">ITIL</span>
@@ -758,11 +758,11 @@
               <span class="service-tag-pill">Power BI</span>
             </div>
             <div class="project-footer">
-              <span class="project-duration">
+              <span class="project-duration"data-i18n="portfolio.project6.time">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 6 semaines
               </span>
-              <span class="project-cta disabled">
+              <span class="project-cta disabled" data-i18n="portfolio.noview">
                 Confidentiel
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </span>
@@ -781,16 +781,16 @@
             <div class="project-thumb-placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
             </div>
-            <span class="project-cat-badge">SaaS B2B</span>
+            <span class="project-cat-badge" data-i18n="portfolio.project7">SaaS B2B</span>
             <div class="project-result-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-              <span>120 entreprises clientes en 6 mois</span>
+              <span data-i18n="portfolio.project7.info">120 entreprises clientes en 6 mois</span>
             </div>
           </div>
           <div class="project-body">
-            <p class="project-client">Startup RH</p>
-            <h3 class="project-title">Application SaaS de gestion des talents</h3>
-            <p class="project-desc">Développement from scratch d'une plateforme SaaS B2B : onboarding, évaluation des performances, plans de formation et analytics RH avancés.</p>
+            <p class="project-client" >Startup RH</p>
+            <h3 class="project-title" data-i18n="portfolio.project7.title">Application SaaS de gestion des talents</h3>
+            <p class="project-desc" data-i18n="portfolio.project7.desc">Développement from scratch d'une plateforme SaaS B2B : onboarding, évaluation des performances, plans de formation et analytics RH avancés.</p>
             <div class="project-techs">
               <span class="service-tag-pill">Vue.js</span>
               <span class="service-tag-pill">FastAPI</span>
@@ -798,11 +798,11 @@
               <span class="service-tag-pill">Azure</span>
             </div>
             <div class="project-footer">
-              <span class="project-duration">
+              <span class="project-duration" data-i18n="portfolio.project7.time">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 6 mois
               </span>
-              <span class="project-cta disabled">
+              <span class="project-cta disabled" data-i18n="portfolio.noview">
                 Confidentiel
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </span>
@@ -813,8 +813,8 @@
         <!-- Empty state (shown when filter returns 0 results) -->
         <div class="empty-state" id="empty-state">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <h4>Aucun projet dans cette catégorie pour l'instant.</h4>
-          <p>Revenez bientôt ou <a href="./contact.html" style="color:var(--green-primary);font-weight:600">contactez-nous</a> pour discuter de votre besoin.</p>
+          <h4 data-i18n="portfolio.h4">Aucun projet dans cette catégorie pour l'instant.</h4>
+          <p data-i18n="portfolio.p1">Revenez bientôt ou <a href="./contact.html" style="color:var(--green-primary);font-weight:600">contactez-nous</a> pour discuter de votre besoin.</p>
         </div>
 
       </div><!-- /projects-grid -->
@@ -824,9 +824,9 @@
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3>Votre projet sera notre prochaine référence</h3>
-        <p>Besoin d'un partenaire tech pour donner vie à votre idée ? Discutons ensemble de vos objectifs.</p>
-        <a href="./contact.html" class="btn btn-primary btn-lg">Démarrer un projet
+        <h3 data-i18n="portfolio.h3">Votre projet sera notre prochaine référence</h3>
+        <p data-i18n="portfolio.p2">Besoin d'un partenaire tech pour donner vie à votre idée ? Discutons ensemble de vos objectifs.</p>
+        <a href="./contact.html" class="btn btn-primary btn-lg" data-i18n="portfolio.startnew">Démarrer un projet
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
