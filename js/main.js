@@ -2420,25 +2420,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.lang = currentLang;
   }
 
+  // 
   function setLang(lang) {
     currentLang = lang;
     localStorage.setItem('akintec_lang', lang);
     applyTranslations();
-
-    // Close any open dropdowns
-    document.querySelectorAll('.lang-dropdown').forEach(d => {
-      d.style.opacity = '0';
-      d.style.visibility = 'hidden';
-    });
   }
+
+
+
 
   // Language switcher clicks
   document.querySelectorAll('[data-lang]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       setLang(btn.dataset.lang);
     });
   });
+
+  document.querySelectorAll('.lang-current').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const dropdown = trigger.nextElementSibling;
+      dropdown.classList.toggle('open');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.lang-dropdown').forEach(d => {
+      d.classList.remove('open');
+    });
+  });
+
+
+
 
   applyTranslations();
 

@@ -216,11 +216,14 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 999;
 }
 
-.lang-switcher:hover .lang-dropdown {
+
+.lang-switcher:hover .lang-dropdown,
+.lang-dropdown.open {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
+
 
 .lang-dropdown a {
   display: flex;
@@ -754,7 +757,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   gap: 8px;
-  color: rgba(255,255,255,0.85);
+  color: rgba(0, 0, 0, 0.85);
   font-size: 0.9rem;
   font-weight: 500;
 }
